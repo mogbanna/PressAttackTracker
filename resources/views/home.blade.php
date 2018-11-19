@@ -1,119 +1,312 @@
 @extends('layouts.app')
 
 @section('content')
-    
 
-{{-- Begin featured area with "browse" and "submit report" buttons--}}
-        <div class="position-relative">
-                <!-- shape Hero -->
-                <section class="section section-lg section-shaped pb-250">
-                  <div class="shape shape-style-1 shape-default">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
+  <div class="page-header header-filter" data-parallax="true" style="background-image: url('{{asset('img/bg3.jpg')}}')">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 ml-auto mr-auto">
+          <div class="brand text-center">
+            <h1 class="title">Press Attack Tracker</h1>
+            <h3 class="description text-center">
+  
+              A record database of journalists in Nigeria who have been attacked or harassed.
+              {{-- ● To track abuses on the rights of the press.
+              ● To ensure that journalists whose rights are abused get prompt response once the team has
+              been contacted.
+              ● To have a catalogue of evidence for litigating cases of attacks. --}}
+            </h3>
+          </div>
+        </div>
+      </div>
+
+
+
+  <div class="row text-center my-5">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header card-header-text card-header-info">
+                  <div class="card-text">
+                    <h4 class="card-title">TOTAL REPORTS</h4>
                   </div>
-                  <div class="container py-lg-md d-flex">
-                    <div class="col px-0">
-                      <div class="row">
-                        <div class="col-lg-6">
-                          <h1 class="display-3  text-white"> P. A. T.
-                            <span>Online Toolkit for Reporter's 
-                                Abuse
-                            </span>
-                          </h1>
-                          <p class="lead  text-white">The design system comes with four pre-built pages to help you get started faster. You can change the text and images and you're good to go.</p>
-                          <div class="btn-wrapper">
-                            <a href="../docs/components/alerts.html" class="btn btn-info btn-icon mb-3 mb-sm-0">
-                              <span class="btn-inner--icon"><i class="fa fa-code"></i></span>
-                              <span class="btn-inner--text">Browse Tracker</span>
-                            </a>
-                            <a href="https://www.creative-tim.com/product/argon-design-system" class="btn btn-danger btn-icon mb-3 mb-sm-0">
-                              <span class="btn-inner--icon"><i class="ni ni-cloud-download-95"></i></span>
-                              <span class="btn-inner--text">Submit A Report</span>
-                            </a>
-                          </div>
-                        </div>
+                </div>
+                <div class="display-4 card-body text-center">
+                1077
+              </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header card-header-text card-header-primary">
+                  <div class="card-text">
+                    <h4 class="card-title">CONFIRMED REPORTS</h4>
+                  </div>
+                </div>
+                <div class="display-4 card-body text-center">
+                1077
+              </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header card-header-text card-header-danger">
+                  <div class="card-text">
+                    <h4 class="card-title">VIOLENT REPORTS</h4>
+                  </div>
+                </div>
+                <div class="display-4 card-body text-center">
+                77
+              </div>
+            </div>
+    </div>
+    </div> 
+  </div>
+  </div>
+
+
+  {{-- BLOG POSTS ETC... --}}
+  <div class="main main-raised">
+    <div class="container">
+      <div class="section text-center">
+          <div class="container">
+              <div class="section">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="card card-raised card-background" style="background-image: url('{{ asset('img/examples/office2.jpg') }}')">
+                      <div class="card-body">
+                        <h6 class="card-category text-info">Worlds</h6>
+                        <a href="#pablo">
+                          <h3 class="card-title">The Best Productivity Apps on Market</h3>
+                        </a>
+                        <p class="card-description">
+                          Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+                        </p>
+                        <a href="#pablo" class="btn btn-danger btn-round">
+                          <i class="material-icons">format_align_left</i> Read Article
+                        </a>
                       </div>
                     </div>
                   </div>
-                  <!-- SVG separator -->
-                  <div class="separator separator-bottom separator-skew">
-                    <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                      <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
-                    </svg>
+                  <div class="col-md-6">
+                    <div class="card card-raised card-background" style="background-image: url('{{ asset('img/examples/blog8.jpg') }}')">
+                      <div class="card-body">
+                        <h6 class="card-category text-info">Business</h6>
+                        <h3 class="card-title">Working on Wallstreet is Not So Easy</h3>
+                        <p class="card-description">
+                          Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+                        </p>
+                        <a href="#pablo" class="btn btn-primary btn-round">
+                          <i class="material-icons">format_align_left</i> Read Article
+                        </a>
+                      </div>
+                    </div>
                   </div>
-                </section>
-{{-- End cards with data/ info --}}
-
-{{-- Begin cards with data/ info --}}
-        <section class="section section-lg pt-lg-0 mt--200">
-            <div class="container">
-                <div class="row justify-content-center">
-                <div class="col-lg-12">
-                    <div class="row row-grid">
-                    <div class="col-lg-4">
-                        <div class="card card-lift--hover shadow border-0">
-                        <div class="card-body py-5">
-                            <div class="icon icon-shape icon-shape-primary rounded-circle mb-4">
-                            <i class="ni ni-check-bold"></i>
-                            </div>
-                            <h6 class="text-primary text-uppercase">Download Argon</h6>
-                            <p class="description mt-3">Argon is a great free UI package based on Bootstrap 4 that includes the most important components and features.</p>
-                            <div>
-                            <span class="badge badge-pill badge-primary">design</span>
-                            <span class="badge badge-pill badge-primary">system</span>
-                            <span class="badge badge-pill badge-primary">creative</span>
-                            </div>
-                            <a href="#" class="btn btn-primary mt-4">Learn more</a>
-                        </div>
-                        </div>
+                  <div class="col-md-12">
+                    <div class="card card-raised card-background" style="background-image: url('{{ asset('img/examples/card-project6.jpg') }}')">
+                      <div class="card-body">
+                        <h6 class="card-category text-info">Marketing</h6>
+                        <h3 class="card-title">0 to 100.000 Customers in 6 months</h3>
+                        <p class="card-description">
+                          Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+                        </p>
+                        <a href="#pablo" class="btn btn-warning btn-round">
+                          <i class="material-icons">subject</i> Read Case Study
+                        </a>
+                        <a href="#pablo" class="btn btn-white btn-just-icon btn-link" title="" rel="tooltip" data-original-title="Save to Pocket">
+                          <i class="fa fa-get-pocket"></i>
+                        </a>
+                      </div>
                     </div>
-                    <div class="col-lg-4">
-                        <div class="card card-lift--hover shadow border-0">
-                        <div class="card-body py-5">
-                            <div class="icon icon-shape icon-shape-success rounded-circle mb-4">
-                            <i class="ni ni-istanbul"></i>
-                            </div>
-                            <h6 class="text-success text-uppercase">Build Something</h6>
-                            <p class="description mt-3">Argon is a great free UI package based on Bootstrap 4 that includes the most important components and features.</p>
-                            <div>
-                            <span class="badge badge-pill badge-success">business</span>
-                            <span class="badge badge-pill badge-success">vision</span>
-                            <span class="badge badge-pill badge-success">success</span>
-                            </div>
-                            <a href="#" class="btn btn-success mt-4">Learn more</a>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="card card-lift--hover shadow border-0">
-                        <div class="card-body py-5">
-                            <div class="icon icon-shape icon-shape-warning rounded-circle mb-4">
-                            <i class="ni ni-planet"></i>
-                            </div>
-                            <h6 class="text-warning text-uppercase">Prepare Launch</h6>
-                            <p class="description mt-3">Argon is a great free UI package based on Bootstrap 4 that includes the most important components and features.</p>
-                            <div>
-                            <span class="badge badge-pill badge-warning">marketing</span>
-                            <span class="badge badge-pill badge-warning">product</span>
-                            <span class="badge badge-pill badge-warning">launch</span>
-                            </div>
-                            <a href="#" class="btn btn-warning mt-4">Learn more</a>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
+                  </div>
                 </div>
+              </div>
+              <div class="section">
+                <h3 class="title text-center">Check out the Latest Posts</h3>
+                <br>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="card card-plain card-blog">
+                      <div class="card-header card-header-image">
+                        <a href="#pablo">
+                          <img class="img img-raised" src="{{ asset('img/bg5.jpg') }}">
+                        </a>
+                      </div>
+                      <div class="card-body">
+                        <h6 class="card-category text-info">Enterprise</h6>
+                        <h4 class="card-title">
+                          <a href="#pablo">Autodesk looks to future of 3D printing with Project Escher</a>
+                        </h4>
+                        <p class="card-description">
+                          Like so many organizations these days, Autodesk is a company in transition. It was until recently a traditional boxed software company selling licenses.
+                          <a href="#pablo"> Read More </a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="card card-plain card-blog">
+                      <div class="card-header card-header-image">
+                        <a href="#pablo">
+                          <img class="img img-raised" src="{{ asset('img/examples/blog5.jpg') }}">
+                        </a>
+                      </div>
+                      <div class="card-body">
+                        <h6 class="card-category text-success">
+                          Startups
+                        </h6>
+                        <h4 class="card-title">
+                          <a href="#pablo">Lyft launching cross-platform service this week</a>
+                        </h4>
+                        <p class="card-description">
+                          Like so many organizations these days, Autodesk is a company in transition. It was until recently a traditional boxed software company selling licenses.
+                          <a href="#pablo"> Read More </a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="card card-plain card-blog">
+                      <div class="card-header card-header-image">
+                        <a href="#pablo">
+                          <img class="img img-raised" src="{{ asset('img/examples/blog6.jpg') }}">
+                        </a>
+                      </div>
+                      <div class="card-body">
+                        <h6 class="card-category text-danger">
+                          <i class="material-icons">trending_up</i> Enterprise
+                        </h6>
+                        <h4 class="card-title">
+                          <a href="#pablo">6 insights into the French Fashion landscape</a>
+                        </h4>
+                        <p class="card-description">
+                          Like so many organizations these days, Autodesk is a company in transition. It was until recently a traditional boxed software company selling licenses.
+                          <a href="#pablo"> Read More </a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
-            </section>
+    </div>
+  </div>
+
+<hr>
+
+  <div class="subscribe-line subscribe-line-white">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-6">
+                  <h3 class="title">Get Tips &amp; Tricks every Week!</h3>
+                  <p class="description">
+                      Join our newsletter and get news in your inbox every week! We hate spam too, so no worries about this.
+                  </p>
+              </div>
+              <div class="col-md-6">
+                  <div class="card card-plain card-form-horizontal"><div class="card-body ">
+                          <form method="" action="">
+                              <div class="row">
+                                  <div class="col-lg-8 col-md-6 ">
+
+                                      <span class="bmd-form-group"><div class="input-group">
+                                        <div class="input-group-prepend">
+                                          <span class="input-group-text">
+                                              <i class="material-icons">mail</i>
+                                          </span>
+                                        </div>
+                                          <input type="email" value="" placeholder="Your Email..." class="form-control">
+                                      </div></span>
+                                  </div>
+                                  <div class="col-lg-4 col-md-6 ">
+                                      <button type="button" class="btn btn-rose btn-round btn-block">Subscribe</button>
+                                  </div>
+                              </div>
+                          </form>
+                      </div></div>
+
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <hr> 
+  
+ {{-- SOCIAL MEDIA LINKS --}}
+  <div class="social-line social-line-big-icons social-line-white">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-2 col-4">
+                  <a href="#pablo" class="btn btn-link btn-just-icon btn-twitter">
+                      <i class="fa fa-twitter"></i>
+                  </a>
+              </div>
+              <div class="col-md-2 col-4">
+                  <a href="#pablo" class="btn btn-link btn-just-icon btn-facebook">
+                      <i class="fa fa-facebook-square"></i>
+                  </a>
+              </div>
+              <div class="col-md-2 col-4">
+                  <a href="#pablo" class="btn btn-link btn-just-icon btn-google">
+                      <i class="fa fa-google-plus"></i>
+                  </a>
+              </div>
+              <div class="col-md-2 col-4">
+                  <a href="#pablo" class="btn btn-link btn-just-icon btn-dribbble">
+                      <i class="fa fa-dribbble"></i>
+                  </a>
+              </div>
+              <div class="col-md-2 col-4">
+                  <a href="#pablo" class="btn btn-link btn-just-icon btn-youtube">
+                      <i class="fa fa-youtube-play"></i>
+                  </a>
+              </div>
+              <div class="col-md-2 col-4">
+                  <a href="#pablo" class="btn btn-link btn-just-icon btn-instagram">
+                      <i class="fa fa-instagram"></i>
+                  </a>
+              </div>
+          </div>
+      </div>
+  </div>
+  
+ {{-- SUBSCRIBE TO US SECTINO --}}
+  {{-- <div class="subscribe-line subscribe-line-image" style="background-image: url('{{ asset('img/bg7.jpg') }}')">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 ml-auto mr-auto">
+                <div class="text-center">
+                    <h3 class="title">Subscribe to our Newsletter</h3>
+                    <p class="description">
+                        Join our newsletter and get news in your inbox every week! We hate spam too, so no worries about this.
+                    </p>
+                </div>
+                <div class="card card-raised card-form-horizontal">
+                    <div class="card-body ">
+                        <form method="" action="">
+                            <div class="row">
+                                <div class="col-lg-8 col-md-6 ">
+                                    <span class="bmd-form-group"><div class="input-group">
+                                      <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="material-icons">mail</i>
+                                        </span>
+                                      </div>
+                                        <input type="email" value="" placeholder="Your Email..." class="form-control">
+                                    </div></span>
+                                </div>
+                                <div class="col-lg-4 col-md-6 ">
+                                    <button type="button" class="btn btn-primary btn-block">Subscribe</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div> --}}
 
 
-{{-- End cards with data/ info --}}
+
  @endsection

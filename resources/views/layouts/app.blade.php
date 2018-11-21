@@ -21,15 +21,19 @@
 
     <!-- Material Kit CSS -->
     <link href="{{ asset('css/material-kit.css?v=2.1.0') }}" rel="stylesheet" />
+    {{-- Leaflet CSS --}}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
 
     <!-- Styles -->
     {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
 
     
+
+    
 </head>
 <body class="@yield('body-class')">
     @component('components.nav')
-        
+    @section('nav-class', 'navbar navbar-color-on-scroll navbar-transparent fixed-top navbar-expand-lg')
     @endcomponent
 
     <main>
@@ -52,7 +56,9 @@
     <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
     <script src="{{ asset('js/plugins/nouislider.min.js') }}" type="text/javascript"></script>
     <!--  Google Maps Plugin  -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+    {{-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> --}}
+    {{-- Leaflet Map Plugin --}}
+    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==" crossorigin=""></script>
     <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
     <script src="{{ asset('js/plugins/bootstrap-tagsinput.js') }}"></script>
     <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->

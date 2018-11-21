@@ -1,8 +1,13 @@
 @extends('layouts.app')
 
+
+@section('body-class', 'contact-page sidebar-collapse')
+@section('nav-class', 'navbar bg-light fixed-top navbar-expand-lg')
+
+
 @section('content')
-    
-<div id="contactUsMap" class="big-map"></div>
+
+<div id="contactUsMap" class="big-map" style="z-index: -4"></div>
   <div class="main main-raised">
     <div class="contact-content">
       <div class="container">
@@ -85,7 +90,7 @@
 @section('scripts')
     <script>
         $().ready(function() {
-          nonBelievers.initContactUsMap();
+          nonBelievers.initMap("contactUsMap", 9.00609, 7.4637, 14, "PTCIJ Main Office");
         });
     </script>
 @endsection

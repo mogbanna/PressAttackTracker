@@ -21,7 +21,7 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-Route::get('/faq', function () {
+Route::get('/helpyou', function () {
     return view('faq');
 })->name('faq');
 

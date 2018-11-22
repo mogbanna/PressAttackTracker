@@ -10,11 +10,11 @@
             <h1 class="title">Press Attack Tracker</h1>
             <h3 class="description text-center">
   
-              A record database of journalists in Nigeria who have been attacked or harassed.
-              {{-- ● To track abuses on the rights of the press.
-              ● To ensure that journalists whose rights are abused get prompt response once the team has
-              been contacted.
-              ● To have a catalogue of evidence for litigating cases of attacks. --}}
+                A record database of journalists in Nigeria who have been attacked or harassed.
+                {{-- ● To track abuses on the rights of the press.
+                ● To ensure that journalists whose rights are abused get prompt response once the team has
+                been contacted.
+                ● To have a catalogue of evidence for litigating cases of attacks. --}}
             </h3>
           </div>
         </div>
@@ -31,8 +31,8 @@
                   </div>
                 </div>
                 <div class="display-4 card-body text-center">
-                1077
-              </div>
+                  1077
+                </div>
             </div>
         </div>
         <div class="col-md-4">
@@ -43,8 +43,8 @@
                   </div>
                 </div>
                 <div class="display-4 card-body text-center">
-                1077
-              </div>
+                  1077
+                </div>
             </div>
         </div>
         <div class="col-md-4">
@@ -55,10 +55,10 @@
                   </div>
                 </div>
                 <div class="display-4 card-body text-center">
-                77
+                  77
               </div>
             </div>
-    </div>
+        </div>
     </div> 
   </div>
   </div>

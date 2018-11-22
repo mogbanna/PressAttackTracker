@@ -17,6 +17,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
+
+// UI ROUTES 
 Route::get('/about', function () {
     return view('about');
 })->name('about');
@@ -29,10 +32,74 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
-Route::get('/blog', function () {
-    return view('blog');
-})->name('blog');
+Route::get('/post', function () {
+    return view('post');
+})->name('post');
 
-Route::get('/tracker', function () {
-    return view('tracker');
-})->name('tracker');
+Route::get('/posts', function () {
+    return view('posts');
+})->name('posts');
+
+Route::get('/reports', function () {
+    return view('reports');
+})->name('reports');
+
+Route::get('/report', function () {
+    return view('report');
+})->name('report');
+
+Route::get('/submit_report', function() {
+    return view('submit_report');
+})->name('submit_report');
+
+
+
+Route::group(['prefix' => 'admin','middleware' => ['auth:web']], function () {
+
+    //Dashboard Main Route
+    Route::get('/', function() {
+        return view('admin.dashboard');
+    })->name('dashboard');
+
+    // Routes for reports
+    Route::group(['prefix' => 'report'], function() {
+
+        Route::get('/', function() {
+            return view('admin.report.view_all');
+        })->name('admin/report/view_all');
+    
+        Route::get('/add', function() {
+            return view('admin.report.add');
+        })->name('admin/report/add');
+
+
+    });
+
+    //Routs for posts
+    Route::group(['prefix' => 'post'], function() {
+
+        Route::get('/', function() {
+            return view('admin.post.view_all');
+        })->name('admin/post/view_all');
+    
+        Route::get('/add', function() {
+            return view('admin.post.add');
+        })->name('admin/post/add');
+
+
+    });
+
+
+
+    //Routes for Config
+
+
+
+
+
+});
+
+
+
+// ADMIN ROUTES
+

@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+
+
+
+
 @section('content')
 
   <div class="page-header header-filter" data-parallax="true" style="background-image: url('{{asset('img/bg3.jpg')}}')">

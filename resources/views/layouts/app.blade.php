@@ -43,9 +43,15 @@
         @yield('content')
     </main>
 
+
+    @section('footer-display')
     @component('components.footer')
-        
+     @section('footer-class', 'footer-black footer-big')   
+    
+
     @endcomponent
+    @show
+
 
     <!--   Core JS Files   -->
     <script src="{{ asset('js/core/jquery.min.js') }}" type="text/javascript"></script>

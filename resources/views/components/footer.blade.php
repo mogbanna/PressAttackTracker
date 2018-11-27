@@ -75,7 +75,7 @@
      --}}
 
 
-<footer class="footer footer-black footer-big">
+<footer class="footer @yield('footer-class')">
         <div class="container">
 
             <div class="content">
@@ -126,23 +126,23 @@
 
             <ul class="float-left">
                 <li>
-                    <a href="#pablo">
+                <a href="{{ route('posts') }}">
                        Blog
                     </a>
                 </li>
                 <li>
-                    <a href="#pablo">
-                        Presentation
+                    <a href="{{ route('about') }}">
+                        About Us
                     </a>
                 </li>
                 <li>
-                    <a href="#pablo">
-                       Discover
+                    <a href="{{ route('contact') }}">
+                       Contact Us
                     </a>
                 </li>
                 <li>
-                    <a href="#pablo">
-                        Payment
+                    <a href="{{ route('faq') }}">
+                        FAQ
                     </a>
                 </li>
                 <li>
@@ -150,10 +150,15 @@
                         Contact Us
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('login') }}}">
+                        Login
+                    </a>
+                </li>
             </ul>
 
             <div class="copyright float-right">
-                Copyright © <script>document.write(new Date().getFullYear())</script>2018 Creative Tim All Rights Reserved.
+                Copyright © <script>document.write(new Date().getFullYear())</script>2018 Anna and Faruk
             </div>
         </div>
     </footer>

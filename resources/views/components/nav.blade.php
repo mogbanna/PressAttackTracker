@@ -35,14 +35,14 @@
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{{ route('login') }}">
                             <i class="material-icons">person</i>
                             {{ __('Login') }}
                         </a>
                     </li>
                     <li class="nav-item">
                         @if (Route::has('register'))
-                            <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('register') }}">
                                 <i class="material-icons">person_add</i>
                                 {{ __('Register') }}
                             </a>

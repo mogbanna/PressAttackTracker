@@ -63,7 +63,38 @@
               </div>
             </div>
     </div>
-    </div> 
+    </div>
+    
+    <div class="row justify-content-md-center">
+        <div class="col col-lg-2">
+            
+          </div>
+          <div class="col-md-auto">
+          <a href="{{ route('reports') }}" class="btn btn-lg btn-info justify-content-end mr-4">
+                  <i class="material-icons pr-2">search</i>
+                  Browse Reports
+          </a>
+              <a href="{{ route('submit_report') }}" class="btn btn-lg btn-danger justify-content-end">
+                  <i class="material-icons pr-2">create</i>
+                  Submit Reports
+              </a>
+          </div>
+          <div class="col col-lg-2">
+            
+          </div>
+
+
+
+        {{-- <div class="col lg-4">
+            
+        </div>
+        <div class="col lg-4 justify-content-start">
+          <button class="btn btn-danger">
+            Submit Report
+          </button>
+        </div> --}}
+    </div>
+
   </div>
   </div>
 

@@ -7,8 +7,59 @@
 <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('{{ asset('img/bg10.jpg') }}');">
     <div class="container">
       <div class="row">
-        <div class="col-md-8 ml-auto mr-auto text-center">
-          <h2 class="title">A Whole Lotta Reports</h2>
+      <div class="col-md-8 ml-auto mr-auto text-center mt-5" >
+          <div id="navigation-pills">
+            <div class="row text-center justify-content-center">
+            <div class="row justify-content-center">
+              <div class="col-lg-6 col-md-8">
+                <ul class="nav nav-pills nav-pills-icons" role="tablist">
+                  <!--
+                                  color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
+                              -->
+                  <li class="nav-item">
+                    <a class="nav-link" href="#dashboard-1" role="tab" data-toggle="tab" aria-selected="false">
+                      <i class="material-icons">dashboard</i> Dashboard
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active show" href="#schedule-1" role="tab" data-toggle="tab" aria-selected="true">
+                      <i class="material-icons">schedule</i> Schedule
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#tasks-1" role="tab" data-toggle="tab" aria-selected="false">
+                      <i class="material-icons">list</i> Tasks
+                    </a>
+                  </li>
+                </ul>
+                <div class="tab-content tab-space">
+                  <div class="tab-pane" id="dashboard-1">
+                    Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.
+                    <br>
+                    <br> Dramatically visualize customer directed convergence without revolutionary ROI.
+                  </div>
+                  <div class="tab-pane active show" id="schedule-1">
+                    Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.
+                    <br>
+                    <br>Dramatically maintain clicks-and-mortar solutions without functional solutions.
+                  </div>
+                  <div class="tab-pane" id="tasks-1">
+                    Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
+                    <br>
+                    <br>Dynamically innovate resource-leveling customer service for state of the art customer service.
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+
+
+
+
+
+
+       </div>
         </div>
       </div>
     </div>
@@ -16,10 +67,10 @@
   <div class="main main-raised">
     <div class="container">
         <div class="section">
-        
-        {{-- <div class="row">
-          <div class="col-md-6">
-            <div class="card card-raised card-background" style="background-image: url('{{ asset('img/examples/office2.jpg') }}')">
+          <div class="row justify-content-center">
+            <h3 class="title">Select a View</h3> 
+            
+           {{-- <div class="card card-raised card-background" style="background-image: url('{{ asset('img/examples/office2.jpg') }}')">
               <div class="card-body">
                 <h6 class="card-category text-info">Worlds</h6>
                 <a href="#pablo">
@@ -61,12 +112,9 @@
                 </a>
                 <a href="#pablo" class="btn btn-white btn-just-icon btn-link" title="" rel="tooltip" data-original-title="Save to Pocket">
                   <i class="fa fa-get-pocket"></i>
-                </a>
+                </a>--}}
               </div>
-            </div>
-          </div>
-        </div>
-      </div> --}}
+            </div> 
       <div class="section">
         <div class="row justify-content-center">
             <nav aria-label="page navigation">
@@ -162,6 +210,7 @@
                     </nav>
             </div>
       </div>
+    </div>
     </div>
     </div>
     </div>

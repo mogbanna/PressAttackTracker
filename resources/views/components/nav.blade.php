@@ -55,6 +55,12 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            @if (Auth::user()->hasAnyRole(['administrator', 'journalist', 'reporter'])) 
+                            <a href="{{ route('dashboard') }}" class="dropdown-item">
+                                Admin Panel
+                            </a>
+                            @endif
+
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">

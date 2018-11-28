@@ -54,7 +54,7 @@ Route::get('/submit_report', function() {
 
 
 
-Route::group(['prefix' => 'admin','middleware' => ['auth:web']], function () {
+Route::group(['prefix' => 'admin','middleware' => ['auth:web', 'App\Http\AdminMiddleware', 'App\Http\JournalistMiddleware', 'App\Http\ReporterMiddleware']], function () {
 
     //Dashboard Main Route
     Route::get('/', function() {

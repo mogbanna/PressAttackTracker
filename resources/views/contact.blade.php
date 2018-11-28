@@ -90,7 +90,7 @@
 @section('scripts')
     <script>
         $().ready(function() {
-          nonBelievers.initMap("contactUsMap", 9.00609, 7.4637, 14, "PTCIJ Main Office");
+          nonBelievers.initMap("contactUsMap", 9.060892, 7.4637899, 15, "PTCIJ Main Office");
         });
     </script>
 @endsection

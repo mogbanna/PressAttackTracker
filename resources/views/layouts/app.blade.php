@@ -34,6 +34,7 @@
 <body class="@yield('body-class')">
     @component('components.nav')
     @section('nav-class', 'navbar navbar-color-on-scroll navbar-transparent fixed-top navbar-expand-lg')
+    
     @endcomponent
 
     <main>
@@ -42,9 +43,15 @@
         @yield('content')
     </main>
 
+
+    @section('footer-display')
     @component('components.footer')
-        
+     @section('footer-class', 'footer-black footer-big')   
+    
+
     @endcomponent
+    @show
+
 
     <!--   Core JS Files   -->
     <script src="{{ asset('js/core/jquery.min.js') }}" type="text/javascript"></script>

@@ -30,6 +30,11 @@ class ReportController extends Controller
      */
     public function create() {
         
+        if(!Gate::allows('isAdmin')){
+            abort(404,"Youre not authorized for this page, sorry...");
+        }
+
+
     }
 
     /**

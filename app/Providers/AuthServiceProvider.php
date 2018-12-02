@@ -2,8 +2,7 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
-use Illuminate\Contracts\Auth\Access\Gate as GateContract;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -14,7 +13,11 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Model' => 'App\Policies\ModelPolicy',
+        'App\Evidence' => 'App\Policies\EvidencePolicy',
+        'App\Report' => 'App\Policies\ReportPolicy',
+        'App\ReportType' => 'App\Policies\ReportTypePolicy',
+        'App\Story' => 'App\Policies\StoryPolicy',
+        'App\User' => 'App\Policies\UserPolicy'
     ];
 
     /**
@@ -22,26 +25,8 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot(GateContract $gate)
+    public function boot()
     {
-        $this->registerPolicies($gate);
-
-        $gate->define('isAdmin', function($user) {
-            return $user->hasRole ('administrator');
-        });
-
-        $gate->define('isJournalist', function($user) {
-            return $user->hasRole('journalist');
-        });
-
-        $gate->define('isReporter', function($user) {
-            return $user->hasRole('reporter');
-        });
-
-        // $gate->define('isAdminAndReporter', function($user) {            
-            
-        //     return $user->hasAnyRole(['administrator', 'reporter']);
-
-        // });
+        $this->registerPolicies();
     }
 }

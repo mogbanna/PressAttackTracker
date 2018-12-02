@@ -43,7 +43,7 @@ class User extends Authenticatable
         return $this->hasMany(Story::class);
     }
 
-        /**
+    /**
     * @param string|array $roles
     */
     public function authorizeRoles($roles) {
@@ -54,13 +54,15 @@ class User extends Authenticatable
         return $this->hasRole($roles) || 
             abort(401, 'This action is unauthorized.');
     }
+
     /**
     * Check multiple roles
     * @param array $roles
-    */
+    */ 
     public function hasAnyRole($roles) {
         return null !== $this->roles()->whereIn('name', $roles)->first();
     }
+
     /**
     * Check one role
     * @param string $role

@@ -54,7 +54,7 @@ Route::get('/submit_report', function() {
 
 
 
-Route::group(['prefix' => 'admin','middleware' => ['auth:web']], function () {
+Route::group(['prefix' => 'admin','middleware' => ['auth:web', 'checkRole:administrator|journalist']], function () {
 
     //Dashboard Main Route
     Route::get('/', function() {
@@ -63,7 +63,6 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:web']], function () {
 
     // Routes for reports
     Route::group(['prefix' => 'report'], function() {
-
         Route::get('/', function() {
             return view('admin.report.view_all');
         })->name('admin/report/view_all');
@@ -71,13 +70,10 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:web']], function () {
         Route::get('/add', function() {
             return view('admin.report.add');
         })->name('admin/report/add');
-
-
     });
 
     //Routs for posts
     Route::group(['prefix' => 'post'], function() {
-
         Route::get('/', function() {
             return view('admin.post.view_all');
         })->name('admin/post/view_all');
@@ -85,21 +81,10 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:web']], function () {
         Route::get('/add', function() {
             return view('admin.post.add');
         })->name('admin/post/add');
-
-
     });
 
-
-
     //Routes for Config
-
-
-
-
-
 });
-
-
 
 // ADMIN ROUTES
 

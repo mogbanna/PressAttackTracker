@@ -1,5 +1,3 @@
-
-
 <nav class="@yield('nav-class')" 
      id="sectionsNav">
      {{-- color-on-scroll="100" --}}
@@ -42,10 +40,10 @@
                     </li>
                     <li class="nav-item">
                         @if (Route::has('register'))
-                    <a class="nav-link" href="{{ route('register') }}">
-                                <i class="material-icons">person_add</i>
-                                {{ __('Register') }}
-                            </a>
+                        <a class="nav-link" href="{{ route('register') }}">
+                            <i class="material-icons">person_add</i>
+                            {{ __('Register') }}
+                        </a>
                         @endif
                     </li>
                 @else
@@ -55,7 +53,7 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            @if (Auth::user()->hasAnyRole(['administrator', 'journalist', 'reporter'])) 
+                            @if (Auth::user()->hasAnyRole(['administrator', 'journalist'])) 
                             <a href="{{ route('dashboard') }}" class="dropdown-item">
                                 Admin Panel
                             </a>
@@ -67,7 +65,8 @@
                                 {{ __('Logout') }}
                             </a>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            <form id="logout-form" action="{{ route('logout') }}" 
+                                method="POST" style="display: none;">
                                 @csrf
                             </form>
                         </div>

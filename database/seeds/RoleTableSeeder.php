@@ -14,23 +14,17 @@ class RoleTableSeeder extends Seeder
     {
         $role = new Role();
         $role->name = "user";
-        $role->description = "a common user who can comment";
+        $role->description = "can comment";
         $role->save();
 
         $role = new Role();
         $role->name = "administrator";
-        $role->description = "a user who can create other users and manage site";
+        $role->description = "can create other users and manage site";
         $role->save();
 
         $role = new Role();
         $role->name = "journalist";
-        $role->description = "a user who can add blog posts";
+        $role->description = "can add blog posts";
         $role->save();
-
-        $role = new Role();
-        $role->name = "reporter";
-        $role->description = "a user who can file reports of abuse";
-        $role->save();
-
     }
 }

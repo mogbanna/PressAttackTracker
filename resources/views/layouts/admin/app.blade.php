@@ -116,6 +116,10 @@
     <script src="{{ asset('js/plugins/chartist.min.js') }}"></script>
     <!--  Notifications Plugin    -->
     <script src="{{ asset('js/plugins/bootstrap-notify.js') }}"></script>
+     <!-- CKEditor Classic -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/11.1.1/classic/ckeditor.js"></script>
+
+    
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{{ asset('js/material-dashboard.min.js?v=2.1.0') }}" type="text/javascript"></script>
 

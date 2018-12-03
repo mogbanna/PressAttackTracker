@@ -20,6 +20,7 @@ class CreateReportsTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->string('victim');
+            $table->string('affiliation');
             $table->string('assailant');
             $table->unsignedInteger('status_id');
             $table->date('date');

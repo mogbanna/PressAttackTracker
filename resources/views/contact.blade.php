@@ -14,26 +14,40 @@
         <h2 class="title">Send us a message</h2>
         <div class="row">
           <div class="col-md-6">
-            <p class="description">You can contact us with anything related to our Products. We&apos;ll get in touch with you as soon as possible.
+            <p class="description">
+              You can contact us with 
+              anything related to our Products. 
+              We&apos;ll get in touch with you 
+              as soon as possible.
               <br>
               <br>
             </p>
             <form role="form" id="contact-form" method="post">
               <div class="form-group">
-                <label for="name" class="bmd-label-floating">Your name</label>
+                <label for="name" class="bmd-label-floating">
+                  Your name
+                </label>
                 <input type="text" class="form-control" id="name">
               </div>
               <div class="form-group">
-                <label for="exampleInputEmails" class="bmd-label-floating">Email address</label>
+                <label for="exampleInputEmails" class="bmd-label-floating">
+                  Email address
+                </label>
                 <input type="email" class="form-control" id="exampleInputEmails">
-                <span class="bmd-help">We'll never share your email with anyone else.</span>
+                <span class="bmd-help">
+                  We'll never share your email with anyone else.
+                </span>
               </div>
               <div class="form-group">
-                <label for="phone" class="bmd-label-floating">Phone</label>
+                <label for="phone" class="bmd-label-floating">
+                  Phone
+                </label>
                 <input type="text" class="form-control" id="phone">
               </div>
               <div class="form-group label-floating">
-                <label class="form-control-label bmd-label-floating" for="message"> Your message</label>
+                <label class="form-control-label bmd-label-floating" for="message"> 
+                  Your message
+                </label>
                 <textarea class="form-control" rows="6" id="message"></textarea>
               </div>
               <div class="submit text-center">
@@ -47,8 +61,11 @@
                 <i class="material-icons">pin_drop</i>
               </div>
               <div class="description">
-                <h4 class="info-title">Find us at the office</h4>
-                <p> Bld Mihail Kogalniceanu, nr. 8,
+                <h4 class="info-title">
+                  Find us at the office
+                </h4>
+                <p> 
+                  Bld Mihail Kogalniceanu, nr. 8,
                   <br> 7652 Bucharest,
                   <br> Romania
                 </p>
@@ -88,9 +105,15 @@
 @endsection
 
 @section('scripts')
-    <script>
-        $().ready(function() {
-          nonBelievers.initMap("contactUsMap", 9.060892, 7.4637899, 15, "PTCIJ Main Office");
-        });
-    </script>
+  <script>
+      $().ready(function() {
+        nonBelievers.initMap(
+          "contactUsMap", 
+          9.060892, 
+          7.4637899, 
+          15, 
+          "PTCIJ Main Office"
+        );
+      });
+  </script>
 @endsection

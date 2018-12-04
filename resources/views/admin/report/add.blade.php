@@ -4,7 +4,16 @@
 
 <div class="row">
   <div class="col-md-12">
-    <form id="RangeValidation" class="form-horizontal" action="" method="" novalidate="novalidate">
+    @if (isset($_GET['success']) && $_GET['success'] == 1)
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      Report has been submitted successfully.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    @endif
+    <form id="" class="form-horizontal" action="{{ route('adminAddReport') }}" method="POST" novalidate="novalidate">
+      @csrf
       <div class="card ">
         <div class="card-header card-header-default card-header-text">
           <div class="card-text">
@@ -16,21 +25,27 @@
           <div class="row my-5">
             <div class="col-md-8">
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Title">
+                <label for="report-description">
+                  Report Title
+                </label>
+                <input name="title" type="text" class="form-control" placeholder="Title">
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
-                <select class="form-control selectpicker" data-style="" id="report-type">
-                  <option value="-1">Report Type</option>
-                  <option>Physical Attack</option>
-                  <option>Arrest</option>
-                  <option>Border Stop</option>
-                  <option>Equipment Search Or Seizure</option>
-                  <option>Equipment or Property Damage</option>
-                  <option>Denial Of Access</option>
-                  <option>Threat</option>
-                  <option>Harassment</option>
+                <select name="report_type_id" class="form-control selectpicker" data-style="" id="report-type">
+                  <option disabled>Report Type</option>
+                  @php
+                    $reportTypes = App\ReportType::all();
+                  @endphp
+                  @for ($i = 0; $i < count($reportTypes); $i++)
+                    @php
+                        $reportType = $reportTypes[$i];
+                    @endphp
+                    <option value="{{ $reportType->id }}">
+                      {{ $reportType->name }}
+                    </option>
+                  @endfor
                 </select>
               </div>
             </div>
@@ -40,36 +55,36 @@
             <label for="report-description">
               Report Description
             </label><br><br>
-            <textarea class="form-control" id="report-description" rows="3"></textarea>
+            <textarea name="description" class="form-control" id="report-description" rows="6"></textarea>
           </div>
 
           <div class="form-group my-5">
-            <label for="report-description">
+            <label for="">
               Victim
             </label>
-            <input type="text" name="victim" class="form-control" placeholder="Victim">
+            <input name="victim" type="text" name="victim" class="form-control" placeholder="Victim">
           </div>
 
           <div class="form-group my-5">
-            <label for="report-description">
+            <label for="">
               Affiliation
             </label>
-            <input type="text" name="affiliation" class="form-control" placeholder="Affiliation">
+            <input name="affiliation" type="text" name="affiliation" class="form-control" placeholder="Affiliation">
           </div>
 
           <div class="form-group my-5">
-            <label for="report-description">
+            <label for="">
               Assailant
             </label>
-            <input type="text" name="assailant" class="form-control" placeholder="Assailant">
+            <input name="assailant" type="text" name="assailant" class="form-control" placeholder="Assailant">
           </div>
 
           <!-- input with datetimepicker -->
           <div class="form-group my-5">
-            <label class="label-control">
-              Datetime Picker
+            <label class="">
+              Incidet Date
             </label>
-            <input type="text" class="form-control datetimepicker" value="21/06/2018"/>
+            <input name="date" type="text" class="form-control datetimepicker" value="21/06/2018"/>
           </div>
 
           

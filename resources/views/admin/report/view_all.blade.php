@@ -111,58 +111,39 @@
                     </tr>
                   </tfoot>
                   <tbody>
-                    <tr role="row" class="odd">
-                      <td tabindex="0" class="sorting_1">
-                        1
-                      </td>
-                      <td>Samuel Ogundipe got attacked...</td>
-                      <td>Physical Assault</td>
-                      <td>
-                        <label for="" class="badge badge-danger">
-                          Unverified
-                        </label>
-                      </td>
-                      <td>2008/11/28</td>
-                      <td class="text-right">
-                        <a href="#" class="btn btn-link btn-info btn-just-icon like">
-                          <i class="material-icons">favorite</i>
-                        </a>
-                        <a href="#" class="btn btn-link btn-warning btn-just-icon edit">
-                          <i class="material-icons">dvr</i>
-                        </a>
-                        <a href="#" class="btn btn-link btn-danger btn-just-icon remove">
-                          <i class="material-icons">close</i>
-                        </a>
-                      </td>
-                    </tr>
-                    <tr role="row" class="odd">
-                      <td tabindex="0" class="sorting_1">
-                        1
-                      </td>
-                      <td>
-                        Samuel Ogundipe got attacked...
-                      </td>
-                      <td>
-                        Physical Assault
-                      </td>
-                      <td>
-                        <label for="" class="badge badge-success">
-                          Verified
-                        </label>
-                      </td>
-                      <td>2008/11/28</td>
-                      <td class="text-right">
-                        <a href="#" class="btn btn-link btn-info btn-just-icon like">
-                          <i class="material-icons">favorite</i>
-                        </a>
-                        <a href="#" class="btn btn-link btn-warning btn-just-icon edit">
-                          <i class="material-icons">dvr</i>
-                        </a>
-                        <a href="#" class="btn btn-link btn-danger btn-just-icon remove">
-                          <i class="material-icons">close</i>
-                        </a>
-                      </td>
-                    </tr>
+                    @php
+                        $reports = App\Report::paginate(); 
+                    @endphp
+                    @for ($i = 0; $i < count($reports); $i++)
+                      @php
+                          $report = $reports[$i];
+                      @endphp
+
+                      <tr role="row" class="odd">
+                        <td tabindex="0" class="sorting_1">
+                          {{ $i + 1 }}
+                        </td>
+                        <td>{{ $report->title }}</td>
+                        <td>{{ App\ReportType::select('name')->where('id', $report->report_type_id)->first()->name }}</td>
+                        <td>
+                          <label for="" class="badge badge-danger">
+                            {{ App\Status::select('name')->where('id', $report->status_id)->first()->name }}
+                          </label>
+                        </td>
+                        <td>{{ $report->date }}</td>
+                        <td class="text-right">
+                          <a href="{{ route('admin/report/edit', ['id'=>$report->id]) }}" class="btn btn-link btn-info btn-just-icon like">
+                            <i class="material-icons">edit</i>
+                          </a>
+                          <a href="#" class="btn btn-link btn-warning btn-just-icon edit">
+                            <i class="material-icons">dvr</i>
+                          </a>
+                          <a href="#" class="btn btn-link btn-danger btn-just-icon remove">
+                            <i class="material-icons">close</i>
+                          </a>
+                        </td>
+                      </tr>
+                    @endfor
                   </tbody>
                 </table>
               </div>

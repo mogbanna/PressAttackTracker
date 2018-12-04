@@ -67,9 +67,11 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:web', 'checkRole:admini
             return view('admin.report.view_all');
         })->name('admin/report/view_all');
     
-        Route::get('/add', function() {
-            return view('admin.report.add');
-        })->name('admin/report/add');
+        Route::get('/add', 'ReportController@create')->name('admin/report/add');
+        Route::get('/edit/{id}', 'ReportController@edit')->name('admin/report/edit');
+
+        Route::post('/', 'ReportController@store')->name('adminAddReport');
+        Route::post('/update', 'ReportController@update')->name('adminUpdateReport');
     });
 
     //Routs for posts

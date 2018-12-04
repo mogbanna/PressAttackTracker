@@ -9,6 +9,7 @@ use App\Http\Requests\Report\UpdateRequest;
 use App\Http\Requests\Report\DelRequest;
 use App\Http\Requests\Report\UpdateStatusRequest;
 use App\Http\Resources\ReportResource;
+use Auth;
 
 class ReportController extends Controller
 {
@@ -28,13 +29,8 @@ class ReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
-        
-        if(!Gate::allows('isAdmin')){
-            abort(404,"Youre not authorized for this page, sorry...");
-        }
-
-
+    public function create($response = []) {
+        return view('admin.report.add', $response);
     }
 
     /**
@@ -44,23 +40,30 @@ class ReportController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(NewRequest $request) {
+
         $report = new Report();
 
         $report->report_type_id = $request->input('report_type_id');
-        $report->user_id = $request->input('user_id');
+        $report->user_id = Auth::user()->id;
         $report->title = $request->input('title');
         $report->description = $request->input('description');
         $report->victim = $request->input('victim');
+        $report->affiliation = $request->input('affiliation');
         $report->assailant = $request->input('assailant');
-        $report->status_id = $request->input('status_id');
+        $report->status_id = 4;
         $report->date = $request->input('date');
 
         if($report->save()) {
-            return response()->json([
-                'success' => 1,
-                'message' => 'Report has been saved'
-            ]);
+            $response = [
+                'success' => 1
+            ];
+        } else {
+            $response = [
+                'success' => 0
+            ];
         }
+
+        return redirect()->action('ReportController@create', $response);
     }
 
     /**
@@ -81,8 +84,16 @@ class ReportController extends Controller
      * @param  \App\Report  $report
      * @return \Illuminate\Http\Response
      */
-    public function edit(Report $report) {
-        //
+    public function edit($id, $response = []) {
+        $report = Report::findOrFail($id);
+
+        if(count($response) <= 0) {
+            $response = -1;
+        } else {
+            $response = $response['success'];
+        }
+
+        return view('admin.report.edit', ['report' => $report, 'success' => $response]);
     }
 
     /**
@@ -99,16 +110,22 @@ class ReportController extends Controller
         $report->title = $request->input('title');
         $report->description = $request->input('description');
         $report->victim = $request->input('victim');
+        $report->affiliation = $request->input('affiliation');
         $report->assailant = $request->input('assailant');
         $report->status_id = $request->input('status_id');
         $report->date = $request->input('date');
 
         if($report->save()) {
-            return response()->json([
-                'success' => 1,
-                'message' => 'Report has been updated'
-            ]);
+            $response = [
+                'success' => 1
+            ];
+        } else {
+            $response = [
+                'success' => 0
+            ];
         }
+
+        return redirect()->action('ReportController@edit', $response);
     }
 
     public function updateStatus(UpdateStatusRequest $request) {

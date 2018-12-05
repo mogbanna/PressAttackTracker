@@ -19,9 +19,9 @@ class ReportController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $reports = Report::paginage();
+        $reports = Report::paginate();
 
-        return ReportResource::collection($reports);
+        return view('admin.report.view_all', $reports);
     }
 
     /**
@@ -40,7 +40,6 @@ class ReportController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(NewRequest $request) {
-
         $report = new Report();
 
         $report->report_type_id = $request->input('report_type_id');
@@ -104,16 +103,34 @@ class ReportController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateRequest $request) {
-        $report = Report::findOrFail($request->input('id'));
 
+        $report = Report::findOrFail($request->input('id'));
+        
         $report->report_type_id = $request->input('report_type_id');
         $report->title = $request->input('title');
         $report->description = $request->input('description');
         $report->victim = $request->input('victim');
         $report->affiliation = $request->input('affiliation');
         $report->assailant = $request->input('assailant');
-        $report->status_id = $request->input('status_id');
         $report->date = $request->input('date');
+        
+        if($report->save()) {
+            $response = [
+                'success' => 1
+            ];
+        } else {
+            $response = [
+                'success' => 0
+            ];
+        }
+
+        return $response;
+    }
+
+    public function updateStatus(UpdateStatusRequest $request) {
+        $report = Report::findOrFail($request->input('id'));
+
+        $report->status_id = $request->input('status_id');
 
         if($report->save()) {
             $response = [
@@ -125,20 +142,7 @@ class ReportController extends Controller
             ];
         }
 
-        return redirect()->action('ReportController@edit', $response);
-    }
-
-    public function updateStatus(UpdateStatusRequest $request) {
-        $report = Report::findOrFail($request->input('id'));
-
-        $report->status_id = $request->input('status_id');
-
-        if($report->save()) {
-            return response()->json([
-                'success' => 1,
-                'message' => 'Status has been updated'
-            ]);
-        }
+        return $response;
     }
 
     /**
@@ -147,14 +151,19 @@ class ReportController extends Controller
      * @param  \App\Report  $report
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DelRequest $request) {
-        $report = Report::findOrFail($request->input('id'));
+    public function destroy($id) {
+        $report = Report::findOrFail($id);
         
-        if($report->destroy()) {
-            return response()->json([
-                'success' => 1,
-                'message' => 'Report has been deleted'
-            ]);
+        if($report->delete()) {
+            $response = [
+                'success' => 1
+            ];
+        } else {
+            $response = [
+                'success' => 0
+            ];
         }
+
+        return view('admin/report/view_all', ['delete_success' => $response['success']]);
     }
 }

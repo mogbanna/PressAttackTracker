@@ -57,7 +57,9 @@
                 <label for="report-description">
                     Report Description
                 </label><br><br>
-                <textarea name="description" class="form-control" id="report-description" rows="6">{{ $report->description }}</textarea>
+                <textarea name="description" class="form-control" id="report-description" rows="6">
+                    {{ $report->description }}
+                </textarea>
             </div>
 
             <div class="form-group my-5">
@@ -89,7 +91,7 @@
                 <input name="date" type="text" class="form-control datetimepicker" value="{{ $report->date }}"/>
             </div>
 
-            <div class="form-group my-5">
+            {{--<div class="form-group my-5">
                 <label class="">
                     Status
                 </label>
@@ -102,7 +104,7 @@
                         Verified
                     </option>
                 </select>
-            </div>
+            </div>--}}
 
             <input name="id" type="hidden" value="{{ $report->id }}">          
         </div>

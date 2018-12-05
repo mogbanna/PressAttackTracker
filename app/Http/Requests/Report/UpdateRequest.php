@@ -24,6 +24,14 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
+            'id' => 'required',
+            'report_type_id' => 'required',
+            'title' => 'required',
+            'description' => 'required',
+            'victim' => 'required',
+            'affiliation' => 'required',
+            'assailant' => 'required',
+            'date' => 'required'
         ];
     }
 
@@ -42,8 +50,7 @@ class UpdateRequest extends FormRequest
             'victim.required' => 'Victim is required',
             'affiliation.required' => 'Affiliation is required',
             'assailant.required' => 'Assailant is required',
-            'date.required' => 'Date is required',
-            'status_id.required' => 'status is required'
+            'date.required' => 'Date is required'
         ];
     }
 }

@@ -4,6 +4,14 @@
     
 <div class="row">
   <div class="col-md-12">
+    @if (isset($delete_success) && $delete_success == 1)
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      Report has been deleted successfully.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    @endif
     <div class="card">
       <div class="card-header card-header-primary card-header-icon">
         <div class="card-icon">
@@ -138,7 +146,7 @@
                           <a href="#" class="btn btn-link btn-warning btn-just-icon edit">
                             <i class="material-icons">dvr</i>
                           </a>
-                          <a href="#" class="btn btn-link btn-danger btn-just-icon remove">
+                          <a href="{{ route('adminDeleteReport', ['id'=>$report->id]) }}" class="btn btn-link btn-danger btn-just-icon remove">
                             <i class="material-icons">close</i>
                           </a>
                         </td>

@@ -65,6 +65,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:web', 'checkRole:admini
     Route::group(['prefix' => 'report'], function() {
 
         Route::get('/', 'ReportController@index')->name('admin/report/view_all');
+        Route::get('/view/{id}', 'ReportController@show')->name('showReport');
     
         Route::get('/add', 'ReportController@create')->name('admin/report/add');
         Route::get('/edit/{id}', 'ReportController@edit')->name('admin/report/edit');

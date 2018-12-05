@@ -71,10 +71,17 @@ class ReportController extends Controller
      * @param  \App\Report  $report
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
+    public function show($id, $success = -1) {
         $report = Report::findOrFail($id);
 
-        return new ReportResource($report);
+        if($success != -1) {
+            return view('admin.report.view', [
+                'report' => $report,
+                'update_success' => $success
+            ]);
+        }
+
+        return view('admin.report.view', ['report' => $report]);
     }
 
     /**
@@ -83,16 +90,14 @@ class ReportController extends Controller
      * @param  \App\Report  $report
      * @return \Illuminate\Http\Response
      */
-    public function edit($id, $response = []) {
+    public function edit($id, $success = -1) {
         $report = Report::findOrFail($id);
 
-        if(count($response) <= 0) {
-            $response = -1;
-        } else {
-            $response = $response['success'];
-        }
+        if($success != -1) {
+            return view('admin.report.edit', ['report' => $report, 'success' => $success]);
+        } 
 
-        return view('admin.report.edit', ['report' => $report, 'success' => $response]);
+        return view('admin.report.edit', ['report' => $report]);
     }
 
     /**
@@ -115,16 +120,15 @@ class ReportController extends Controller
         $report->date = $request->input('date');
         
         if($report->save()) {
-            $response = [
-                'success' => 1
-            ];
+            $success = 1;
         } else {
-            $response = [
-                'success' => 0
-            ];
+            $success = 0;
         }
 
-        return $response;
+        return redirect()->action('ReportController@show', [
+            'id'=>$request->input('id'), 
+            'success'=>$success
+        ]);
     }
 
     public function updateStatus(UpdateStatusRequest $request) {

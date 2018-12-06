@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Story;
+use App\Report;
 use Illuminate\Http\Request;
 use App\Http\Requests\Story\NewRequest;
 use App\Http\Requests\Story\UpdateRequest;
@@ -28,8 +29,10 @@ class StoryController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
-        //
+    public function create($reportId) {
+        $report = Report::findOrFail($reportId);
+
+        return view('admin.post.add', ['report' => $report]);
     }
 
     /**

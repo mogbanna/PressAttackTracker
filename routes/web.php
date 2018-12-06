@@ -80,11 +80,13 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:web', 'checkRole:admini
     Route::group(['prefix' => 'post'], function() {
         Route::get('/', function() {
             return view('admin.post.view_all');
-        })->name('admin/post/view_all');
+        })->name('allStories');
     
-        Route::get('/add', function() {
-            return view('admin.post.add');
-        })->name('admin/post/add');
+        Route::get('/write/{reportId}', 'StoryController@create')->name('writeStory');
+
+        Route::post('/', 'StoryController@store')->name('adminAddStory');
+        Route::post('/update', 'StoryController@update')->name('adminUpdateStory');
+        Route::get('/delete/{id}', 'StoryController@destroy')->name('adminDeleteStory');
     });
 
     //Routes for Config

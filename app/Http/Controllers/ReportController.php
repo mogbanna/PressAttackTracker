@@ -46,6 +46,7 @@ class ReportController extends Controller
         $report->user_id = Auth::user()->id;
         $report->title = $request->input('title');
         $report->description = $request->input('description');
+        $report->location = $request->input('location');
         $report->victim = $request->input('victim');
         $report->affiliation = $request->input('affiliation');
         $report->assailant = $request->input('assailant');
@@ -72,7 +73,10 @@ class ReportController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id, $success = -1) {
-        $report = Report::findOrFail($id);
+        $report = Report::with('user')->findOrFail($id);
+
+        $report->views = $report->views + 1;
+        $report->save();
 
         if($success != -1) {
             return view('admin.report.view', [
@@ -114,6 +118,7 @@ class ReportController extends Controller
         $report->report_type_id = $request->input('report_type_id');
         $report->title = $request->input('title');
         $report->description = $request->input('description');
+        $report->location = $request->input('location');
         $report->victim = $request->input('victim');
         $report->affiliation = $request->input('affiliation');
         $report->assailant = $request->input('assailant');

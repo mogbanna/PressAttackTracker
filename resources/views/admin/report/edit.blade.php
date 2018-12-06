@@ -54,7 +54,7 @@
                                     $reportType = $reportTypes[$i];
                                 @endphp
                                 <option value="{{ $reportType->id }}" @if ($report->report_type_id === $reportType->id) echo "selected"; @endif>
-                                {{ $reportType->name }}
+                                    {{ $reportType->name }}
                                 </option>
                             @endfor
                         </select>
@@ -73,23 +73,31 @@
 
             <div class="form-group my-5">
                 <label for="">
+                    Location
+                </label>
+                <input type="text" name="location" class="form-control" placeholder="Location" 
+                    value="{{ $report->location }}">
+            </div>
+
+            <div class="form-group my-5">
+                <label for="">
                     Victim
                 </label>
-                <input name="victim" type="text" name="victim" class="form-control" placeholder="Victim" value="{{ $report->victim }}">
+                <input type="text" name="victim" class="form-control" placeholder="Victim" value="{{ $report->victim }}">
             </div>
 
             <div class="form-group my-5">
                 <label for="">
                     Affiliation
                 </label>
-                <input name="affiliation" type="text" name="affiliation" class="form-control" placeholder="Affiliation" value="{{ $report->affiliation }}">
+                <input type="text" name="affiliation" class="form-control" placeholder="Affiliation" value="{{ $report->affiliation }}">
             </div>
 
             <div class="form-group my-5">
                 <label for="">
                     Assailant
                 </label>
-                <input name="assailant" type="text" name="assailant" class="form-control" placeholder="Assailant" value="{{ $report->assailant }}">
+                <input type="text" name="assailant" class="form-control" placeholder="Assailant" value="{{ $report->assailant }}">
             </div>
 
             <!-- input with datetimepicker -->
@@ -132,29 +140,29 @@
 
 @section('scripts')
   <script>
-      <!-- javascript for init -->
-      $('.datetimepicker').datetimepicker({
-        icons: {
-          time: "fa fa-clock-o",
-          date: "fa fa-calendar",
-          up: "fa fa-chevron-up",
-          down: "fa fa-chevron-down",
-          previous: 'fa fa-chevron-left',
-          next: 'fa fa-chevron-right',
-          today: 'fa fa-screenshot',
-          clear: 'fa fa-trash',
-          close: 'fa fa-remove'
-        }
-      });
+        <!-- javascript for init -->
+        $('.datetimepicker').datetimepicker({
+            icons: {
+                time: "fa fa-clock-o",
+                date: "fa fa-calendar",
+                up: "fa fa-chevron-up",
+                down: "fa fa-chevron-down",
+                previous: 'fa fa-chevron-left',
+                next: 'fa fa-chevron-right',
+                today: 'fa fa-screenshot',
+                clear: 'fa fa-trash',
+                close: 'fa fa-remove'
+            }
+        });
 
-      <!-- classic ckeditor init -->
-      ClassicEditor
-				.create( document.querySelector( '#report-description' ) )
-				.then( editor => {
-					//console.log( editor );
-				} )
-				.catch( error => {
-					//console.error( error );
-				} );
+        <!-- classic ckeditor init -->
+        ClassicEditor
+            .create( document.querySelector( '#report-description' ) )
+            .then( editor => {
+                //console.log( editor );
+            })
+            .catch( error => {
+                //console.error( error );
+            });
   </script>
 @endsection

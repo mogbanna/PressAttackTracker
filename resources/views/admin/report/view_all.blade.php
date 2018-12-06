@@ -15,9 +15,9 @@
     @if ($errors->any())
       <div class="alert alert-danger">
           <ul>
-              @foreach ($errors->all() as $error)
-                  <li>{{ $error }}</li>
-              @endforeach
+            @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+            @endforeach
           </ul>
       </div>
     @endif
@@ -38,32 +38,6 @@
         </div>
         <div class="material-datatables">
           <div id="datatables_wrapper" class="dataTables_wrapper dt-bootstrap4">
-            <div class="row">
-              <div class="col-sm-12 col-md-6">
-                <div class="dataTables_length" id="datatables_length">
-                  <label>Show 
-                    <select name="datatables_length" aria-controls="datatables" 
-                      class="custom-select custom-select-sm form-control form-control-sm">
-                      <option value="10">10</option>
-                      <option value="25">25</option>
-                      <option value="50">50</option>
-                      <option value="-1">All</option>
-                    </select> 
-                    entries
-                  </label>
-                </div>
-              </div>
-              <div class="col-sm-12 col-md-6">
-                <div id="datatables_filter" class="dataTables_filter">
-                  <label>
-                    <span class="bmd-form-group bmd-form-group-sm">
-                      <input type="search" class="form-control form-control-sm" 
-                        placeholder="Search records" aria-controls="datatables">
-                    </span>
-                  </label>
-                </div>
-              </div>
-            </div>
             <div class="row">
               <div class="col-sm-12">
                 <table id="datatables" 
@@ -129,11 +103,11 @@
                   </tfoot>
                   <tbody>
                     @php
-                        $reports = App\Report::paginate(); 
+                      $reports = App\Report::paginate(); 
                     @endphp
                     @for ($i = 0; $i < count($reports); $i++)
                       @php
-                          $report = $reports[$i];
+                        $report = $reports[$i];
                       @endphp
 
                       <tr role="row" class="odd">
@@ -165,69 +139,6 @@
                 </table>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm-12 col-md-5">
-                <div class="dataTables_info" id="datatables_info" 
-                  role="status" aria-live="polite">
-                  Showing 1 to 10 of 40 entries
-                </div>
-              </div>
-              <div class="col-sm-12 col-md-7">
-                <div class="dataTables_paginate paging_full_numbers" 
-                  id="datatables_paginate">
-                  <ul class="pagination">
-                    <li class="paginate_button page-item first disabled" id="datatables_first">
-                      <a href="#" aria-controls="datatables" data-dt-idx="0" 
-                        tabindex="0" class="page-link">
-                        First
-                      </a>
-                    </li>
-                    <li class="paginate_button page-item previous disabled" id="datatables_previous">
-                      <a href="#" aria-controls="datatables" data-dt-idx="1" 
-                        tabindex="0" class="page-link">
-                        Prev
-                      </a>
-                    </li>
-                    <li class="paginate_button page-item active">
-                      <a href="#" aria-controls="datatables" 
-                        data-dt-idx="2" tabindex="0" class="page-link">
-                        1
-                      </a>
-                    </li>
-                    <li class="paginate_button page-item ">
-                      <a href="#" aria-controls="datatables" data-dt-idx="3" 
-                        tabindex="0" class="page-link">
-                        2
-                      </a>
-                    </li>
-                    <li class="paginate_button page-item ">
-                      <a href="#" aria-controls="datatables" 
-                        data-dt-idx="4" tabindex="0" class="page-link">
-                        3
-                      </a>
-                    </li>
-                    <li class="paginate_button page-item ">
-                      <a href="#" aria-controls="datatables" 
-                        data-dt-idx="5" tabindex="0" class="page-link">
-                        4
-                      </a>
-                    </li>
-                    <li class="paginate_button page-item next" id="datatables_next">
-                      <a href="#" aria-controls="datatables" data-dt-idx="6" 
-                        tabindex="0" class="page-link">
-                        Next
-                      </a>
-                    </li>
-                    <li class="paginate_button page-item last" id="datatables_last">
-                      <a href="#" aria-controls="datatables" data-dt-idx="7" 
-                        tabindex="0" class="page-link">
-                        Last
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
             <!-- end content-->
           </div>
           <!--  end card  -->
@@ -240,4 +151,30 @@
 </div>
 
 
+@endsection
+
+@section('scripts')
+  <script>
+    $(document).ready(function() {
+        $('#datatables').DataTable({
+            "pagingType": "full_numbers",
+            "lengthMenu": [
+              [10, 25, 50, -1],
+              [10, 25, 50, "All"]
+            ],
+            responsive: true,
+            language: {
+              search: "_INPUT_",
+              searchPlaceholder: "Search records",
+            }
+        });
+
+
+        /**
+          "processing": false,
+          "serverSide": false,
+          "ajax": "#"
+        **/
+    });
+  </script>    
 @endsection

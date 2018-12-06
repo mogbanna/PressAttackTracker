@@ -2,80 +2,121 @@
 
 @section('content')
 
-
 <div class="row">
-        <div class="col-md-12">
-          <form id="RangeValidation" class="form-horizontal" action="" method="" novalidate="novalidate">
-            <div class="card ">
-              <div class="card-header card-header-rose card-header-text">
-                <div class="card-text">
-                  <h4 class="card-title">Add New Post</h4>
-                </div>
-              </div>
-              <div class="card-body ">
-                <div class="row">
-                  <label class="col-sm-2 col-form-label">Min Length</label>
-                  <div class="col-sm-7">
-                    <div class="form-group bmd-form-group">
-                      <input class="form-control" type="text" name="min_length" minlength="5" required="true" aria-required="true">
-                    </div>
-                  </div>
-                  <label class="col-sm-3 label-on-right">
-                    <code>minLength="5"</code>
-                  </label>
-                </div>
-                <div class="row">
-                  <label class="col-sm-2 col-form-label">Max Length</label>
-                  <div class="col-sm-7">
-                    <div class="form-group bmd-form-group">
-                      <input class="form-control" type="text" name="max_length" maxlength="5" required="true" aria-required="true">
-                    </div>
-                  </div>
-                  <label class="col-sm-3 label-on-right">
-                    <code>maxLength="5"</code>
-                  </label>
-                </div>
-                <div class="row">
-                  <label class="col-sm-2 col-form-label">Range</label>
-                  <div class="col-sm-7">
-                    <div class="form-group bmd-form-group">
-                      <input class="form-control" type="text" name="range" range="[6,10]" required="true" aria-required="true">
-                    </div>
-                  </div>
-                  <label class="col-sm-3 label-on-right">
-                    <code>range="[6,10]"</code>
-                  </label>
-                </div>
-                <div class="row">
-                  <label class="col-sm-2 col-form-label">Min Value</label>
-                  <div class="col-sm-7">
-                    <div class="form-group bmd-form-group">
-                      <input class="form-control" type="text" name="min" min="6" required="true" aria-required="true">
-                    </div>
-                  </div>
-                  <label class="col-sm-3 label-on-right">
-                    <code>min="6"</code>
-                  </label>
-                </div>
-                <div class="row">
-                  <label class="col-sm-2 col-form-label">Max Value</label>
-                  <div class="col-sm-7">
-                    <div class="form-group bmd-form-group">
-                      <input class="form-control" type="text" name="max" max="6" required="true" aria-required="true">
-                    </div>
-                  </div>
-                  <label class="col-sm-3 label-on-right">
-                    <code>max="6"</code>
-                  </label>
-                </div>
-              </div>
-              <div class="card-footer ml-auto mr-auto">
-                <button type="submit" class="btn btn-rose">Validate Inputs</button>
-              </div>
+  <div class="col-md-12">
+    @if (isset($_GET['success']) && $_GET['success'] == 1)
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      Story has been saved successfully.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    @endif
+    @if ($errors->any())
+      <div class="alert alert-danger">
+          <ul>
+            @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+            @endforeach
+          </ul>
+      </div>
+    @endif
+    <form id="" class="form-horizontal" action="{{ route('adminAddStory') }}" method="POST" novalidate="novalidate">
+      @csrf
+      <div class="card ">
+        <div class="card-header card-header-default card-header-text">
+          <div class="card-text">
+            <h4 class="card-title">New Story</h4>
+          </div>
+        </div>
+        <div class="card-body">
+
+          <div class="form-group my-5">
+            <label for="">
+              Author
+            </label>
+            <input name="author" type="text" class="form-control" placeholder="Author">
+          </div>
+
+          <div class="form-group my-5">
+            <label for="">
+              Story Title
+            </label>
+            <input name="title" type="text" class="form-control" placeholder="Title">
+          </div>
+
+          <div class="form-group my-5">
+            <label for="">
+              Story
+            </label><br><br>
+            <textarea name="story" class="form-control" id="story" rows="6"></textarea>
+          </div>
+
+          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+            <div class="fileinput-new thumbnail">
+              <img src="{{ asset('img/image_placeholder.jpg') }}" alt="...">
             </div>
-          </form>
+            <div class="fileinput-preview fileinput-exists thumbnail"></div>
+            <div>
+              <span class="btn btn-rose btn-round btn-file">
+                <span class="fileinput-new">Select image</span>
+                <span class="fileinput-exists">Change</span>
+                <input type="file" name="...">
+              </span>
+              <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+            </div>
+          </div>
+
+          <div class="form-group my-5">
+            <label for="">
+              Tags
+            </label>
+            @php
+                $titleArray = explode(' ', $report->title);
+                $sampleTags = implode(',', $titleArray);
+            @endphp
+            <input type="text" value="hate" name="tags" class="form-control">
+          </div>
+
+          <div class="form-group-my-5">
+            <label for="">
+              Status
+            </label>
+            <select class="form-control selectpicker" name="status_id" id="status_id">
+              <option value="1">
+                Save As Draft
+              </option>
+              <option value="2">
+                Submit For Approval
+              </option>
+            </select>
+          </div>
+
+          <input type="hidden" name="report_id" value="{{ $report->id }}" />
+        </div>
+        <div class="card-footer">
+          <button type="submit" class="btn btn-info">
+            <i class="material-icons">add</i>
+            Submit Story
+          </button>
         </div>
       </div>
+    </form>
+  </div>
+</div>
 
+@endsection
 
-      @endsection
+@section('scripts')
+  <script>
+      <!-- classic ckeditor init -->
+      ClassicEditor
+				.create( document.querySelector( '#story' ) )
+				.then( editor => {
+					//console.log( editor );
+				} )
+				.catch( error => {
+					//console.error( error );
+				} );
+  </script>
+@endsection

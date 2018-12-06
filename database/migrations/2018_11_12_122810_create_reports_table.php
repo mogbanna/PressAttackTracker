@@ -19,11 +19,13 @@ class CreateReportsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->string('title');
             $table->text('description');
+            $table->string('location');
             $table->string('victim');
             $table->string('affiliation');
             $table->string('assailant');
             $table->unsignedInteger('status_id');
             $table->date('date');
+            $table->unsignedInteger('views')->default(0);
             $table->timestamps();
 
             $table->foreign('report_type_id')->references('id')->on('report_types');

@@ -23,7 +23,7 @@
                         <i class="material-icons">event_note</i>
                     </div>
                     <p class="card-category">R. Contents</p>
-                    <h3 class="card-title">184</h3>
+                    <h3 class="card-title">{{ $report->stories()->count() }}</h3>
                 </div>
                 <div class="card-footer">
                     <div class="stats">
@@ -40,7 +40,7 @@
                         <i class="material-icons">equalizer</i>
                     </div>
                     <p class="card-category">Views</p>
-                    <h3 class="card-title">75,521</h3>
+                    <h3 class="card-title">{{ $report->views }}</h3>
                 </div>
                 <div class="card-footer">
                     <div class="stats">
@@ -57,11 +57,12 @@
                         <i class="material-icons">folder_special</i>
                     </div>
                     <p class="card-category">Evidence</p>
-                    <h3 class="card-title">4</h3>
+                    <h3 class="card-title">{{ $report->evidence()->count() }}</h3>
                 </div>
                 <div class="card-footer">
                     <div class="stats">
-                        <i class="material-icons">date_range</i> Last 24 Hours
+                        <i class="material-icons">date_range</i> 
+                        files uploaded related to report
                     </div>
                 </div>
             </div>
@@ -95,7 +96,7 @@
                             <i class="material-icons">create</i>
                             Upload Evidence
                         </a>
-                        <a href="#" 
+                        <a href="{{ route('writeStory', ['reportId'=>$report->id]) }}" 
                             class="btn btn-info btn-sm">
                             <i class="material-icons">create</i>
                             Write Story
@@ -162,7 +163,6 @@
                             </tbody>
                         </table>
                     </div>
-                    
                 </div>
             </div>
         </div>
@@ -191,6 +191,12 @@
                                     <b>Report Type: </b>
                                 </td>
                                 <td>{{ App\ReportType::select('name')->where('id', $report->report_type_id)->first()->name }}</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Location: </b>
+                                </td>
+                                <td>{{ $report->location }}</td>
                             </tr>
                             <tr>
                                 <td>
@@ -238,11 +244,13 @@
                 </div>
                 <div class="card-footer">
                     <h4 class="card-title">
-                        Alec Thompson
+                        {{ $report->user->name }}
                     </h4>
                 </div>
             </div>
             <br><br>
+
+
         </div>
     </div>
 
@@ -263,18 +271,23 @@
                         <button type="button" class="btn btn-danger btn-link fix-broken-card">
                             <i class="material-icons">build</i> Fix Header!
                         </button>
-                        <button type="button" class="btn btn-default btn-link" rel="tooltip" data-placement="bottom" title="" data-original-title="View">
+                        <button type="button" class="btn btn-default btn-link" rel="tooltip" 
+                            data-placement="bottom" title="" data-original-title="View">
                             <i class="material-icons">art_track</i>
                         </button>
-                        <button type="button" class="btn btn-success btn-link" rel="tooltip" data-placement="bottom" title="" data-original-title="Edit">
+                        <button type="button" class="btn btn-success btn-link" rel="tooltip" 
+                            data-placement="bottom" title="" data-original-title="Edit">
                             <i class="material-icons">edit</i>
                         </button>
-                        <button type="button" class="btn btn-danger btn-link" rel="tooltip" data-placement="bottom" title="" data-original-title="Remove">
+                        <button type="button" class="btn btn-danger btn-link" rel="tooltip" 
+                            data-placement="bottom" title="" data-original-title="Remove">
                             <i class="material-icons">close</i>
                         </button>
                     </div>
                     <h4 class="card-title">
-                        <a href="#pablo">Cozy 5 Stars Apartment</a>
+                        <a href="#pablo">
+                            Cozy 5 Stars Apartment
+                        </a>
                     </h4>
                     <div class="card-description">
                         The place is close to Barceloneta Beach 

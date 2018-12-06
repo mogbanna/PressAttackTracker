@@ -69,16 +69,23 @@
 
           <div class="form-group my-5">
             <label for="">
+              Location
+            </label>
+            <input type="text" name="location" class="form-control" placeholder="Location">
+          </div>
+
+          <div class="form-group my-5">
+            <label for="">
               Victim
             </label>
-            <input name="victim" type="text" name="victim" class="form-control" placeholder="Victim">
+            <input type="text" name="victim" class="form-control" placeholder="Victim">
           </div>
 
           <div class="form-group my-5">
             <label for="">
               Affiliation
             </label>
-            <input name="affiliation" type="text" name="affiliation" class="form-control" placeholder="Affiliation">
+            <input type="text" name="affiliation" class="form-control" placeholder="Affiliation">
           </div>
 
           <div class="form-group my-5">

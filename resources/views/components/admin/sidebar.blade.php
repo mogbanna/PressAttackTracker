@@ -9,7 +9,7 @@
       <a href="#" class="simple-text logo-mini">
         CT
       </a>
-      <a href="#" class="simple-text logo-normal">
+      <a href="{{ route('dashboard') }}" class="simple-text logo-normal">
         Creative Tim
       </a>
     </div>
@@ -84,13 +84,7 @@
             <div class="collapse" id="post-dropdown">
               <ul class="nav">
                 <li class="nav-item ">
-                <a class="nav-link" href="{{ route('admin/post/add') }}">
-                    <span class="sidebar-mini"> AP </span>
-                    <span class="sidebar-normal"> Add Post </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                <a class="nav-link" href="{{ route('admin/post/view_all') }}">
+                  <a class="nav-link" href="{{ route('allStories') }}">
                     <span class="sidebar-mini"> MP </span>
                     <span class="sidebar-normal"> Manage Posts </span>
                   </a>

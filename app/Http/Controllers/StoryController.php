@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Story;
 use App\Report;
+use Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\Story\NewRequest;
 use App\Http\Requests\Story\UpdateRequest;
@@ -11,6 +12,7 @@ use App\Http\Requests\Story\DelRequest;
 use App\Http\Requests\Story\UpdateThumbRequest;
 use App\Http\Requests\Story\UpdateStatusRequest;
 use App\Http\Resources\StoryResource;
+use Illuminate\Support\Str;
 
 class StoryController extends Controller {
     /**
@@ -32,7 +34,7 @@ class StoryController extends Controller {
     public function create($reportId) {
         $report = Report::findOrFail($reportId);
 
-        return view('admin.post.add', ['report' => $report]);
+        return view('admin.story.add', ['report' => $report]);
     }
 
     /**
@@ -45,16 +47,16 @@ class StoryController extends Controller {
         $story = new Story();
 
         //Get filename with the extension
-        $filenameWithExt = $request->file('file')->getClientOriginalName();
+        $filenameWithExt = $request->file('thumbnail')->getClientOriginalName();
         //get just filename
         $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
         //get just ext
-        $extension = $request->file('file')->getClientOriginalExtension();
+        $extension = $request->file('thumbnail')->getClientOriginalExtension();
         //filename to store
         $uuid = Str::uuid();
         $filenameToStore = $uuid.'.'.$extension;
         // upload image
-        $path = $request->file('file')->storeAs('public/story/thumbs', $filenameToStore);
+        $path = $request->file('thumbnail')->storeAs('public/story/thumbs', $filenameToStore);
 
         $story->author = $request->input('author');
         $story->title = $request->input('title');
@@ -62,15 +64,19 @@ class StoryController extends Controller {
         $story->tags = $request->input('tags');
         $story->thumbnail = 'story/thumbs/'.$filenameToStore;
         $story->report_id = $request->input('report_id');
-        $story->user_id = $request->input('user_id');
-        $story->status_id = 1;
+        $story->user_id = Auth::user()->id;
+        $story->status_id = $request->status_id;
 
         if($story->save()) {
-            return response()->json([
-                'success' => 1,
-                'message' => 'Story has been saved'
-            ]);
+            $success = 1;
+        } else {
+            $success = 0;
         }
+
+        return redirect()->action('StoryController@show', [
+            'id'=>$story->id, 
+            'success'=>$success
+        ]);
     }
 
     /**
@@ -79,8 +85,20 @@ class StoryController extends Controller {
      * @param  \App\Story  $story
      * @return \Illuminate\Http\Response
      */
-    public function show(Story $story) {
-        //
+    public function show($id, $success = -1) {
+        $story = Story::with('user')->findOrFail($id);
+
+        $story->views = $story->views + 1;
+        $story->save();
+
+        if($success != -1) {
+            return view('admin.story.view', [
+                'story' => $story,
+                'create_success' => $success
+            ]);
+        }
+
+        return view('admin.story.view', ['story'=>$story]);
     }
 
     /**

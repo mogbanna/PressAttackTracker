@@ -17,8 +17,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-
-
 // UI ROUTES 
 Route::get('/about', function () {
     return view('about');
@@ -52,8 +50,6 @@ Route::get('/submit_report', function() {
     return view('submit_report');
 })->name('submit_report');
 
-
-
 Route::group(['prefix' => 'admin','middleware' => ['auth:web', 'checkRole:administrator|journalist']], function () {
 
     //Dashboard Main Route
@@ -76,13 +72,16 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:web', 'checkRole:admini
         
     });
 
-    //Routs for posts
-    Route::group(['prefix' => 'post'], function() {
+    //Routs for stories
+    Route::group(['prefix' => 'story'], function() {
         Route::get('/', function() {
-            return view('admin.post.view_all');
+            return view('admin.story.view_all');
         })->name('allStories');
+
+        Route::get('/view/{id}', 'StoryController@show')->name('showStory');
     
         Route::get('/write/{reportId}', 'StoryController@create')->name('writeStory');
+        Route::get('/edit/{id}', 'StoryController@edit')->name('editStory');
 
         Route::post('/', 'StoryController@store')->name('adminAddStory');
         Route::post('/update', 'StoryController@update')->name('adminUpdateStory');
@@ -91,6 +90,4 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:web', 'checkRole:admini
 
     //Routes for Config
 });
-
-// ADMIN ROUTES
 

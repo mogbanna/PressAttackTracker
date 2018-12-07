@@ -21,7 +21,8 @@
           </ul>
       </div>
     @endif
-    <form id="" class="form-horizontal" action="{{ route('adminAddStory') }}" method="POST" novalidate="novalidate">
+    <form id="" class="form-horizontal" action="{{ route('adminAddStory') }}" 
+      method="POST" novalidate="novalidate" enctype="multipart/form-data">
       @csrf
       <div class="card ">
         <div class="card-header card-header-default card-header-text">
@@ -53,6 +54,9 @@
           </div>
 
           <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+            <label for="">
+              Thumbnail(max: 2mb)
+            </label><br>
             <div class="fileinput-new thumbnail">
               <img src="{{ asset('img/image_placeholder.jpg') }}" alt="...">
             </div>
@@ -61,7 +65,7 @@
               <span class="btn btn-rose btn-round btn-file">
                 <span class="fileinput-new">Select image</span>
                 <span class="fileinput-exists">Change</span>
-                <input type="file" name="...">
+                <input type="file" name="thumbnail">
               </span>
               <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
             </div>
@@ -75,7 +79,8 @@
                 $titleArray = explode(' ', $report->title);
                 $sampleTags = implode(',', $titleArray);
             @endphp
-            <input type="text" value="hate" name="tags" class="form-control">
+            <input type="text" value="{{ $sampleTags }}" name="tags" class="form-control tagsinput" 
+            data-role="tagsinput" data-color="danger">
           </div>
 
           <div class="form-group-my-5">

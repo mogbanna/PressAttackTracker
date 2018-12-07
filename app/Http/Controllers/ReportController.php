@@ -54,16 +54,15 @@ class ReportController extends Controller
         $report->date = $request->input('date');
 
         if($report->save()) {
-            $response = [
-                'success' => 1
-            ];
+            $success = 1;
         } else {
-            $response = [
-                'success' => 0
-            ];
+            $success = 0;
         }
 
-        return redirect()->action('ReportController@create', $response);
+        return redirect()->action('ReportController@show', [
+            'id'=>$request->input('id'), 
+            'success'=>$success
+        ]);
     }
 
     /**

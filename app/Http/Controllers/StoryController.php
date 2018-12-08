@@ -23,7 +23,7 @@ class StoryController extends Controller {
     public function index() {
         $stories = Story::orderBy('created_at', 'desc')->paginate();
 
-        return StoryResource::collection($stories);
+        return view('admin.story.view_all', ['stories'=>$stories]);
     }
 
     /**

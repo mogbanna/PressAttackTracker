@@ -1,5 +1,7 @@
 @extends('layouts.admin.app')
 
+@section('admin-nav-title', substr($story->title, 0, 30))
+
 @section('content')
 
 <div class="row">
@@ -15,47 +17,13 @@
 
 
     <!-- storys Metrics  -->
-    <div class="row">
-        <div class="col-lg-6 col-md-6 col-sm-6">
-            <div class="card card-stats">
-                <div class="card-header card-header-warning card-header-icon">
-                    <div class="card-icon">
-                        <i class="material-icons">event_note</i>
-                    </div>
-                    <p class="card-category">Report</p>
-                    <h3 class="card-title">
-                        {{ substr(App\Report::select('title')->where('id', $story->report_id)->first()->title, 0, 30) }}
-                    </h3>
-                </div>
-                <div class="card-footer">
-                    <div class="stats">
-                        <i class="material-icons">create</i>
-                        Related Report
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-6">
-            <div class="card card-stats">
-                <div class="card-header card-header-rose card-header-icon">
-                    <div class="card-icon">
-                        <i class="material-icons">equalizer</i>
-                    </div>
-                    <p class="card-category">Views</p>
-                    <h3 class="card-title">{{ $story->views }}</h3>
-                </div>
-                <div class="card-footer">
-                    <div class="stats">
-                        <i class="material-icons">local_offer</i> 
-                        Tracked natively
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    @component('components.admin.story.metrics', ['story'=>$story])
+        
+    @endcomponent
 
 
     <div class="row">
+        <!-- Story body -->
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header card-header-success card-header-icon">
@@ -115,55 +83,13 @@
                 </div>
             </div>
         </div>
+
+        <!-- Story Details -->
         <div class="col-md-4">
             <!-- story Details -->
-            <div class="card">
-                <div class="card-header card-header-info card-header-icon">
-                    <div class="card-icon">
-                        <i class="material-icons">
-                            list_alt
-                        </i>
-                    </div>
-                    <h4 class="card-title">
-                        story Details
-                    </h4>
-                </div>
-                <div class="card-body">
-                    <table class="table table-striped">
-                        <thead>
-                            <th></th>
-                            <th></th>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <b>Status: </b>
-                                </td>
-                                <td>{{ App\Status::select('name')->where('id', $story->status_id)->first()->name }}</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <b>Tags: </b>
-                                </td>
-                                <td>
-                                    <input type="text" value="{{ $story->tags }}" name="tags" class="form-control tagsinput" 
-                                        data-role="tagsinput" data-color="danger" disabled>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <b>Related Report: </b>
-                                </td>
-                                <td>
-                                    <a href="{{ route('showReport', ['id'=>$story->report_id]) }}">
-                                        {{ App\Report::select('title')->where('id', $story->report_id)->first()->title }}
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            @component('components.admin.story.details', ['story'=>$story])
+                
+            @endcomponent
 
 
             <!-- Submitted By -->

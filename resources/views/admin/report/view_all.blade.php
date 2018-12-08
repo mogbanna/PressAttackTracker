@@ -1,5 +1,7 @@
 @extends('layouts.admin.app')
 
+@section('admin-nav-title', 'All Reports')
+
 @section('content')
     
 <div class="row">
@@ -102,9 +104,6 @@
                     </tr>
                   </tfoot>
                   <tbody>
-                    @php
-                      $reports = App\Report::paginate(); 
-                    @endphp
                     @for ($i = 0; $i < count($reports); $i++)
                       @php
                         $report = $reports[$i];

@@ -1,5 +1,7 @@
 @extends('layouts.admin.app')
 
+@section('admin-nav-title', 'New Story')
+
 @section('content')
 
 <div class="row">

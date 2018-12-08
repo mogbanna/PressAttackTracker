@@ -21,7 +21,7 @@ class ReportController extends Controller
     public function index() {
         $reports = Report::paginate();
 
-        return view('admin.report.view_all', $reports);
+        return view('admin.report.view_all', ['reports' => $reports]);
     }
 
     /**

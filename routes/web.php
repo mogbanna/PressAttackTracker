@@ -74,9 +74,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:web', 'checkRole:admini
 
     //Routs for stories
     Route::group(['prefix' => 'story'], function() {
-        Route::get('/', function() {
-            return view('admin.story.view_all');
-        })->name('allStories');
+        Route::get('/', 'StoryController@index')->name('allStories');
 
         Route::get('/view/{id}', 'StoryController@show')->name('showStory');
     

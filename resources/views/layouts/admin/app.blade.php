@@ -39,7 +39,7 @@
     <div class="wrapper">
 
         {{-- sidebar component --}}
-        @component('components.admin.sidebar')
+        @component('components.admin.global.sidebar')
             
         @endcomponent
 
@@ -48,7 +48,7 @@
 
 
             {{-- nav bar component --}}
-            @component('components.admin.nav')
+            @component('components.admin.global.nav')
 
             @endcomponent
             <div class="content">

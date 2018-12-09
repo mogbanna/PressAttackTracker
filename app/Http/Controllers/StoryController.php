@@ -107,8 +107,14 @@ class StoryController extends Controller {
      * @param  \App\Story  $story
      * @return \Illuminate\Http\Response
      */
-    public function edit(Story $story) {
-        //
+    public function edit($id, $success = -1) {
+        $story = Story::findOrFail($id);
+
+        if($success != -1) {
+            return view('admin.story.edit', ['story'=>$story, 'success'=>$success]);
+        }
+
+        return view('admin.story.edit', ['story' => $story]);
     }
 
     /**
@@ -128,30 +134,40 @@ class StoryController extends Controller {
         $story->status_id = $request->input('status_id');
 
         if($story->save()) {
-            return response()->json([
-                'success' => 1,
-                'message' => 'Story has been updated'
-            ]);
+            $success = 1;
+        } else {
+            $success = 0;
         }
+
+        return redirect()->action('StoryController@show', [
+            'id'=>$request->input('id'), 
+            'success'=>$success
+        ]);
+    }
+
+    public function showUpdateThumbForm($id) {
+        $story = Story::findOrFail($id);
+
+        return view('admin.story.update_thumbnail', ['story' => $story]);
     }
 
     public function updateThumbnail(UpdateThumbRequest $request) {
 
         //Get filename with the extension
-        $filenameWithExt = $request->file('file')->getClientOriginalName();
+        $filenameWithExt = $request->file('thumbnail')->getClientOriginalName();
 
         //get just filename
         $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
 
         //get just ext
-        $extension = $request->file('file')->getClientOriginalExtension();
+        $extension = $request->file('thumbnail')->getClientOriginalExtension();
 
         //filename to store
         $uuid = Str::uuid();
         $filenameToStore = $uuid.'.'.$extension;
 
         // upload image
-        $path = $request->file('file')->storeAs('public/story/thumbs', $filenameToStore);
+        $path = $request->file('thumbnail')->storeAs('public/story/thumbs', $filenameToStore);
         $story = Story::find($request->input('id'));
 
         //delete the previous file
@@ -160,24 +176,34 @@ class StoryController extends Controller {
         $story->thumbnail = "story/thumbs/".$filenameToStore;
 
         if($story->save()) {
-            return response()->json([
-                'success' => 1,
-                'message' => 'thumbnail has been updated successfully'
-            ]);
+            $success = 1;
+        } else {
+            $success = 0;
         }
+
+        return redirect()->action('StoryController@show', [
+            'id'=>$request->input('id'), 
+            'success'=>$success
+        ]);
     }
 
-    public function updateStatus(UpdateStatus $request) {
-        $story = Story::findOrFail($request->input('id'));
+    public function approve($id) {
+        $story = Story::findOrFail($id);
 
-        $story->status_id = $request->input('status_id');
+        $this->authorize('delete', $story);
+
+        $story->status_id = 3;
 
         if($story->save()) {
-            return response()->json([
-                'success' => 1,
-                'message' => 'Story has been updated successfully'
-            ]);
+            $success = 1;
+        } else {
+            $success = 0;
         }
+
+        return redirect()->action('StoryController@show', [
+            'id'=> $id, 
+            'success'=>$success
+        ]);
     }
 
     /**
@@ -192,11 +218,16 @@ class StoryController extends Controller {
         //delete thumbnail
         unlink(public_path("storage/".$story->thumbnail));
 
-        if($story->destroy()) {
-            return response()->json([
-                'success' => 1,
-                'message' => 'Story has been deleted'
-            ]);
+        if($story->delete()) {
+            $response = [
+                'success' => 1
+            ];
+        } else {
+            $response = [
+                'success' => 0
+            ];
         }
+
+        return view('admin/story/view_all', ['delete_success' => $response['success']]);
     }
 }

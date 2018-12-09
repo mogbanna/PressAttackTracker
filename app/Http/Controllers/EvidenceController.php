@@ -9,6 +9,7 @@ use App\Http\Requests\Evidence\NewRequest;
 use App\Http\Requests\Evidence\UpdateRequest;
 use App\Http\Requests\Evidence\DelRequest;
 use App\Http\Resources\EvidenceResource;
+use Illuminate\Support\Str;
 
 class EvidenceController extends Controller
 {
@@ -28,8 +29,10 @@ class EvidenceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
-        //
+    public function create($reportId) {
+        $report = Report::findOrFail($reportId);
+
+        return view('admin.evidence.add', ['report' => $report]);
     }
 
     /**
@@ -38,7 +41,7 @@ class EvidenceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(NewRequest $request) {
+    public function store(Request $request) {
         $evidence = new Evidence();
 
         //Get filename with the extension
@@ -61,11 +64,15 @@ class EvidenceController extends Controller
         $evidence->url = "report/evidence/".$filenameToStore;
 
         if($evidence->save()) {
-            return response()->json([
-                'success' => '1',
-                'message' => 'Evidence has been added'
-            ]);
+            $success = 1;
+        } else {
+            $success = 0;
         }
+
+        return redirect()->action('ReportController@show', [
+            'id'=>$request->input('report_id'), 
+            'success'=>$success
+        ]);
     }
 
     /**

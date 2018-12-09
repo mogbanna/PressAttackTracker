@@ -58,7 +58,11 @@ class ReportPolicy
      */
     public function update(User $user, Report $report)
     {
-        return $user->id === $report->user_id;
+        return $user->id == $report->user_id;
+    }
+
+    public function verify(User $user, Report $report) {
+        return $user->hasRole('administrator');
     }
 
     /**
@@ -70,7 +74,7 @@ class ReportPolicy
      */
     public function delete(User $user, Report $report)
     {
-        return $user->id === $report->user_id || 
+        return $user->id == $report->user_id || 
             $user->hasRole($this->roles[1]);
     }
 

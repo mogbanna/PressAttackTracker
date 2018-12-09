@@ -13,7 +13,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,6 +29,23 @@ class UpdateRequest extends FormRequest
             'story' => 'required',
             'tags' => 'required',
             'status_id' => 'required'
+        ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'id.required' => 'Id is required',
+            'author.required' => 'Author is required.',
+            'title.required' => 'Title is required',
+            'story.required' => 'Story is required',
+            'tags.required' => 'Tags is required',
+            'status_id.required' => 'Status is required'
         ];
     }
 }

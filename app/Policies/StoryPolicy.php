@@ -46,7 +46,11 @@ class StoryPolicy
     public function update(User $user, Story $story)
     {
         return $user->hasRole('administrator') || 
-            $user->id === $story->user_id;
+            $user->id == $story->user_id;
+    }
+
+    public function approve(User $user, Story $story) {
+        return $user->hasRole('administrator');
     }
 
     /**
@@ -59,7 +63,7 @@ class StoryPolicy
     public function delete(User $user, Story $story)
     {
         return $user->hasRole('administrator') || 
-            $user->id === $story->user_id;
+            $user->id == $story->user_id;
     }
 
     /**

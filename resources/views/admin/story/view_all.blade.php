@@ -107,6 +107,14 @@
                     @for ($i = 0; $i < count($stories); $i++)
                       @php
                         $story = $stories[$i];
+
+                        if($story->status_id == 1) {
+                          $statusColor = 'badge-danger';
+                        } else if($story->status_id == 2) {
+                          $statusColor = 'badge-warning';
+                        } else if($story->status_id == 3) {
+                          $statusColor = 'badge-success';
+                        }
                       @endphp
 
                       <tr role="row" class="odd">
@@ -116,21 +124,25 @@
                         <td>{{ $story->title }}</td>
                         <td>{{ $story->user->name }}</td>
                         <td>
-                          <label for="" class="badge badge-danger">
+                          <label for="" class="badge {{ $statusColor }}">
                             {{ App\Status::select('name')->where('id', $story->status_id)->first()->name }}
                           </label>
                         </td>
                         <td>{{ $story->created_at }}</td>
                         <td class="text-right">
+                          @can('update', $story)
                           <a href="{{ route('editStory', ['id'=>$story->id]) }}" class="btn btn-link btn-info btn-just-icon like">
                             <i class="material-icons">edit</i>
                           </a>
+                          @endcan
                           <a href="{{ route('showStory', ['id'=>$story->id]) }}" class="btn btn-link btn-warning btn-just-icon edit">
                             <i class="material-icons">dvr</i>
                           </a>
+                          @can('delete', $story)
                           <a href="{{ route('adminDeleteStory', ['id'=>$story->id]) }}" class="btn btn-link btn-danger btn-just-icon remove">
                             <i class="material-icons">close</i>
-                          </a>
+                          </a> 
+                          @endcan
                         </td>
                       </tr>
                     @endfor
@@ -146,6 +158,8 @@
       </div>
       <!-- end row -->
     </div>
+
+    
   </div>
 </div>
 

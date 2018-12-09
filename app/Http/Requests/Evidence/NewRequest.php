@@ -13,7 +13,7 @@ class NewRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,9 +25,7 @@ class NewRequest extends FormRequest
     {
         return [
             'report_id' => 'required',
-            'file_format' => 'required',
-            'file' => 'required|image|max:1999',
-            'url' => 'required'
+            'file' => 'required|max:1999|mimes:jpeg,bmp,png,pdf,txt,html,jpg,doc,docx,xls,csv,tsv'
         ];
     }
 }

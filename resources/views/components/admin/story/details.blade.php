@@ -20,7 +20,23 @@
                     <td>
                         <b>Status: </b>
                     </td>
-                    <td>{{ App\Status::select('name')->where('id', $story->status_id)->first()->name }}</td>
+                    <td>
+                        {{ 
+                            App\Status::select('name')->where(
+                                'id', 
+                                $story->status_id
+                            )->first()->name 
+                        }}
+
+                        @can('approve', $story)
+                        @if ($story->status_id == 2)
+                        <a href="{{ route('adminApproveStory', ['id'=>$story->id]) }}" 
+                            class="btn btn-info btn-sm">
+                            Approve
+                        </a> 
+                        @endif
+                        @endcan
+                    </td>
                 </tr>
                 <tr>
                     <td>

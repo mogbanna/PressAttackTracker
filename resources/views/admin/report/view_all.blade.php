@@ -107,30 +107,40 @@
                     @for ($i = 0; $i < count($reports); $i++)
                       @php
                         $report = $reports[$i];
+
+                        if($report->status_id == 4) {
+                          $statusColor = 'badge-danger';
+                        } else if($report->status_id == 5) {
+                          $statusColor = 'badge-success';
+                        }
                       @endphp
 
                       <tr role="row" class="odd">
                         <td tabindex="0" class="sorting_1">
                           {{ $i + 1 }}
                         </td>
-                        <td>{{ $report->title }}</td>
+                        <td>{{ substr($report->title, 0, 30).'...' }}</td>
                         <td>{{ App\ReportType::select('name')->where('id', $report->report_type_id)->first()->name }}</td>
                         <td>
-                          <label for="" class="badge badge-danger">
+                          <label for="" class="badge {{ $statusColor }}">
                             {{ App\Status::select('name')->where('id', $report->status_id)->first()->name }}
                           </label>
                         </td>
                         <td>{{ $report->date }}</td>
                         <td class="text-right">
+                          @can('update', $report)
                           <a href="{{ route('admin/report/edit', ['id'=>$report->id]) }}" class="btn btn-link btn-info btn-just-icon like">
                             <i class="material-icons">edit</i>
                           </a>
+                          @endcan
                           <a href="{{ route('showReport', ['id'=>$report->id]) }}" class="btn btn-link btn-warning btn-just-icon edit">
                             <i class="material-icons">dvr</i>
                           </a>
+                          @can('delete', $report)
                           <a href="{{ route('adminDeleteReport', ['id'=>$report->id]) }}" class="btn btn-link btn-danger btn-just-icon remove">
                             <i class="material-icons">close</i>
                           </a>
+                          @endcan
                         </td>
                       </tr>
                     @endfor

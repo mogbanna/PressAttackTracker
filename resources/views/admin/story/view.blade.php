@@ -42,23 +42,18 @@
                 <div class="card-body">
                     <!-- Toolbar -->
                     <div class="toolbar">
+                        @can('update', $story)
                         <a href="{{ route('editStory', ['id'=>$story->id]) }}" 
                             class="btn btn-info btn-sm">
                             <i class="material-icons">edit</i>
                             Edit
                         </a>
-                        <a href="#" 
+                        <a href="{{ route('updateThumbnail', ['id'=>$story->id]) }}" 
                             class="btn btn-info btn-sm">
-                            <i class="material-icons">edit</i>
+                            <i class="material-icons">image</i>
                             Change Thumbnail
                         </a>
-                        @if ($story->status_id == 1)
-                        <a href="#" 
-                            class="btn btn-info btn-sm">
-                            <i class="material-icons">create</i>
-                            Submit For Approval
-                        </a>
-                        @endif
+                        @endcan
                         @if ($story->status_id == 2)
                         <label class="badge badge-warning badge-lg">
                             Awaiting Approval
@@ -78,7 +73,6 @@
 
                         {!! $story->story !!}
                     </div>
-                    <hr>
 
                 </div>
             </div>
@@ -113,7 +107,6 @@
 
         </div>
     </div>
-
 </div>
 
 @endsection

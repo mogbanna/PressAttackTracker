@@ -11,9 +11,8 @@ class UpdateThumbRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
-    {
-        return false;
+    public function authorize() {
+        return true;
     }
 
     /**
@@ -21,11 +20,23 @@ class UpdateThumbRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             'id' => 'required',
-            'file' => 'required|image|max:1999'
+            'thumbnail' => 'required|image|max:1999'
+        ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+          'id.required' => 'Author is required.',
+          'thumbnail.required' => 'Thumbnail is required'
         ];
     }
 }

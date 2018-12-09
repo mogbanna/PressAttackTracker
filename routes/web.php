@@ -69,10 +69,18 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:web', 'checkRole:admini
         Route::post('/', 'ReportController@store')->name('adminAddReport');
         Route::post('/update', 'ReportController@update')->name('adminUpdateReport');
         Route::get('/delete/{id}', 'ReportController@destroy')->name('adminDeleteReport');
-        
+        Route::get('/verify/{id}', 'ReportController@verify')->name('adminVerifyReport');
     });
 
-    //Routs for stories
+    // Routes for evidence
+    Route::group(['prefix' => 'evidence'], function() {
+        //Route::get('/report/{id}', 'EvidenceController@index')->name('reportEvidence');
+        Route::get('/add/report/{id}', 'EvidenceController@create')->name('addEvidence');
+        Route::post('/', 'EvidenceController@store')->name('adminAddEvidence');
+        Route::get('/delete/{id}', 'EvidenceController@destroy')->name('adminDeleteEvidence');
+    });
+    
+    //Routes for stories
     Route::group(['prefix' => 'story'], function() {
         Route::get('/', 'StoryController@index')->name('allStories');
 
@@ -80,10 +88,13 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:web', 'checkRole:admini
     
         Route::get('/write/{reportId}', 'StoryController@create')->name('writeStory');
         Route::get('/edit/{id}', 'StoryController@edit')->name('editStory');
+        Route::get('/updateThumbnail/{id}', 'StoryController@showUpdateThumbForm')->name('updateThumbnail');
 
         Route::post('/', 'StoryController@store')->name('adminAddStory');
         Route::post('/update', 'StoryController@update')->name('adminUpdateStory');
+        Route::post('/updateThumbnail', 'StoryController@updateThumbnail')->name('adminUpdateStoryThumb');
         Route::get('/delete/{id}', 'StoryController@destroy')->name('adminDeleteStory');
+        Route::get('/approve/{id}', 'StoryController@approve')->name('adminApproveStory');
     });
 
     //Routes for Config

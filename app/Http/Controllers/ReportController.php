@@ -8,6 +8,7 @@ use App\Http\Requests\Report\NewRequest;
 use App\Http\Requests\Report\UpdateRequest;
 use App\Http\Requests\Report\DelRequest;
 use App\Http\Requests\Report\UpdateStatusRequest;
+use App\Http\Requests\Report\UploadEvidenceRequest;
 use App\Http\Resources\ReportResource;
 use Auth;
 
@@ -135,22 +136,21 @@ class ReportController extends Controller
         ]);
     }
 
-    public function updateStatus(UpdateStatusRequest $request) {
-        $report = Report::findOrFail($request->input('id'));
+    public function verify($id) {
+        $report = Report::findOrFail($id);
 
-        $report->status_id = $request->input('status_id');
+        $report->status_id = 5;
 
         if($report->save()) {
-            $response = [
-                'success' => 1
-            ];
+            $success = 1;
         } else {
-            $response = [
-                'success' => 0
-            ];
+            $success = 0;
         }
 
-        return $response;
+        return redirect()->action('ReportController@show', [
+            'id'=>$id, 
+            'success'=>$success
+        ]);
     }
 
     /**

@@ -11,33 +11,37 @@
       </a>
       <a href="{{ route('dashboard') }}" class="simple-text logo-normal">
         Creative Tim
-      </a>
+      </a> 
     </div>
     <div class="sidebar-wrapper">
       <div class="user">
         <div class="photo">
-          <img src="{{ asset('img/faces/avatar.jpg') }}">
+          <img src="{{ asset('img/default-avatar.png') }}">
         </div>
         <div class="user-info">
           <a data-toggle="collapse" href="#collapseExample" class="username collapsed" aria-expanded="false">
             <span>
-              Anna theGOAT
-              <b class="caret"></b>
+              {{ Auth::user()->name }} <b class="caret"></b>
             </span>
           </a>
           <div class="collapse" id="collapseExample" style="">
             <ul class="nav">
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('showUser', ['id'=>Auth::user()->id]) }}">
                   <span class="sidebar-mini"> MP </span>
                   <span class="sidebar-normal"> My Profile </span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('logout') }}"
+                  onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                   <span class="sidebar-mini"> LO </span>
                   <span class="sidebar-normal"> Logout </span>
                 </a>
+                <form id="logout-form" action="{{ route('logout') }}" 
+                    method="POST" style="display: none;">
+                    @csrf
+                </form>
               </li>
             </ul>
           </div>

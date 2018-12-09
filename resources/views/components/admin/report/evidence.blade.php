@@ -1,51 +1,37 @@
+@php
+    $evidences = App\Evidence::orderBy('created_at', 'desc')->get();
+@endphp
 <div class="content">
     <table class="table table-striped">
         <thead>
             <th>Id</th>
-            <th>Name</th>
             <th>Type</th>
+            <th>Created At</th>
             <th>Action</th>
         </thead>
         <tbody>
+            @for ($i = 0; $i < count($evidences); $i++)
+            @php
+                $evidence = $evidences[$i];
+            @endphp
             <tr>
-                <td>1</td>
-                <td>the_file_name.pdf</td>
+                <td>{{ $i + 1 }}</td>
                 <td>
-                    <i class="fa fa-file-pdf-o"></i>
-                    PDF
+                    {{ $evidence->file_format }}
                 </td>
+                <td>{{ $evidence->created_at }}</td>
                 <td>
-                    <a href="#">
+                    <a href="{{ asset('storage/'.$evidence->url) }}" download>
                         <i class="fa fa-download"></i>
                     </a>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>the_file_name.jpg</td>
-                <td>
-                    <i class="fa fa-file-image-o"></i>
-                    JPG
-                </td>
-                <td>
-                    <a href="#">
-                        <i class="fa fa-download"></i>
+                    @can('delete', $evidence)
+                    <a href="{{ route('adminDeleteEvidence', ['id'=>$evidence->id]) }}" >
+                        <i class="fa fa-times"></i>
                     </a>
+                    @endcan
                 </td>
             </tr>
-            <tr>
-                <td>3</td>
-                <td>the_file_name.pdf</td>
-                <td>
-                    <i class="fa fa-file-sound-o"></i>
-                    MP3
-                </td>
-                <td>
-                    <a href="#">
-                        <i class="fa fa-download"></i>
-                    </a>
-                </td>
-            </tr>
+            @endfor
         </tbody>
     </table>
 </div>

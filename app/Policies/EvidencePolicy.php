@@ -47,7 +47,7 @@ class EvidencePolicy
      */
     public function create(User $user, Report $report)
     {
-        return $user->id === $report->user_id;
+        return $user->id == $report->user_id;
     }
 
     /**
@@ -71,7 +71,7 @@ class EvidencePolicy
      */
     public function delete(User $user, Evidence $evidence)
     {
-        return $user->id === $evidence->report()->user_id;
+        return $user->id == $evidence->report->user_id;
     }
 
     /**

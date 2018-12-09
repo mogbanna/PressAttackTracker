@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -63,13 +64,18 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show($id, $success = -1)
     {
-        $this->validate($request, [
-            'user_id' => 'required'
-        ]);
-        $user = User::find($request->input('user_id'));
-        return new UserResource($user);
+        $user = User::findOrFail($id);
+        
+        if($success != -1) {
+            return view('admin.user.profile', [
+                'user' => $user,
+                'success' => $success
+            ]);
+        }
+
+        return view('admin.user.profile', ['user' => $user]);
     }
     /**
      * Show the form for editing the specified resource.
@@ -117,7 +123,6 @@ class UserController extends Controller
     }
     public function changePassword(Request $request) {
         $this->validate($request, [
-            'user_id' => 'required',
             'old' => 'required',
             'new' => 'required',
             'confirm' => 'required'

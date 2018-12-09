@@ -114,14 +114,21 @@ class EvidenceController extends Controller
      * @param  \App\Evidence  $evidence
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DelRequest $request) {
-        $evidence = Evidence::findOrFail($request->input('id'));
+    public function destroy($id) {
+        $evidence = Evidence::findOrFail($id);
 
-        if($evidence->destroy()) {
-            return response()->json([
-                'success' => 1,
-                'message' => 'Evidence has been destroyed'
-            ]);
+        //delete file
+        unlink(public_path("storage/".$evidence->url));
+
+        if($evidence->delete()) {
+            $success = 1;
+        } else {
+            $success = 0;
         }
+
+        return redirect()->action('ReportController@show', [
+            'id'=>$evidence->report_id, 
+            'success'=>$success
+        ]);
     }
 }

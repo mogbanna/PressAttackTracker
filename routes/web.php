@@ -97,6 +97,13 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:web', 'checkRole:admini
         Route::get('/approve/{id}', 'StoryController@approve')->name('adminApproveStory');
     });
 
-    //Routes for Config
+    //Routes for user
+    Route::group(['prefix' => 'user'], function() {
+        Route::get('/', 'UserController@index')->name('users');
+
+        Route::get('/profile/{id}', 'UserController@show')->name('showUser');
+
+        Route::post('/changePassword', 'UserController@changePassword')->name('changePassword');
+    });
 });
 

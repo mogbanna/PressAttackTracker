@@ -42,13 +42,15 @@ Route::get('/reports', function () {
     return view('reports');
 })->name('reports');
 
-Route::get('/report', function () {
-    return view('report');
-})->name('report');
+Route::get('/report/{id}', 'ReportController@show')->name('singleReport');
 
-Route::get('/submit_report', function() {
-    return view('submit_report');
-})->name('submit_report');
+Route::get('/add_report', function() {
+    return view('add_report');
+})->middleware('auth:web')->name('addReportPage');
+Route::post('/', 'ReportController@store')->name('userAddReport');
+
+
+
 
 Route::group(['prefix' => 'admin','middleware' => ['auth:web', 'checkRole:administrator|journalist']], function () {
 

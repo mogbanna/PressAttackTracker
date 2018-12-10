@@ -98,7 +98,7 @@
           <!-- input with datetimepicker -->
           <div class="form-group my-5">
             <label class="">
-              Incidet Date
+              Incident Date
             </label>
             <input name="date" type="text" class="form-control datetimepicker" value="21/06/2018"/>
           </div>

@@ -42,7 +42,6 @@ class ReportController extends Controller
      */
     public function store(NewRequest $request) {
         $report = new Report();
-
         $report->report_type_id = $request->input('report_type_id');
         $report->user_id = Auth::user()->id;
         $report->title = $request->input('title');
@@ -61,7 +60,7 @@ class ReportController extends Controller
         }
 
         return redirect()->action('ReportController@show', [
-            'id'=>$request->input('id'), 
+            'id'=>$report->id, 
             'success'=>$success
         ]);
     }
@@ -77,6 +76,17 @@ class ReportController extends Controller
 
         $report->views = $report->views + 1;
         $report->save();
+
+        if(Auth::user()->hasRole('user')) {
+            if($success != -1) {
+                return view('admin.report.view', [
+                    'report' => $report,
+                    'update_success' => $success
+                ]);
+            }
+    
+            return view('admin.report.view', ['report' => $report]);
+        }
 
         if($success != -1) {
             return view('admin.report.view', [

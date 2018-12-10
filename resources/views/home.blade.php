@@ -74,7 +74,7 @@
                   <i class="material-icons pr-2">search</i>
                   Browse Reports
           </a>
-              <a href="{{ route('submit_report') }}" class="btn btn-lg btn-danger justify-content-end">
+              <a href="{{ route('addReportPage') }}" class="btn btn-lg btn-danger justify-content-end">
                   <i class="material-icons pr-2">create</i>
                   Submit Reports
               </a>

@@ -108,4 +108,3 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:web', 'checkRole:admini
         Route::post('/changePassword', 'UserController@changePassword')->name('changePassword');
     });
 });
-

@@ -21,7 +21,8 @@
           </ul>
       </div>
     @endif
-    <form id="" class="form-horizontal" action="{{ route('adminUpdateReport') }}" method="POST" novalidate="novalidate">
+    <form id="" class="form-horizontal" action="{{ route('adminUpdateReport') }}" 
+        method="POST" novalidate="novalidate">
       @csrf
       <div class="card ">
         <div class="card-header card-header-default card-header-text">
@@ -53,7 +54,7 @@
                                 @php
                                     $reportType = $reportTypes[$i];
                                 @endphp
-                                <option value="{{ $reportType->id }}" @if ($report->report_type_id === $reportType->id) echo "selected"; @endif>
+                                <option value="{{ $reportType->id }}" @if ($report->report_type_id == $reportType->id) {{ "selected" }} @endif>
                                     {{ $reportType->name }}
                                 </option>
                             @endfor
@@ -103,7 +104,7 @@
             <!-- input with datetimepicker -->
             <div class="form-group my-5">
                 <label class="">
-                    Incidet Date
+                    Incident Date
                 </label>
                 <input name="date" type="text" class="form-control datetimepicker" value="{{ $report->date }}"/>
             </div>

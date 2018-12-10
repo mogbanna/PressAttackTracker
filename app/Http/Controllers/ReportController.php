@@ -60,8 +60,7 @@ class ReportController extends Controller
         }
 
         return redirect()->action('ReportController@show', [
-            'id'=>$report->id, 
-            'success'=>$success
+            'id'=>$report->id
         ]);
     }
 
@@ -95,7 +94,9 @@ class ReportController extends Controller
             ]);
         }
 
-        return view('admin.report.view', ['report' => $report]);
+        return view('admin.report.view', [
+            'report' => $report
+        ]);
     }
 
     /**
@@ -173,15 +174,13 @@ class ReportController extends Controller
         $report = Report::findOrFail($id);
         
         if($report->delete()) {
-            $response = [
-                'success' => 1
-            ];
+            $success = 1;
         } else {
-            $response = [
-                'success' => 0
-            ];
+            $success = 0;
         }
 
-        return view('admin/report/view_all', ['delete_success' => $response['success']]);
+        return redirect()->action('ReportController@index', [
+            'delete_success' => $success
+        ]);
     }
 }

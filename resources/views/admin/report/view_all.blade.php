@@ -6,8 +6,8 @@
     
 <div class="row">
   <div class="col-md-12">
-    @if (isset($delete_success) && $delete_success == 1)
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    @if (isset($_GET['delete_success']) && $_GET['delete_success'] == 1)
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
       Report has been deleted successfully.
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>

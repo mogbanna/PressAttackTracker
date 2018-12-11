@@ -26,9 +26,7 @@ Route::get('/helpyou', function () {
     return view('faq');
 })->name('faq');
 
-Route::get('/contact', function () {
-    return view('contact');
-})->name('contact');
+Route::get('/contact', 'ContactController@show')->name('contact');
 
 Route::get('/post', function () {
     return view('post');
@@ -41,6 +39,11 @@ Route::get('/posts', function () {
 Route::get('/reports', function () {
     return view('reports');
 })->name('reports');
+
+//social media login routes using Socialite
+Route::get('login/{{provider}}', 'Auth/LoginController@reirectToProvider');
+Route::get('login/{{provider}}/callback', 'Auth/LoginController@handleProviderCallback');
+
 
 Route::get('/report/{id}', 'ReportController@show')->name('singleReport');
 

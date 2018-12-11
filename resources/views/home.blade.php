@@ -299,20 +299,20 @@
 <hr> 
   
 {{-- SOCIAL MEDIA LINKS --}}
-<div class="social-line social-line-big-icons social-line-white">
+<div class="social-line social-line-big-icons social-line-white ">
     <div class="container">
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-md-2 col-4">
-                <a href="#pablo" class="btn btn-link btn-just-icon btn-twitter">
+                <a href="https://twitter.com/PremiumTimesng" class="btn btn-link btn-just-icon btn-twitter">
                     <i class="fa fa-twitter"></i>
                 </a>
             </div>
             <div class="col-md-2 col-4">
-                <a href="#pablo" class="btn btn-link btn-just-icon btn-facebook">
+                <a href="https://www.facebook.com/Premiumtimes/" class="btn btn-link btn-just-icon btn-facebook">
                     <i class="fa fa-facebook-square"></i>
                 </a>
             </div>
-            <div class="col-md-2 col-4">
+            {{-- <div class="col-md-2 col-4">
                 <a href="#pablo" class="btn btn-link btn-just-icon btn-google">
                     <i class="fa fa-google-plus"></i>
                 </a>
@@ -321,7 +321,7 @@
                 <a href="#pablo" class="btn btn-link btn-just-icon btn-dribbble">
                     <i class="fa fa-dribbble"></i>
                 </a>
-            </div>
+            </div> --}}
             <div class="col-md-2 col-4">
                 <a href="#pablo" class="btn btn-link btn-just-icon btn-youtube">
                     <i class="fa fa-youtube-play"></i>

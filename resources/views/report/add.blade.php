@@ -38,17 +38,17 @@
             </div>
             <div class="col-md-8 ml-auto">
                 <div class="card card-contact">
-                @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-                @endif
-                <form id="contact-form" action="{{ route('userAddReport') }} "method="POST" novalidate="novalidate">
-                        @csrf
+                <form id="contact-form" action="{{ route('addReport') }} "method="POST" novalidate="novalidate">
+                    @csrf
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
                         <div class="card-header card-header-raised card-header-primary text-center">
                             <h4 class="card-title">Submit Report</h4>
                         </div>

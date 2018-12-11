@@ -22,6 +22,10 @@ class ReportController extends Controller
     public function index() {
         $reports = Report::paginate();
 
+        if(Auth::user()->hasRole('user')) {
+            return view('report.view', ['reports' => $reports]);
+        }
+
         return view('admin.report.view_all', ['reports' => $reports]);
     }
 
@@ -31,6 +35,10 @@ class ReportController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create($response = []) {
+        if(Auth::user()->hasRole('user')) {
+            return view('report.add', $response);
+        }
+        
         return view('admin.report.add', $response);
     }
 
@@ -59,6 +67,10 @@ class ReportController extends Controller
             $success = 0;
         }
 
+        if(Auth::user()->hasRole('user')) {
+            return redirect()->route('report', ['id'=>$report->id]);
+        }
+
         return redirect()->action('ReportController@show', [
             'id'=>$report->id
         ]);
@@ -77,14 +89,9 @@ class ReportController extends Controller
         $report->save();
 
         if(Auth::user()->hasRole('user')) {
-            if($success != -1) {
-                return view('report', [
-                    'report' => $report,
-                    'success' => $success
-                ]);
-            }
-    
-            return view('report', ['report' => $report]);
+            return view('report.view', [
+                'report' => $report
+            ]);
         }
 
         if($success != -1) {
@@ -107,6 +114,10 @@ class ReportController extends Controller
      */
     public function edit($id, $success = -1) {
         $report = Report::findOrFail($id);
+
+        if(Auth::user()->hasRole('user')) {
+            return view('report.edit', ['report' => $report]);
+        }
 
         if($success != -1) {
             return view('admin.report.edit', [
@@ -142,6 +153,13 @@ class ReportController extends Controller
             $success = 1;
         } else {
             $success = 0;
+        }
+
+        if(Auth::user()->hasRole('user')) {
+            return redirect()->route('report', [
+                'id' => $report->id,
+                'success' => $success
+            ]);
         }
 
         return redirect()->action('ReportController@show', [
@@ -180,6 +198,12 @@ class ReportController extends Controller
             $success = 1;
         } else {
             $success = 0;
+        }
+
+        if(Auth::user()->hasRole('user')) {
+            return redirect()->route('reports', [
+                'delete_success' => $success
+            ]);
         }
 
         return redirect()->action('ReportController@index', [

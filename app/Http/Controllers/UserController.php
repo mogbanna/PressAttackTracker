@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Http\Requests\User\NewRequest;
+use App\Http\Requests\User\UpdateRequest;
+use App\Http\Requests\User\DelRequest;
+use App\Http\Requests\User\ChangePasswordRequest;
 use Illuminate\Http\Request;
+use Auth;
 
 class UserController extends Controller
 {
@@ -14,7 +19,6 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
         $users = User::get();
         return UserResource::collection($users);
     }
@@ -33,29 +37,21 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NewRequest $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-            'cpassword' => 'required',
-            'role_id' => 'required',
-            'user_id' => 'required'
-        ]);
-        //check authorizaton
-        $user = User::find($request->input('user_id'));
-        $user->authorizeRoles(['administrator', 'site manager']);
         //check if passwords match
         if($request->input('password') !== $request->input('cpassword')) {
             return response()->json(['error_msg'=>'passwords do not match'], '500');
         }
+
         $user = User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
         ]);
+
         $user->roles()->attach(Role::where('id', $request->input('role_id'))->first());
+
         return $user;
     }
     /**
@@ -121,23 +117,20 @@ class UserController extends Controller
         $user->roles()->sync($request->input('role_id'));
         return response()->json(['success'=>1], '200');
     }
-    public function changePassword(Request $request) {
-        $this->validate($request, [
-            'old' => 'required',
-            'new' => 'required',
-            'confirm' => 'required'
-        ]);
-        //check for password mismatch
-        if($request->input('new') !== $request->input('confirm')) {
-            return response()->json(['success'=>0, 'message'=>'password mismatch'], '500');
-        }
-        $user = User::findOrFail($request->input('user_id'));
+
+    public function changePassword(ChangePasswordRequest $request) {
+        $user = User::findOrFail(Auth::user()->id);
         
-        $user->password = bcrypt($request->input('new'));
+        $user->password = bcrypt($request->input('password'));
+
         if($user->save()) {
-            return response()->json(['success'=>1], '200');
+            return redirect()->action('UserController@show', [
+                'id' => Auth::user()->id, 
+                'success' => 1
+            ]);
         }
     }
+
     public function updateThumbnail(Request $request) {
         $this->validate($request, [
             'user_id' => 'required',

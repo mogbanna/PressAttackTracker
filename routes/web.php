@@ -11,46 +11,81 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
-
 Auth::routes();
+
+Route::get('/', function () {
+    return view('pages.home');
+})->name('home');
 
 // UI ROUTES 
 Route::get('/about', function () {
-    return view('about');
+    return view('pages.about');
 })->name('about');
 
 Route::get('/helpyou', function () {
-    return view('faq');
+    return view('pages.faq');
 })->name('faq');
 
 Route::get('/contact', function () {
-    return view('contact');
+    return view('pages.contact');
 })->name('contact');
 
-Route::get('/post', function () {
-    return view('post');
-})->name('post');
+Route::get('/story', function () {
+    return view('story.view');
+})->name('story');
 
-Route::get('/posts', function () {
-    return view('posts');
-})->name('posts');
+Route::get('/stories', function () {
+    return view('story.all');
+})->name('stories');
 
-Route::get('/reports', function () {
-    return view('reports');
-})->name('reports');
+Route::group(['prefix' => 'report'], function() {
+    Route::get(
+        '/', 
+        'ReportController@index'
+    )->name('reports');
 
-Route::get('/report/{id}', 'ReportController@show')->name('singleReport');
+    Route::get(
+        '/view/{id}', 
+        'ReportController@show'
+    )->name('report');
 
-Route::get('/add_report', function() {
-    return view('add_report');
-})->middleware('auth:web')->name('addReportPage');
-Route::post('/report', 'ReportController@store')->name('userAddReport');
+    Route::get(
+        '/add', 
+        'ReportController@create'
+    )->name('addReportForm');
 
+    Route::get(
+        '/edit/{id}', 
+        'ReportController@edit'
+    )->name('updateReportForm');
 
+    Route::post(
+        '/', 
+        'ReportController@store'
+    )->name('addReport');
 
+    Route::post(
+        '/update', 
+        'ReportController@update'
+    )->name('updateReport');
+
+    Route::get(
+        '/delete/{id}', 
+        'ReportController@destroy'
+    )->name('deleteReport');
+});
+
+Route::group(['prefix' => 'story'], function() {
+    Route::get(
+        '/', 
+        'StoryController@index'
+    )->name('stories');
+
+    Route::get(
+        '/view/{id}', 
+        'StoryController@show'
+    )->name('story');
+});
 
 Route::group(['prefix' => 'admin','middleware' => ['auth:web', 'checkRole:administrator|journalist']], function () {
 
@@ -61,7 +96,6 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:web', 'checkRole:admini
 
     // Routes for reports
     Route::group(['prefix' => 'report'], function() {
-
         Route::get('/', 'ReportController@index')->name('admin/report/view_all');
         Route::get('/view/{id}', 'ReportController@show')->name('showReport');
     

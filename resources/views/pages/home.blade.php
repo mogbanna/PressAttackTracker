@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-
-
-
-
 @section('content')
 
   <div class="page-header header-filter" data-parallax="true" style="background-image: url('{{asset('img/bg3.jpg')}}')">
@@ -74,7 +70,7 @@
                   <i class="material-icons pr-2">search</i>
                   Browse Reports
           </a>
-              <a href="{{ route('addReportPage') }}" class="btn btn-lg btn-danger justify-content-end">
+              <a href="{{ route('addReportForm') }}" class="btn btn-lg btn-danger justify-content-end">
                   <i class="material-icons pr-2">create</i>
                   Submit Reports
               </a>

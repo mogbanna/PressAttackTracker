@@ -67,7 +67,7 @@
 
         <ul class="float-left">
             <li>
-                <a href="{{ route('posts') }}">
+                <a href="{{ route('stories') }}">
                     Blog
                 </a>
             </li>

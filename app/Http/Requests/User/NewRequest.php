@@ -13,7 +13,7 @@ class NewRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,7 +26,8 @@ class NewRequest extends FormRequest
         return [
             'name' => 'required',
             'email' => 'required',
-            'password' => 'required'
+            'password' => 'required|min:6|confirmed',
+            'role_id' => 'required'
         ];
     }
 }

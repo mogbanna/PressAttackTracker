@@ -78,13 +78,13 @@ class ReportController extends Controller
 
         if(Auth::user()->hasRole('user')) {
             if($success != -1) {
-                return view('admin.report.view', [
+                return view('report', [
                     'report' => $report,
-                    'update_success' => $success
+                    'success' => $success
                 ]);
             }
     
-            return view('admin.report.view', ['report' => $report]);
+            return view('report', ['report' => $report]);
         }
 
         if($success != -1) {
@@ -109,7 +109,10 @@ class ReportController extends Controller
         $report = Report::findOrFail($id);
 
         if($success != -1) {
-            return view('admin.report.edit', ['report' => $report, 'success' => $success]);
+            return view('admin.report.edit', [
+                'report' => $report, 
+                'success' => $success
+            ]);
         } 
 
         return view('admin.report.edit', ['report' => $report]);

@@ -47,7 +47,7 @@ Route::get('/report/{id}', 'ReportController@show')->name('singleReport');
 Route::get('/add_report', function() {
     return view('add_report');
 })->middleware('auth:web')->name('addReportPage');
-Route::post('/', 'ReportController@store')->name('userAddReport');
+Route::post('/report', 'ReportController@store')->name('userAddReport');
 
 
 

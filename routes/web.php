@@ -26,6 +26,7 @@ Route::get('/helpyou', function () {
     return view('pages.faq');
 })->name('faq');
 
+<<<<<<< HEAD
 Route::get('/contact', function () {
     return view('pages.contact');
 })->name('contact');
@@ -86,6 +87,36 @@ Route::group(['prefix' => 'story'], function() {
         'StoryController@show'
     )->name('story');
 });
+=======
+Route::get('/contact', 'ContactController@show')->name('contact');
+
+Route::get('/post', function () {
+    return view('post');
+})->name('post');
+
+Route::get('/posts', function () {
+    return view('posts');
+})->name('posts');
+
+Route::get('/reports', function () {
+    return view('reports');
+})->name('reports');
+
+//social media login routes using Socialite
+Route::get('login/{{provider}}', 'Auth/LoginController@reirectToProvider');
+Route::get('login/{{provider}}/callback', 'Auth/LoginController@handleProviderCallback');
+
+
+Route::get('/report/{id}', 'ReportController@show')->name('singleReport');
+
+Route::get('/add_report', function() {
+    return view('add_report');
+})->middleware('auth:web')->name('addReportPage');
+Route::post('/report', 'ReportController@store')->name('userAddReport');
+
+
+
+>>>>>>> put in work, put em in the dirt
 
 Route::group(['prefix' => 'admin','middleware' => ['auth:web', 'checkRole:administrator|journalist']], function () {
 

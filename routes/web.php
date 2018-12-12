@@ -28,29 +28,65 @@ Route::get('/helpyou', function () {
 
 Route::get('/contact', 'ContactController@show')->name('contact');
 
-Route::get('/post', function () {
-    return view('post');
-})->name('post');
 
-Route::get('/posts', function () {
-    return view('posts');
-})->name('posts');
+//Common user routes
+Route::group(['prefix' => 'user'], function () {
 
-Route::get('/reports', function () {
-    return view('reports');
-})->name('reports');
+    Route::get('/profile/{id}', 'UserController@show')->name('userPage');
+
+});
+
+
+
+Route::group(['prefix' => 'report'], function() {
+    Route::get(
+        '/', 
+        'ReportController@index'
+    )->name('reports');
+    Route::get(
+        '/view/{id}', 
+        'ReportController@show'
+    )->name('report');
+    Route::get(
+        '/add', 
+        'ReportController@create'
+    )->name('addReportForm');
+    Route::get(
+        '/edit/{id}', 
+        'ReportController@edit'
+    )->name('updateReportForm');
+    Route::post(
+        '/', 
+        'ReportController@store'
+    )->name('addReport');
+    Route::post(
+        '/update', 
+        'ReportController@update'
+    )->name('updateReport');
+    Route::get(
+        '/delete/{id}', 
+        'ReportController@destroy'
+    )->name('deleteReport');
+});
+
+Route::group(['prefix' => 'story'], function() {
+
+    Route::get(
+        '/', 
+        'StoryController@index'
+    )->name('stories');
+    
+    Route::get(
+        '/view/{id}', 
+        'StoryController@show'
+    )->name('story');
+});
+
 
 //social media login routes using Socialite
 Route::get('login/{{provider}}', 'Auth/LoginController@reirectToProvider');
 Route::get('login/{{provider}}/callback', 'Auth/LoginController@handleProviderCallback');
 
-
-Route::get('/report/{id}', 'ReportController@show')->name('singleReport');
-
-Route::get('/add_report', function() {
-    return view('add_report');
-})->middleware('auth:web')->name('addReportPage');
-Route::post('/report', 'ReportController@store')->name('userAddReport');
 
 
 
@@ -64,49 +100,134 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:web', 'checkRole:admini
 
     // Routes for reports
     Route::group(['prefix' => 'report'], function() {
-        Route::get('/', 'ReportController@index')->name('admin/report/view_all');
-        Route::get('/view/{id}', 'ReportController@show')->name('showReport');
-    
-        Route::get('/add', 'ReportController@create')->name('admin/report/add');
-        Route::get('/edit/{id}', 'ReportController@edit')->name('admin/report/edit');
+        Route::get(
+            '/', 
+            'ReportController@index'
+        )->name('admin/report/view_all');
 
-        Route::post('/', 'ReportController@store')->name('adminAddReport');
-        Route::post('/update', 'ReportController@update')->name('adminUpdateReport');
-        Route::get('/delete/{id}', 'ReportController@destroy')->name('adminDeleteReport');
-        Route::get('/verify/{id}', 'ReportController@verify')->name('adminVerifyReport');
+        Route::get(
+            '/view/{id}', 
+            'ReportController@show'
+        )->name('showReport');
+    
+        Route::get(
+            '/add', 
+            'ReportController@create'
+        )->name('admin/report/add');
+
+        Route::get(
+            '/edit/{id}', 
+            'ReportController@edit'
+        )->name('admin/report/edit');
+
+        Route::post(
+            '/', 
+            'ReportController@store'
+        )->name('adminAddReport');
+
+        Route::post(
+            '/update', 
+            'ReportController@update'
+        )->name('adminUpdateReport');
+
+        Route::get(
+            '/delete/{id}', 
+            'ReportController@destroy'
+        )->name('adminDeleteReport');
+
+        Route::get(
+            '/verify/{id}', 
+            'ReportController@verify'
+        )->name('adminVerifyReport');
     });
 
     // Routes for evidence
     Route::group(['prefix' => 'evidence'], function() {
         //Route::get('/report/{id}', 'EvidenceController@index')->name('reportEvidence');
-        Route::get('/add/report/{id}', 'EvidenceController@create')->name('addEvidence');
-        Route::post('/', 'EvidenceController@store')->name('adminAddEvidence');
-        Route::get('/delete/{id}', 'EvidenceController@destroy')->name('adminDeleteEvidence');
+        Route::get(
+            '/add/report/{id}', 
+            'EvidenceController@create'
+        )->name('addEvidence');
+
+        Route::post(
+            '/', 
+            'EvidenceController@store'
+        )->name('adminAddEvidence');
+
+        Route::get(
+            '/delete/{id}', 
+            'EvidenceController@destroy'
+        )->name('adminDeleteEvidence');
     });
     
     //Routes for stories
     Route::group(['prefix' => 'story'], function() {
-        Route::get('/', 'StoryController@index')->name('allStories');
+        Route::get(
+            '/', 
+            'StoryController@index'
+        )->name('allStories');
 
-        Route::get('/view/{id}', 'StoryController@show')->name('showStory');
+        Route::get(
+            '/view/{id}', 
+            'StoryController@show'
+        )->name('showStory');
     
-        Route::get('/write/{reportId}', 'StoryController@create')->name('writeStory');
-        Route::get('/edit/{id}', 'StoryController@edit')->name('editStory');
-        Route::get('/updateThumbnail/{id}', 'StoryController@showUpdateThumbForm')->name('updateThumbnail');
+        Route::get(
+            '/write/{reportId}', 
+            'StoryController@create'
+        )->name('writeStory');
 
-        Route::post('/', 'StoryController@store')->name('adminAddStory');
-        Route::post('/update', 'StoryController@update')->name('adminUpdateStory');
-        Route::post('/updateThumbnail', 'StoryController@updateThumbnail')->name('adminUpdateStoryThumb');
-        Route::get('/delete/{id}', 'StoryController@destroy')->name('adminDeleteStory');
-        Route::get('/approve/{id}', 'StoryController@approve')->name('adminApproveStory');
+        Route::get(
+            '/edit/{id}', 
+            'StoryController@edit'
+        )->name('editStory');
+
+        Route::get(
+            '/updateThumbnail/{id}', 
+            'StoryController@showUpdateThumbForm'
+        )->name('updateThumbnail');
+
+        Route::post(
+            '/', 
+            'StoryController@store'
+        )->name('adminAddStory');
+
+        Route::post(
+            '/update', 
+            'StoryController@update'
+        )->name('adminUpdateStory');
+
+        Route::post(
+            '/updateThumbnail', 
+            'StoryController@updateThumbnail'
+        )->name('adminUpdateStoryThumb');
+
+        Route::get(
+            '/delete/{id}', 
+            'StoryController@destroy'
+        )->name('adminDeleteStory');
+
+        Route::get(
+            '/approve/{id}', 
+            'StoryController@approve'
+        )->name('adminApproveStory');
     });
 
     //Routes for user
     Route::group(['prefix' => 'user'], function() {
-        Route::get('/', 'UserController@index')->name('users');
+        Route::get(
+            '/', 
+            'UserController@index'
+        )->name('users');
 
-        Route::get('/profile/{id}', 'UserController@show')->name('showUser');
+        Route::get(
+            '/profile/{id}', 
+            'UserController@show'
+        )->name('showUser');
 
-        Route::post('/changePassword', 'UserController@changePassword')->name('changePassword');
+        Route::post(
+            '/changePassword', 
+            'UserController@changePassword'
+        )->name('changePassword');
     });
-});
+}); 

@@ -62,6 +62,8 @@
     <script src="{{ asset('js/plugins/bootstrap-datetimepicker.js') }}" type="text/javascript"></script>
     <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
     <script src="{{ asset('js/plugins/nouislider.min.js') }}" type="text/javascript"></script>
+      <!--  DataTables.net Plugin, full documentation here: https://datatables.net/    -->
+      <script src="{{ asset('js/plugins/jquery.datatables.min.js') }}"></script>
     <!--  Google Maps Plugin  -->
     {{-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> --}}
     {{-- Leaflet Map Plugin --}}

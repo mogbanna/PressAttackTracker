@@ -87,11 +87,6 @@
                 </a>
             </li>
             <li>
-                <a href="#pablo">
-                    Contact Us
-                </a>
-            </li>
-            <li>
                 <a href="{{ route('login') }}">
                     Login
                 </a>
@@ -101,7 +96,7 @@
         <div class="copyright float-right">
             Copyright © 
             <script>document.write(new Date().getFullYear())</script>
-            2018 Anna and Faruk
+            Anna and Faruk
         </div>
     </div>
 </footer>

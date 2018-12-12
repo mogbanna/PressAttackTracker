@@ -19,8 +19,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::get();
-        return UserResource::collection($users);
+        $users = User::paginate();
+
+        return view('admin.user.all', ['users' => $users]);
     }
     /**
      * Show the form for creating a new resource.

@@ -79,34 +79,36 @@
           </div>
         </li>
         <li class="nav-item ">
-            <a class="nav-link" data-toggle="collapse" href="#post-dropdown">
-              <i class="material-icons">image</i>
-              <p> Posts
-                <b class="caret"></b>
-              </p>
-            </a>
-            <div class="collapse" id="post-dropdown">
-              <ul class="nav">
-                <li class="nav-item ">
-                  <a class="nav-link" href="{{ route('allStories') }}">
-                    <span class="sidebar-mini"> MP </span>
-                    <span class="sidebar-normal"> Manage Posts </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </li>        
+          <a class="nav-link" data-toggle="collapse" href="#post-dropdown">
+            <i class="material-icons">image</i>
+            <p> Posts
+              <b class="caret"></b>
+            </p>
+          </a>
+          <div class="collapse" id="post-dropdown">
+            <ul class="nav">
+              <li class="nav-item ">
+                <a class="nav-link" href="{{ route('allStories') }}">
+                  <span class="sidebar-mini"> MP </span>
+                  <span class="sidebar-normal"> Manage Posts </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>  
+        @if (Auth::user()->hasRole('administrator'))
         <li class="nav-item ">
           <a class="nav-link" data-toggle="collapse" href="#formsExamples">
             <i class="material-icons">content_paste</i>
-            <p> Config
+            <p> 
+              Config
               <b class="caret"></b>
             </p>
           </a>
           <div class="collapse" id="formsExamples">
             <ul class="nav">
               <li class="nav-item ">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('users') }}">
                   <span class="sidebar-mini"> MU </span>
                   <span class="sidebar-normal"> Manage Users </span>
                 </a>
@@ -114,6 +116,7 @@
             </ul>
           </div>
         </li>
+        @endif  
       </ul>
     </div>
   <div class="sidebar-background" style="background-image: url({{ asset('img/sidebar-1.jpg') }}) "></div></div>

@@ -28,29 +28,59 @@ Route::get('/helpyou', function () {
 
 Route::get('/contact', 'ContactController@show')->name('contact');
 
-Route::get('/post', function () {
-    return view('post');
-})->name('post');
+Route::get('/profile', function () {
+    return view('profile');
+})->name('userPage');
 
-Route::get('/posts', function () {
-    return view('posts');
-})->name('posts');
+Route::group(['prefix' => 'report'], function() {
+    Route::get(
+        '/', 
+        'ReportController@index'
+    )->name('reports');
+    Route::get(
+        '/view/{id}', 
+        'ReportController@show'
+    )->name('report');
+    Route::get(
+        '/add', 
+        'ReportController@create'
+    )->name('addReportForm');
+    Route::get(
+        '/edit/{id}', 
+        'ReportController@edit'
+    )->name('updateReportForm');
+    Route::post(
+        '/', 
+        'ReportController@store'
+    )->name('addReport');
+    Route::post(
+        '/update', 
+        'ReportController@update'
+    )->name('updateReport');
+    Route::get(
+        '/delete/{id}', 
+        'ReportController@destroy'
+    )->name('deleteReport');
+});
 
-Route::get('/reports', function () {
-    return view('reports');
-})->name('reports');
+Route::group(['prefix' => 'story'], function() {
+
+    Route::get(
+        '/', 
+        'StoryController@index'
+    )->name('stories');
+    
+    Route::get(
+        '/view/{id}', 
+        'StoryController@show'
+    )->name('story');
+});
+
 
 //social media login routes using Socialite
 Route::get('login/{{provider}}', 'Auth/LoginController@reirectToProvider');
 Route::get('login/{{provider}}/callback', 'Auth/LoginController@handleProviderCallback');
 
-
-Route::get('/report/{id}', 'ReportController@show')->name('singleReport');
-
-Route::get('/add_report', function() {
-    return view('add_report');
-})->middleware('auth:web')->name('addReportPage');
-Route::post('/report', 'ReportController@store')->name('userAddReport');
 
 
 
@@ -180,7 +210,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:web', 'checkRole:admini
     //Routes for user
     Route::group(['prefix' => 'user'], function() {
         Route::get(
-            '/', 
+            '/manage', 
             'UserController@index'
         )->name('users');
 

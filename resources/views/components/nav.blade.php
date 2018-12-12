@@ -53,9 +53,16 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            
                             @if (Auth::user()->hasAnyRole(['administrator', 'journalist'])) 
                             <a href="{{ route('dashboard') }}" class="dropdown-item">
                                 Admin Panel
+                            </a>
+                            @endif
+
+                            @if (!Auth::user()->hasAnyRole(['administrator', 'journalist'])) 
+                            <a href="{{ route('userPage', ['id'=>Auth::user()->id]) }}" class="dropdown-item">
+                                 My Profile
                             </a>
                             @endif
 

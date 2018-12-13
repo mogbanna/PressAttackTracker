@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Role;
 use App\Http\Requests\User\NewRequest;
 use App\Http\Requests\User\UpdateRequest;
 use App\Http\Requests\User\DelRequest;
@@ -19,7 +20,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate();
+        $users = User::orderBy('created_at', 'desc')->get();
 
         return view('admin.user.all', ['users' => $users]);
     }
@@ -38,22 +39,18 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(NewRequest $request)
-    {
-        //check if passwords match
-        if($request->input('password') !== $request->input('cpassword')) {
-            return response()->json(['error_msg'=>'passwords do not match'], '500');
-        }
-
+    public function store(NewRequest $request) {
         $user = User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
         ]);
 
-        $user->roles()->attach(Role::where('id', $request->input('role_id'))->first());
+        $user->roles()->attach(
+            Role::where('id', $request->input('role_id'))->first()
+        );
 
-        return $user;
+        return redirect()->route('users');
     }
     /**
      * Display the specified resource.

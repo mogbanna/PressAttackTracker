@@ -80,6 +80,7 @@ Route::group(['prefix' => 'story'], function() {
         '/view/{id}', 
         'StoryController@show'
     )->name('story');
+
 });
 
 
@@ -224,6 +225,11 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:web', 'checkRole:admini
             '/profile/{id}', 
             'UserController@show'
         )->name('showUser');
+
+        Route::post(
+            '/',
+            'UserController@store'
+        )->name('addNewUser');
 
         Route::post(
             '/changePassword', 

@@ -28,9 +28,15 @@ Route::get('/helpyou', function () {
 
 Route::get('/contact', 'ContactController@show')->name('contact');
 
-Route::get('/profile', function () {
-    return view('profile');
-})->name('userPage');
+
+//Common user routes
+Route::group(['prefix' => 'user'], function () {
+
+    Route::get('/profile/{id}', 'UserController@show')->name('userPage');
+
+});
+
+
 
 Route::group(['prefix' => 'report'], function() {
     Route::get(

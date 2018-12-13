@@ -64,6 +64,10 @@ class UserController extends Controller
     public function show($id, $success = -1)
     {
         $user = User::findOrFail($id);
+
+        if(Auth::user()->hasRole('user')){
+            return view('user.profile', ['user' => $user]);
+        }
         
         if($success != -1) {
             return view('admin.user.profile', [

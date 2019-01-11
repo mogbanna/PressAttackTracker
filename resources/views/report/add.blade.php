@@ -104,11 +104,28 @@
                                 <input type="email" name="affiliation" class="form-control">
                                 <span class="material-input"></span>
                             </div>
-                            <div class="form-group label-floating is-empty bmd-form-group">
+                            <div class="col-md-6">
+                                        <select name="state" class="form-control selectpicker" data-style="" id="state" style="max-height: 50px">
+                                            <option value="">- Please select the state -</option>
+                                            @php
+                                                $states = App\State::all();
+                                            @endphp
+                                            @for ($i = 0; $i < count($states); $i++)
+                                                @php
+                                                    $state = $states[$i];
+                                                @endphp
+                                                <option value="{{ $state->id }}">
+                                                {{ $state->name }}
+                                                </option>
+                                            @endfor
+                                        </select>
+                                    <span class="material-input"></span>
+                                </div>
+                            {{-- <div class="form-group label-floating is-empty bmd-form-group">
                                 <label class="bmd-label-floating">Location</label>
                                 <input type="text" name="location" class="form-control">
                                 <span class="material-input"></span>
-                            </div>
+                            </div> --}}
                             <div class="form-group label-floating is-empty bmd-form-group">
                                 <label for="exampleMessage1" class="bmd-label-floating">Report Description</label>
                                 <textarea name="description" class="form-control" id="report-description" rows="6"></textarea>

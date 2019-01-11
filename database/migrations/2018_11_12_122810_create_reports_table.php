@@ -19,7 +19,7 @@ class CreateReportsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->string('title');
             $table->text('description');
-            $table->string('location');
+            $table->string('state_id');
             $table->string('victim');
             $table->string('affiliation');
             $table->string('assailant');
@@ -31,6 +31,7 @@ class CreateReportsTable extends Migration
             $table->foreign('report_type_id')->references('id')->on('report_types');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('status_id')->references('id')->on('statuses');
+            $table->foreign('state_id')->references('id')->on('states');
 
             $table->engine = 'InnoDB';
             $table->charset = 'utf8';

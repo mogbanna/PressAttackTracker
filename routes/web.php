@@ -27,6 +27,7 @@ Route::get('/helpyou', function () {
 })->name('faq');
 
 Route::get('/contact', 'ContactController@show')->name('contact');
+Route::post('/contact', 'ContactController@mailToAdmin');
 
 
 //Common user routes

@@ -66,7 +66,7 @@
             
           </div>
           <div class="col-md-auto">
-          <a href="{{ route('reports') }}" class="btn btn-lg btn-info justify-content-end mr-4">
+          <a href="{{ route('reports', ['flag' => true]) }}" class="btn btn-lg btn-info justify-content-end mr-4">
                   <i class="material-icons pr-2">search</i>
                   Browse Reports
           </a>

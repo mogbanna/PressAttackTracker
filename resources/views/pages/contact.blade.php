@@ -7,6 +7,9 @@
 
 @section('content')
 
+
+
+
 <div id="contactUsMap" class="big-map" style="z-index: -4"></div>
   <div class="main main-raised">
     <div class="contact-content">
@@ -22,18 +25,40 @@
               <br>
               <br>
             </p>
-            <form role="form" id="contact-form" method="post">
+
+{{-- Display message to user if they have successfully sent email --}}
+            @if (isset($_GET['success']) && $_GET['success'] == 1)
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              Thank you, your message has been sent!
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            @endif
+{{-- Display errors to the user they may have made in the form --}}
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+          @endif
+          
+          <form action="{{ url('contact') }}" method="post">
+              @csrf
               <div class="form-group">
                 <label for="name" class="bmd-label-floating">
                   Your name
                 </label>
-                <input type="text" class="form-control" id="name">
+                <input type="text" class="form-control" id="name" name="name">
               </div>
               <div class="form-group">
                 <label for="exampleInputEmails" class="bmd-label-floating">
                   Email address
                 </label>
-                <input type="email" class="form-control" id="exampleInputEmails">
+                <input type="email" class="form-control" id="exampleInputEmails" name="email">
                 <span class="bmd-help">
                   We'll never share your email with anyone else.
                 </span>
@@ -42,18 +67,20 @@
                 <label for="phone" class="bmd-label-floating">
                   Phone
                 </label>
-                <input type="text" class="form-control" id="phone">
+                <input type="text" class="form-control" id="phone" name="phone">
               </div>
               <div class="form-group label-floating">
-                <label class="form-control-label bmd-label-floating" for="message"> 
+                <label class="form-control-label bmd-label-floating" for="message_body"> 
                   Your message
                 </label>
-                <textarea class="form-control" rows="6" id="message"></textarea>
+                <textarea class="form-control" rows="6" id="message_body" name="message_body"></textarea>
               </div>
               <div class="submit text-center">
                 <input type="submit" class="btn btn-primary btn-raised btn-round" value="Contact Us">
               </div>
             </form>
+
+            
           </div>
           <div class="col-md-4 ml-auto">
             <div class="info info-horizontal">
@@ -106,8 +133,8 @@
 
 @section('scripts')
   <script>
-      $().ready(function() {
-        nonBelievers.initMap(
+      $(document).ready(function() {
+        nonBelievers.contactUsMap(
           "contactUsMap", 
           9.060892, 
           7.4637899, 

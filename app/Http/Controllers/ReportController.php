@@ -19,27 +19,35 @@ class ReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
+    public function index(Request $request) {
+         
+        $flag = false;                //signal for any type of user (logged in or not) to view reports.all i.e map view.
         $reports = Report::paginate();
 
-        if(Auth::user()->hasRole('user')) {
-            return view('report.view', ['reports' => $reports]);
+        //$flag changes to true if and only if the request comes from the home page button OR admin dashboard 'view map' button
+        if($request->has('flag')){
+            $flag = $request->input('flag');
         }
 
-        return view('admin.report.view_all', ['reports' => $reports]);
+        if(Auth::check() && Auth::user()->hasAnyRole(['administrator', 'journalist']) && $flag == false) {
+            return view('admin.report.view_all', ['reports' => $reports]);
+        }
+        
+        return view('report.all', ['reports' => $reports]);
     }
 
-    /**
+    /*ź
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create($response = []) {
-        if(Auth::user()->hasRole('user')) {
-            return view('report.add', $response);
+        if(Auth::check() && Auth::user()->hasAnyRole(['administrator', 'journalist'])) {
+            return view('admin.report.add', $response);
         }
         
-        return view('admin.report.add', $response);
+        
+        return view('report.add', $response);
     }
 
     /**
@@ -61,6 +69,10 @@ class ReportController extends Controller
         $report->status_id = 4;
         $report->date = $request->input('date');
 
+
+        //Note: $success is not actually being used from this logic. 
+        //Logic just used to save the report. BUT developer can use $success 
+        //to identify whether or not report has been saved.
         if($report->save()) {
             $success = 1;
         } else {
@@ -88,22 +100,32 @@ class ReportController extends Controller
         $report->views = $report->views + 1;
         $report->save();
 
-        if(Auth::user()->hasRole('user')) {
-            return view('report.view', [
+        if(Auth::check() && Auth::user()->hasAnyRole(['administrator', 'journalist'])) {
+            
+            //If statement true: redirect is from the update() function
+            if($success != -1) {
+                return view('admin.report.view', [
+                    'report' => $report,
+                ]);
+            } 
+            // 'update_success' => $success
+            //the above line was an element in the array passed to the view function above it.
+            //We determined the 'update_success' key was not needed because
+            //the redirect function that's executed prior (inside edit())
+            //contains a $success variable which the view then uses to display the message
+        
+
+            // When if statement not executed, the following happens and redirect
+            // is from the store() function
+            return view('admin.report.view', [
                 'report' => $report
             ]);
-        }
 
-        if($success != -1) {
-            return view('admin.report.view', [
-                'report' => $report,
-                'update_success' => $success
+        }//end if statment for admin/ journalist logged in
+
+        return view('report.view', [
+                'report' => $report
             ]);
-        }
-
-        return view('admin.report.view', [
-            'report' => $report
-        ]);
     }
 
     /**
@@ -115,18 +137,18 @@ class ReportController extends Controller
     public function edit($id, $success = -1) {
         $report = Report::findOrFail($id);
 
-        if(Auth::user()->hasRole('user')) {
-            return view('report.edit', ['report' => $report]);
-        }
+        if(Auth::check() && Auth::user()->hasAnyRole(['administrator', 'journalist'])) {
+            
+            if($success != -1) {
+                return view('admin.report.edit', [
+                    'report' => $report, 
+                    'success' => $success
+                ]);
+            } 
 
-        if($success != -1) {
-            return view('admin.report.edit', [
-                'report' => $report, 
-                'success' => $success
-            ]);
-        } 
-
-        return view('admin.report.edit', ['report' => $report]);
+            return view('admin.report.edit', ['report' => $report]);
+            }
+        return view('report.edit', ['report' => $report]);
     }
 
     /**

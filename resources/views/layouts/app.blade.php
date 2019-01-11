@@ -23,7 +23,7 @@
     <link href="{{ asset('css/material-kit.css?v=2.1.0') }}" rel="stylesheet" />
     {{-- Leaflet CSS --}}
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
-
+    <link href= "{{ asset('css/MarkerCluster.css') }}" rel="stylesheet" />
     <!-- Styles -->
     {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
 
@@ -66,8 +66,9 @@
       <script src="{{ asset('js/plugins/jquery.datatables.min.js') }}"></script>
     <!--  Google Maps Plugin  -->
     {{-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> --}}
-    {{-- Leaflet Map Plugin --}}
+    {{-- Leaflet Map Plugins --}}
     <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==" crossorigin=""></script>
+    <script src="{{ asset('js/leaflet.markercluster.js') }}" type="text/javascript"></script>
     <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
     <script src="{{ asset('js/plugins/bootstrap-tagsinput.js') }}"></script>
     <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->

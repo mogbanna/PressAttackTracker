@@ -2,213 +2,175 @@
 
 @section('body-class', 'contact-page sidebar-collapse')
 
+@section('nav-class', 'navbar bg-light fixed-top navbar-expand-lg')
+
 
 @section('content')
-<div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('{{ asset('img/bg10.jpg') }}');">
-    <div class="container">
-      <div class="row">
-      <div class="col-md-8 ml-auto mr-auto text-center mt-5" >
-          <div id="navigation-pills">
-            <div class="row text-center justify-content-center">
-            <div class="row justify-content-center">
-              <div class="col-lg-6 col-md-8">
-                <ul class="nav nav-pills nav-pills-icons" role="tablist">
-                  <!--
-                                  color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
-                              -->
-                  <li class="nav-item">
-                    <a class="nav-link" href="#dashboard-1" role="tab" data-toggle="tab" aria-selected="false">
-                      <i class="material-icons">dashboard</i> Dashboard
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link active show" href="#schedule-1" role="tab" data-toggle="tab" aria-selected="true">
-                      <i class="material-icons">schedule</i> Schedule
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#tasks-1" role="tab" data-toggle="tab" aria-selected="false">
-                      <i class="material-icons">list</i> Tasks
-                    </a>
-                  </li>
-                </ul>
-                <div class="tab-content tab-space">
-                  <div class="tab-pane" id="dashboard-1">
-                    Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.
-                    <br>
-                    <br> Dramatically visualize customer directed convergence without revolutionary ROI.
-                  </div>
-                  <div class="tab-pane active show" id="schedule-1">
-                    Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.
-                    <br>
-                    <br>Dramatically maintain clicks-and-mortar solutions without functional solutions.
-                  </div>
-                  <div class="tab-pane" id="tasks-1">
-                    Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
-                    <br>
-                    <br>Dynamically innovate resource-leveling customer service for state of the art customer service.
-                  </div>
-                </div>
-              </div>
-              
-            </div>
-          </div>
-
-
-
-
-
-
-       </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="main main-raised">
+  {{-- <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('{{ asset('img/bg10.jpg') }}');">
+  </div> --}}
+  <div class="main main-raised" style="min-height: 100vh">
     <div class="container">
         <div class="section">
-          <div class="row justify-content-center">
-            <h3 class="title">Select a View</h3> 
-            
-           {{-- <div class="card card-raised card-background" style="background-image: url('{{ asset('img/examples/office2.jpg') }}')">
-              <div class="card-body">
-                <h6 class="card-category text-info">Worlds</h6>
-                <a href="#pablo">
-                  <h3 class="card-title">The Best Productivity Apps on Market</h3>
-                </a>
-                <p class="card-description">
-                  Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                </p>
-                <a href="#pablo" class="btn btn-danger btn-round">
-                  <i class="material-icons">format_align_left</i> Read Article
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="card card-raised card-background" style="background-image: url('{{ asset('img/examples/blog8.jpg') }}')">
-              <div class="card-body">
-                <h6 class="card-category text-info">Business</h6>
-                <h3 class="card-title">Working on Wallstreet is Not So Easy</h3>
-                <p class="card-description">
-                  Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                </p>
-                <a href="#pablo" class="btn btn-primary btn-round">
-                  <i class="material-icons">format_align_left</i> Read Article
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-12">
-            <div class="card card-raised card-background" style="background-image: url('{{ asset('img/examples/card-project6.jpg') }}')">
-              <div class="card-body">
-                <h6 class="card-category text-info">Marketing</h6>
-                <h3 class="card-title">0 to 100.000 Customers in 6 months</h3>
-                <p class="card-description">
-                  Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                </p>
-                <a href="#pablo" class="btn btn-warning btn-round">
-                  <i class="material-icons">subject</i> Read Case Study
-                </a>
-                <a href="#pablo" class="btn btn-white btn-just-icon btn-link" title="" rel="tooltip" data-original-title="Save to Pocket">
-                  <i class="fa fa-get-pocket"></i>
-                </a>--}}
-              </div>
-            </div> 
+        </div> 
       <div class="section">
-        <div class="row justify-content-center">
-            <nav aria-label="page navigation">
-                <ul class="pagination ">
-                  <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1">Previous</a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
-                  </li>
-                </ul>
-              </nav>
+       <div class="row justify-content-center">
+        <div class="col-md-12">
+          <ul class="nav nav-pills nav-pills-icons justify-content-center mb-4" role="tablist">
+            <!--
+                            color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
+                        -->
+            <li class="nav-item">
+              <a class="nav-link active show" href="#dashboard-1" role="tab" data-toggle="tab" aria-selected="true">
+                <i class="material-icons">map</i> Map View
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#schedule-1" role="tab" data-toggle="tab" aria-selected="false">
+                <i class="material-icons">schedule</i> Table View
+              </a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div style="border: 1px solid;" class="tab-pane active show" id="dashboard-1">
+                <div id="reportsMap" style="width: 100%; height: 600px;"></div>
+            </div>
+{{-- being datatables tab --}}
+            <div class="tab-pane" id="schedule-1">
+                <div class="toolbar">
+                    <!-- Here you can write extra buttons/actions for the toolbar -->
+                  </div>
+                <div class="material-datatables">
+                  <div id="datatables_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <table id="datatables" 
+                          class="table table-striped table-no-bordered table-hover dataTable dtr-inline" 
+                          cellspacing="0" width="100%" style="width: 100%;" 
+                          role="grid" aria-describedby="datatables_info">
+                          <thead>
+                            <tr role="row">
+                              <th class="sorting_asc" tabindex="0" aria-controls="datatables" 
+                                rowspan="1" colspan="1" style="" 
+                                aria-sort="ascending" aria-label="Name: activate to sort column descending">
+                                Id
+                              </th>
+                              <th class="sorting_asc" tabindex="0" aria-controls="datatables" 
+                                rowspan="1" colspan="1" style="" 
+                                aria-sort="ascending" aria-label="Name: activate to sort column descending">
+                                Title
+                              </th>
+                              <th class="sorting" tabindex="0" aria-controls="datatables" 
+                                rowspan="1" colspan="1" style="" 
+                                aria-label="Position: activate to sort column ascending">
+                                Report Type
+                              </th>
+                              <th class="sorting" tabindex="0" aria-controls="datatables" 
+                                rowspan="1" colspan="1" style="" 
+                                aria-label="Office: activate to sort column ascending">
+                                Status
+                              </th>
+                              <th class="sorting" tabindex="0" aria-controls="datatables" 
+                                rowspan="1" colspan="1" style="" 
+                                aria-label="Date: activate to sort column ascending">
+                                Date
+                              </th>
+                              <th class="disabled-sorting text-right sorting" 
+                                tabindex="0" aria-controls="datatables" rowspan="1" 
+                                colspan="1" style="" 
+                                aria-label="View: activate to sort column ascending">
+                                View
+                              </th>
+                            </tr>
+                          </thead>
+                          <tfoot>
+                            <tr>
+                              <th rowspan="1" colspan="1">
+                                Id
+                              </th>
+                              <th rowspan="1" colspan="1">
+                                Title
+                              </th>
+                              <th rowspan="1" colspan="1">
+                                Report Type
+                              </th>
+                              <th rowspan="1" colspan="1">
+                                Status
+                              </th>
+                              <th rowspan="1" colspan="1">
+                                Date
+                              </th>
+                              <th class="text-right" rowspan="1" colspan="1">
+                                View
+                              </th>
+                            </tr>
+                          </tfoot>
+                          <tbody>
+                            @for ($i = 0; $i < count($reports); $i++)
+                              @php
+                                $report = $reports[$i];
+        
+                                if($report->status_id == 4) {
+                                  $statusColor = 'badge-danger';
+                                } else if($report->status_id == 5) {
+                                  $statusColor = 'badge-success';
+                                }
+                              @endphp
+        
+                              <tr role="row" class="odd">
+                                <td tabindex="0" class="sorting_1">
+                                  {{ $i + 1 }}
+                                </td>
+                                @php
+                                $fish = $report->title;
+                                $len = strLen($fish);
+                                
+                                if($len > 30){
+                                  $fish = substr($report->title, 0, 30).'...' ;
+                                }
+                              @endphp
+                                <td>{{ $fish }}</td>
+                                <td>{{ App\ReportType::select('name')->where('id', $report->report_type_id)->first()->name }}</td>
+                                <td>
+                                  <label for="" class="badge {{ $statusColor }}">
+                                    {{ App\Status::select('name')->where('id', $report->status_id)->first()->name }}
+                                  </label>
+                                </td>
+                                <td>{{ $report->date }}</td>
+                                <td class="text-right">
+                                  {{-- @can('update', $report)
+                                  <a href="{{ route('admin/report/edit', ['id'=>$report->id]) }}" class="btn btn-link btn-info btn-just-icon like">
+                                    <i class="material-icons">edit</i>
+                                  </a>
+                                  @endcan --}}
+                                  <a href="{{ route('report', ['id'=>$report->id]) }}" class="btn btn-link btn-warning btn-just-icon edit">
+                                    <i class="material-icons">dvr</i>
+                                  </a>
+                                  {{-- @can('delete', $report)
+                                  <a href="{{ route('adminDeleteReport', ['id'=>$report->id]) }}" class="btn btn-link btn-danger btn-just-icon remove">
+                                    <i class="material-icons">close</i>
+                                  </a>
+                                  @endcan --}}
+                                </td>
+                              </tr>
+                            @endfor
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <!-- end content-->
+                  </div>
+                  <!--  end card  -->
+                </div>
+              
+{{-- end datatables tab --}}
+            </div>
+          </div>
         </div>
-        <div class="row">
-          <div class="col-md-4">
-            <div class="card card-plain card-blog">
-              <div class="card-header card-header-image">
-                <a href="#pablo">
-                  <img class="img img-raised" src="{{ asset('img/bg5.jpg') }}">
-                </a>
-              </div>
-              <div class="card-body">
-                <h6 class="card-category text-info">Enterprise</h6>
-                <h4 class="card-title">
-                  <a href="#pablo">Autodesk looks to future of 3D printing with Project Escher</a>
-                </h4>
-                <p class="card-description">
-                  Like so many organizations these days, Autodesk is a company in transition. It was until recently a traditional boxed software company selling licenses.
-                  <a href="#pablo"> Read More </a>
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card card-plain card-blog">
-              <div class="card-header card-header-image">
-                <a href="#pablo">
-                  <img class="img img-raised" src="{{ asset('img/examples/blog5.jpg') }}">
-                </a>
-              </div>
-              <div class="card-body">
-                <h6 class="card-category text-success">
-                  Startups
-                </h6>
-                <h4 class="card-title">
-                  <a href="#pablo">Lyft launching cross-platform service this week</a>
-                </h4>
-                <p class="card-description">
-                  Like so many organizations these days, Autodesk is a company in transition. It was until recently a traditional boxed software company selling licenses.
-                  <a href="#pablo"> Read More </a>
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card card-plain card-blog">
-              <div class="card-header card-header-image">
-                <a href="#pablo">
-                  <img class="img img-raised" src="{{ asset('img/examples/blog6.jpg') }}">
-                </a>
-              </div>
-              <div class="card-body">
-                <h6 class="card-category text-danger">
-                  <i class="material-icons">trending_up</i> Enterprise
-                </h6>
-                <h4 class="card-title">
-                  <a href="#pablo">6 insights into the French Fashion landscape</a>
-                </h4>
-                <p class="card-description">
-                  Like so many organizations these days, Autodesk is a company in transition. It was until recently a traditional boxed software company selling licenses.
-                  <a href="#pablo"> Read More </a>
-                </p>
-              </div>
-            </div>
-          </div>
+      </div>
+{{-- End Nav-Tabs --}}
         </div>
-        <div class="row justify-content-center">
-                <nav aria-label="page navigation">
-                    <ul class="pagination ">
-                        <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1">Previous</a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                        <a class="page-link" href="#">Next</a>
-                        </li>
-                    </ul>
-                    </nav>
-            </div>
+       
+{{-- End Section --}}
       </div>
     </div>
     </div>
@@ -217,3 +179,34 @@
   </div>
 
   @endsection
+
+  @section('scripts')
+  <script>
+      $(document).ready(function() {
+        nonBelievers.reportMap(
+          "reportsMap", 
+          9.060892, 
+          7.4637899, 
+          15, 
+          "PTCIJ Main Office"
+        );
+        
+        $('#datatables').DataTable({
+            "pagingType": "full_numbers",
+            "lengthMenu": [
+              [5, 10, 20, -1],
+              [5, 10, 20, "All"]
+            ],
+            responsive: true,
+            language: {
+              search: "_INPUT_",
+              searchPlaceholder: "Search records",
+            }
+        });
+
+      });
+
+  </script>
+
+
+@endsection

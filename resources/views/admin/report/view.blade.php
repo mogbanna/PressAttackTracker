@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('admin-nav-title', substr($report->title, 0, 30))
+@section('admin-nav-title', 'Update Report')
 
 @section('content')
 

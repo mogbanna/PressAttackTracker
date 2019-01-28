@@ -5,12 +5,9 @@
 
       Tip 2: you can also add an image using data-image tag
   -->
-    <div class="logo">
-      <a href="#" class="simple-text logo-mini">
-        CT
-      </a>
+    <div class="logo mx-3">
       <a href="{{ route('dashboard') }}" class="simple-text logo-normal">
-        Creative Tim
+        Press Attack Tracker
       </a> 
     </div>
     <div class="sidebar-wrapper">
@@ -30,6 +27,12 @@
                 <a class="nav-link" href="{{ route('showUser', ['id'=>Auth::user()->id]) }}">
                   <span class="sidebar-mini"> MP </span>
                   <span class="sidebar-normal"> My Profile </span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('adminSubmissions', ['id'=>Auth::user()->id]) }}">
+                  <span class="sidebar-mini"> MS </span>
+                  <span class="sidebar-normal"> My Submissions </span>
                 </a>
               </li>
               <li class="nav-item">
@@ -75,13 +78,19 @@
                   <span class="sidebar-normal"> Add Report </span>
                 </a>
               </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="{{ route('reports', ['flag' => true]) }}">
+                  <span class="sidebar-mini"> VRM </span>
+                  <span class="sidebar-normal"> View Report Map </span>
+                </a>
+              </li>
             </ul>
           </div>
         </li>
         <li class="nav-item ">
           <a class="nav-link" data-toggle="collapse" href="#post-dropdown">
             <i class="material-icons">image</i>
-            <p> Posts
+            <p> Stories
               <b class="caret"></b>
             </p>
           </a>
@@ -89,8 +98,8 @@
             <ul class="nav">
               <li class="nav-item ">
                 <a class="nav-link" href="{{ route('allStories') }}">
-                  <span class="sidebar-mini"> MP </span>
-                  <span class="sidebar-normal"> Manage Posts </span>
+                  <span class="sidebar-mini"> MS </span>
+                  <span class="sidebar-normal"> Manage Stories </span>
                 </a>
               </li>
             </ul>

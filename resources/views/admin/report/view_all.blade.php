@@ -119,8 +119,15 @@
                         <td tabindex="0" class="sorting_1">
                           {{ $i + 1 }}
                         </td>
-                        <td>{{ substr($report->title, 0, 30).'...' }}</td>
-                        <td>{{ App\ReportType::select('name')->where('id', $report->report_type_id)->first()->name }}</td>
+                        @php
+                                $fish = $report->title;
+                                $len = strLen($fish);
+                                
+                                if($len > 30){
+                                  $fish = substr($report->title, 0, 30).'...' ;
+                                }
+                              @endphp
+                        <td>{{ $fish }}</td><td>{{ App\ReportType::select('name')->where('id', $report->report_type_id)->first()->name }}</td>
                         <td>
                           <label for="" class="badge {{ $statusColor }}">
                             {{ App\Status::select('name')->where('id', $report->status_id)->first()->name }}

@@ -20,10 +20,23 @@ class StoryController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-        $stories = Story::orderBy('created_at', 'desc')->paginate();
+    public function index(Request $request) {
+        
 
-        return view('admin.story.view_all', ['stories'=>$stories]);
+        $flag = false;
+
+        if($request->has('flag')){
+            $flag = $request->input('flag');
+        }
+        if(Auth::check() && Auth::user()->hasAnyRole(['administrator', 'journalist']) && $flag == false) {
+            $stories = Story::orderBy('created_at', 'desc')->paginate();
+            
+            return view('admin.story.view_all', ['stories'=>$stories]);
+        }
+
+        $stories = Story::where('status_id', 3)->orderBy('created_at', 'desc')->paginate(6);
+        return view('story.all', ['stories' => $stories]);
+        
     }
 
     /**
@@ -91,14 +104,24 @@ class StoryController extends Controller {
         $story->views = $story->views + 1;
         $story->save();
 
-        if($success != -1) {
+
+        if(Auth::check() && Auth::user()->hasAnyRole(['administrator', 'journalist'])) {
+            if($success != -1) {
             return view('admin.story.view', [
                 'story' => $story,
                 'create_success' => $success
             ]);
         }
 
-        return view('admin.story.view', ['story'=>$story]);
+        return view('admin.story.view', [
+            'story' => $story,
+            'create_success' => $success
+        ]);
+
+        }
+
+
+        return view('story.view', ['story'=>$story]);
     }
 
     /**
@@ -212,22 +235,37 @@ class StoryController extends Controller {
      * @param  \App\Story  $story
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DelRequest $request) {
-        $story = Story::findOrFail($request->input('id'));
-
-        //delete thumbnail
-        unlink(public_path("storage/".$story->thumbnail));
-
+    public function destroy($id) {
+        $story = Story::findOrFail($id);
+        
         if($story->delete()) {
-            $response = [
-                'success' => 1
-            ];
+            $success = 1;
         } else {
-            $response = [
-                'success' => 0
-            ];
+            $success = 0;
         }
 
-        return view('admin/story/view_all', ['delete_success' => $response['success']]);
+
+        return redirect()->action('StoryController@index', [
+            'delete_success' => $success
+        ]);
     }
+
+    // public function destroy(DelRequest $request) {
+    //     $story = Story::findOrFail($request->input('id'));
+
+    //     //delete thumbnail
+    //     unlink(public_path("storage/".$story->thumbnail));
+
+    //     if($story->delete()) {
+    //         $response = [
+    //             'success' => 1
+    //         ];
+    //     } else {
+    //         $response = [
+    //             'success' => 0
+    //         ];
+    //     }
+
+    //     return view('admin/story/view_all', ['delete_success' => $response['success']]);
+    // }
 }

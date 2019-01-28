@@ -42,8 +42,10 @@
             </div>
             <div class="col-md-4">
               <div class="form-group">
+                  <label for="report-description">
+                      Type of Attack
+                    </label>
                 <select name="report_type_id" class="form-control selectpicker" data-style="" id="report-type">
-                  <option disabled>Report Type</option>
                   @php
                     $reportTypes = App\ReportType::all();
                   @endphp
@@ -67,12 +69,25 @@
             <textarea name="description" class="form-control" id="report-description" rows="6"></textarea>
           </div>
 
-          <div class="form-group my-5">
-            <label for="">
-              Location
-            </label>
-            <input type="text" name="location" class="form-control" placeholder="Location">
-          </div>
+          <div class="col-md-6">
+              <label for="report-description">
+                  Location (state)
+                </label><br>
+            <select name="state_id" class="form-control selectpicker" data-style="" id="state" style="max-height: 50px">
+                @php
+                    $states = App\State::all();
+                @endphp
+                @for ($i = 0; $i < count($states); $i++)
+                    @php
+                        $state = $states[$i];
+                    @endphp
+                    <option value="{{ $state->id }}">
+                    {{ $state->name }}
+                    </option>
+                @endfor
+            </select>
+        <span class="material-input"></span>
+    </div>
 
           <div class="form-group my-5">
             <label for="">

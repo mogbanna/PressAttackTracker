@@ -7,6 +7,7 @@ use App\Status;
 use App\ReportType;
 use App\Evidence;
 use App\Story;
+use App\State;
 use Illuminate\Database\Eloquent\Model;
 
 class Report extends Model
@@ -29,5 +30,9 @@ class Report extends Model
 
     public function stories() {
         return $this->hasMany(Story::class);
+    }
+
+    public function state() {
+        return $this->belongsTo(State::class);
     }
 }

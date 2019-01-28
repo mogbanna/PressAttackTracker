@@ -33,7 +33,8 @@ Route::post('/contact', 'ContactController@mailToAdmin');
 //Common user routes
 Route::group(['prefix' => 'user'], function () {
 
-    Route::get('/profile/{id}', 'UserController@show')->name('userPage');
+    Route::get('/profile/{id}', 'UserController@show')->name('userPage')->middleware('auth:web');
+    // Route::post('/profile')
 
 });
 
@@ -51,23 +52,23 @@ Route::group(['prefix' => 'report'], function() {
     Route::get(
         '/add', 
         'ReportController@create'
-    )->name('addReportForm');
+    )->name('addReportForm')->middleware('auth:web');
     Route::get(
         '/edit/{id}', 
         'ReportController@edit'
-    )->name('updateReportForm');
+    )->name('updateReportForm')->middleware('auth:web');
     Route::post(
         '/', 
         'ReportController@store'
-    )->name('addReport');
+    )->name('addReport')->middleware('auth:web');
     Route::post(
         '/update', 
         'ReportController@update'
-    )->name('updateReport');
+    )->name('updateReport')->middleware('auth:web');
     Route::get(
         '/delete/{id}', 
         'ReportController@destroy'
-    )->name('deleteReport');
+    )->name('deleteReport')->middleware('auth:web');
 });
 
 Route::group(['prefix' => 'story'], function() {
@@ -85,9 +86,9 @@ Route::group(['prefix' => 'story'], function() {
 });
 
 
-//social media login routes using Socialite
-Route::get('login/{{provider}}', 'Auth/LoginController@reirectToProvider');
-Route::get('login/{{provider}}/callback', 'Auth/LoginController@handleProviderCallback');
+// //social media login routes using Socialite
+// Route::get('login/{{provider}}', 'Auth/LoginController@reirectToProvider');
+// Route::get('login/{{provider}}/callback', 'Auth/LoginController@handleProviderCallback');
 
 
 
@@ -217,6 +218,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:web', 'checkRole:admini
 
     //Routes for user
     Route::group(['prefix' => 'user'], function() {
+        
         Route::get(
             '/manage', 
             'UserController@index'
@@ -226,6 +228,10 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:web', 'checkRole:admini
             '/profile/{id}', 
             'UserController@show'
         )->name('showUser');
+
+        Route::get('/{id}/submissions', function() {
+            return view('admin.user.submissions');
+        })->name('adminSubmissions');
 
         Route::post(
             '/',
@@ -237,4 +243,5 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:web', 'checkRole:admini
             'UserController@changePassword'
         )->name('changePassword');
     });
+    
 }); 

@@ -139,7 +139,7 @@
       </div>
     </div>
     <hr>
-    <div class="about-contact">
+    {{-- <div class="about-contact">
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">
           <h2 class="text-center title">How can you help out?</h2>
@@ -174,17 +174,17 @@
                   </div>
               </div>
             </div> --}}
-            <div class="row">
+            {{-- <div class="row">
               <div class="col-md-4 ml-auto mr-auto text-center">
                 <button class="btn btn-primary btn-round">
                   Let&apos;s talk
                 </button>
               </div>
-            </div>
+            </div> 
           </form>
         </div>
       </div>
-    </div>
+    </div> --}}
   </div>
 </div>
 

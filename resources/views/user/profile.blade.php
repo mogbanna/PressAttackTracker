@@ -48,16 +48,9 @@
         </div>
         <div class="tab-content tab-space">
           <div class="tab-pane active text-center gallery" id="userEditProfile">
-            {{-- <div class="row">
-              <div class="col-md-3 ml-auto">
-                <img src="{{ asset('/img/examples/studio-1.jpg') }}" class="rounded">
-                <img src="{{ asset('/img/examples/studio-2.jpg') }}" class="rounded">
-              </div>
-              <div class="col-md-3 mr-auto">
-                <img src="{{ asset('/img/examples/studio-5.jpg') }}" class="rounded">
-                <img src="{{ asset('/img/examples/studio-4.jpg') }}" class="rounded">
-              </div>
-            </div> --}}
+           @component('components.')
+               
+           @endcomponent
           </div>
           <div class="tab-pane text-center gallery" id="userProfileReports">
                   @component('components.user.reports', ['reports' => Auth::user()->reports])

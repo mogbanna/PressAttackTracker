@@ -19,7 +19,7 @@ class CreateReportsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->string('title');
             $table->text('description');
-            $table->string('state_id');
+            $table->unsignedInteger('state_id');
             $table->string('victim');
             $table->string('affiliation');
             $table->string('assailant');

@@ -106,6 +106,11 @@ class UserController extends Controller
             return new UserResource($user);
         }
     }
+
+    public function userUpdate(Request $request){
+        $user = User::findOrFail($request->input('id'));
+    }
+
     public function adminUpdate(Request $request) {
         $this->validate($request, [
             'id' => 'required',

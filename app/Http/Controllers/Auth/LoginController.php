@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Socialite;
+// use Socialite;
 
 class LoginController extends Controller
 {
@@ -35,15 +35,15 @@ class LoginController extends Controller
      * @return void
      */
 
-    public function redirectToProvider($provider)
-     {
-        return Socialite::driver($provider)->redirect();
-     }
+    // public function redirectToProvider($provider)
+    //  {
+    //     return Socialite::driver($provider)->redirect();
+    //  }
 
-    public function handleProviderCallback($provider)
-    {
-        $user = Socialite::driver($provider)->user();
-    }
+    // public function handleProviderCallback($provider)
+    // {
+    //     $user = Socialite::driver($provider)->user();
+    // }
 
     public function __construct()
     {

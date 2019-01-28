@@ -105,8 +105,8 @@
                                 <span class="material-input"></span>
                             </div>
                             <div class="col-md-6">
-                                        <select name="state" class="form-control selectpicker" data-style="" id="state" style="max-height: 50px">
-                                            <option value="">- Please select the state -</option>
+                                        <select name="state_id" class="form-control selectpicker" data-style="" id="state">
+                                            <option value="" disabled>- Please select the state -</option>
                                             @php
                                                 $states = App\State::all();
                                             @endphp

@@ -104,9 +104,21 @@
                                 <input type="email" name="affiliation" class="form-control">
                                 <span class="material-input"></span>
                             </div>
-                            <div class="form-group label-floating is-empty bmd-form-group">
-                                <label class="bmd-label-floating">Location</label>
-                                <input type="text" name="location" class="form-control">
+                            <div>
+                             <label class="label-floating">Select Location (state)</label>
+                                <select name="state_id" class="form-control selectpicker" data-style="" id="state_id">
+                                    @php
+                                        $states = App\State::all();
+                                    @endphp
+                                    @for ($i = 0; $i < count($staes); $i++)
+                                        @php
+                                            $state = $states[$i];
+                                        @endphp
+                                        <option value="{{ $state->id }}">
+                                        {{ $state->name }}
+                                        </option>
+                                    @endfor
+                                </select>
                                 <span class="material-input"></span>
                             </div>
                             <div class="form-group label-floating is-empty bmd-form-group">

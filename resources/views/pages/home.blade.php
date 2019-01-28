@@ -10,11 +10,8 @@
             <h1 class="title">Press Attack Tracker</h1>
             <h3 class="description text-center">
   
-              A record database of journalists in Nigeria who have been attacked or harassed.
-              {{-- ● To track abuses on the rights of the press.
-              ● To ensure that journalists whose rights are abused get prompt response once the team has
-              been contacted.
-              ● To have a catalogue of evidence for litigating cases of attacks. --}}
+              Records of journalists in Nigeria who have been mistreated.
+              
             </h3>
           </div>
         </div>
@@ -27,11 +24,11 @@
             <div class="card">
                 <div class="card-header card-header-text card-header-info">
                   <div class="card-text">
-                    <h4 class="card-title">TOTAL REPORTS</h4>
+                    <h2 class="card-title">{{ App\Report::count() }} </h2>
                   </div>
                 </div>
-                <div class="display-4 card-body text-center">
-                  1077
+                <div class="display-4 card-description text-center my-2">
+                  Total Reports
                 </div>
             </div>
         </div>
@@ -39,11 +36,11 @@
             <div class="card">
                 <div class="card-header card-header-text card-header-primary">
                   <div class="card-text">
-                    <h4 class="card-title">CONFIRMED REPORTS</h4>
+                  <h2 class="card-title">{{ App\Status::withCount('reports')->where('name', 'Verified')->first()->reports_count}} </h2>
                   </div>
                 </div>
-                <div class="display-4 card-body text-center">
-                  1077
+                <div class="display-4 card-description text-center my-2">
+                  Verified Reports
                 </div>
             </div>
         </div>
@@ -51,11 +48,11 @@
           <div class="card">
               <div class="card-header card-header-text card-header-danger">
                 <div class="card-text">
-                  <h4 class="card-title">VIOLENT REPORTS</h4>
+                  <h2 class="card-title">{{ App\ReportType::withCount('reports')->where('name', 'Physical Attack')->first()->reports_count}} </h2>
                 </div>
               </div>
-              <div class="display-4 card-body text-center">
-                77
+              <div class="display-4 card-description text-center my-2">
+                Violent Reports
               </div>
           </div>
         </div>
@@ -74,6 +71,7 @@
                   <i class="material-icons pr-2">create</i>
                   Submit Reports
               </a>
+              
           </div>
           <div class="col col-lg-2">
             
@@ -98,158 +96,151 @@
 {{-- BLOG POSTS ETC... --}}
 <div class="main main-raised">
   <div class="container">
+      <div class="row">
+          <div class="card bg-danger">
+              <div class="card-body">
+              <h2 class="card-title text-center">
+              THANKS FOR PARTICIPATING IN BETA TESTING ! 
+              </h2>
+                  <h4 class="card-title text-center">
+                   -- please use the following login details for complete access --
+                  </h4>
+          
+                  <div class="card-stats">
+                      <p>
+                        <table class="table">
+                          <thead>
+                              <tr>
+                                  <th class="text-center text-white">Role</th>
+                                  <th class="text-white">Email</th>
+                                  <th class="text-white">Password</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td class="text-center">Administrator</td>
+                                  <td>admin@pressattack.ng</td>
+                                  <td>testpassword</td>
+                              </tr>
+                              <tr>
+                                  <td class="text-center">Journalist</td>
+                                  <td>journalist@pressattack.ng</td>
+                                  <td>testpassword</td>
+                              </tr>
+                              <tr>
+                                  <td class="text-center">User</td>
+                                  <td>user@pressattack.ng</td>
+                                  <td>testpassword</td>
+                              </tr>
+                          </tbody>
+                        </table>
+                      </p>
+                  </div>
+              </div>
+          </div>
+        </div>
     <div class="section text-center">
       <div class="container">
         <div class="section">
+            <h3 class="title text-center">Featured Story</h3>
+
           <div class="row">
-            <div class="col-md-6">
-              <div class="card card-raised card-background" style="background-image: url('{{ asset('img/examples/office2.jpg') }}')">
-                <div class="card-body">
-                  <h6 class="card-category text-info">Worlds</h6>
-                  <a href="#pablo">
-                    <h3 class="card-title">The Best Productivity Apps on Market</h3>
-                  </a>
-                  <p class="card-description">
-                      Don't be scared of the truth because 
-                      we need to restart the human foundation 
-                      in truth And I love you like Kanye loves 
-                      Kanye I love Rick Owens’ bed design but 
-                      the back is...
-                  </p>
-                  <a href="#pablo" class="btn btn-danger btn-round">
-                    <i class="material-icons">format_align_left</i> Read Article
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="card card-raised card-background" style="background-image: url('{{ asset('img/examples/blog8.jpg') }}')">
-                <div class="card-body">
-                  <h6 class="card-category text-info">Business</h6>
-                  <h3 class="card-title">Working on Wallstreet is Not So Easy</h3>
-                  <p class="card-description">
-                      Don't be scared of the truth because we 
-                      need to restart the human foundation in 
-                      truth And I love you like Kanye loves Kanye 
-                      I love Rick Owens’ bed design but the back is...
-                  </p>
-                  <a href="#pablo" class="btn btn-primary btn-round">
-                    <i class="material-icons">format_align_left</i> Read Article
-                  </a>
-                </div>
-              </div>
-            </div>
             <div class="col-md-12">
-              <div class="card card-raised card-background" style="background-image: url('{{ asset('img/examples/card-project6.jpg') }}')">
+
+              @php
+                  $stories = App\Story::inRandomOrder()->get();
+                  
+                  $mostViews = 0;
+                  for($i = 0; $i < count($stories); $i++){
+                    
+                    if($mostViews < $stories[$i]->views){
+                      $mostViews = $stories[$i]->views;
+                      $featured = $stories[$i];
+                    }
+                  }
+
+              @endphp
+
+              @if ($featured)
+    
+
+              <div class="card card-raised card-background" style="background-image: url(' {{asset('storage/'.$featured->thumbnail)}} ')">
                 <div class="card-body">
-                  <h6 class="card-category text-info">Marketing</h6>
-                  <h3 class="card-title">0 to 100.000 Customers in 6 months</h3>
+                <h6 class="card-category text-info">Author: {{ $featured->author }}</h6>
+                  <h3 class="card-title">{{ $featured->title }}</h3>
+
+                  @php
+                      $description = $featured->story;
+
+                      if(strLen($featured->story) > 100){
+                        $description = substr($featured->story, 0, 100).'...';
+                      }
+
+
+                  @endphp
+
                   <p class="card-description">
-                      Don't be scared of the truth because we need 
-                      to restart the human foundation in truth And 
-                      I love you like Kanye loves Kanye I love Rick
-                      Owens’ bed design but the back is...
-                  </p>
-                  <a href="#pablo" class="btn btn-warning btn-round">
-                    <i class="material-icons">subject</i> Read Case Study
-                  </a>
-                  <a href="#pablo" class="btn btn-white btn-just-icon btn-link" 
-                    title="" rel="tooltip" data-original-title="Save to Pocket">
-                    <i class="fa fa-get-pocket"></i>
+                      {!! $description !!}
+                  <a href="{{ route('story',['id' => $featured->id]) }}" class="btn btn-info btn-round btn-sm">
+                    <i class="material-icons">subject</i> Read Report Story
                   </a>
                 </div>
               </div>
+              @endif
+
+
+
             </div>
           </div>
         </div>
-          <div class="section">
-            <h3 class="title text-center">Check out the Latest Posts</h3>
-
-            <br>
-
+          <div class="section section-gray px-5">
+            <h3 class="title text-center">Read The Latest Stories</h3>
             <div class="row">
+
+              @for ($i = 0; $i < 3; $i++)
+                  
+              
+              @php
+                  $story = $stories[$i];
+
+                  $desctiption = $story->story;
+                    if(strLen($description) > 100){
+                      $description = substr($story->story, 0, 100).'... ';
+                    }
+                    
+              @endphp
+              
               <div class="col-md-4">
-                <div class="card card-plain card-blog">
+                <div class="card card-blog">
                   <div class="card-header card-header-image">
-                    <a href="#pablo">
-                      <img class="img img-raised" src="{{ asset('img/bg5.jpg') }}">
+                    <a href="{{ route('story',['id' => $story->id]) }}">
+                      <img class="img img-raised" src="{{ asset('storage/'.$story->thumbnail) }}">
                     </a>
+                    <div class="colored-shadow" style="background-image: url( {{ asset('/img/examples/color3.jpg') }} ); opacity: 1;"></div>
                   </div>
                   <div class="card-body">
                     <h6 class="card-category text-info">Enterprise</h6>
                     <h4 class="card-title">
-                      <a href="#pablo">
-                        Autodesk looks to future of 3D printing with Project Escher
+                      <a href="{{ route('story',['id' => $story->id]) }}">
+                        {{ $story->title }}
                       </a>
                     </h4>
                     <p class="card-description">
-                      Like so many organizations these days, 
-                      Autodesk is a company in transition. It 
-                      was until recently a traditional boxed 
-                      software company selling licenses.
-                      <a href="#pablo"> Read More </a>
+                     {!! $description !!}
+                      <a href="{{ route('story',['id' => $story->id]) }}"> Read More </a>
                     </p>
                   </div>
                 </div>
               </div>
-              <div class="col-md-4">
-                <div class="card card-plain card-blog">
-                  <div class="card-header card-header-image">
-                    <a href="#pablo">
-                      <img class="img img-raised" src="{{ asset('img/examples/blog5.jpg') }}">
-                    </a>
-                  </div>
-                  <div class="card-body">
-                    <h6 class="card-category text-success">
-                      Startups
-                    </h6>
-                    <h4 class="card-title">
-                      <a href="#pablo">
-                        Lyft launching cross-platform service this week
-                      </a>
-                    </h4>
-                    <p class="card-description">
-                      Like so many organizations these days, 
-                      Autodesk is a company in transition. It 
-                      was until recently a traditional boxed 
-                      software company selling licenses.
-                      <a href="#pablo"> Read More </a>
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="card card-plain card-blog">
-                  <div class="card-header card-header-image">
-                    <a href="#pablo">
-                      <img class="img img-raised" src="{{ asset('img/examples/blog6.jpg') }}">
-                    </a>
-                  </div>
-                  <div class="card-body">
-                    <h6 class="card-category text-danger">
-                      <i class="material-icons">trending_up</i> Enterprise
-                    </h6>
-                    <h4 class="card-title">
-                      <a href="#pablo">6 insights into the French Fashion landscape</a>
-                    </h4>
-                    <p class="card-description">
-                        Like so many organizations these days, 
-                        Autodesk is a company in transition. 
-                        It was until recently a traditional 
-                        boxed software company selling licenses.
-                        <a href="#pablo"> Read More </a>
-                    </p>
-                  </div>
-                </div>
-              </div>
+          @endfor
+
             </div>
           </div>
         </div>
     </div>
 </div>
 
-<hr>
-
+{{-- 
 <div class="subscribe-line subscribe-line-white">
   <div class="container">
     <div class="row">
@@ -290,7 +281,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> --}}
 
 <hr> 
   

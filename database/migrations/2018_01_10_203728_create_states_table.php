@@ -19,6 +19,10 @@ class CreateStatesTable extends Migration
             $table->double('longitude');
             $table->double('latitude');
             $table->timestamps();
+
+            $table->engine = 'InnoDB';
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_bin';
         });
     }
 

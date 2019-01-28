@@ -1,24 +1,25 @@
 <footer class="footer @yield('footer-class')">
     <div class="container">
         <div class="content">
-            <div class="row">
+            <div class="row justify-content-around">
                 <div class="col-md-4">
-                    <h5>About Us</h5>
+                    <h5>PAT MISSION</h5>
                     <p>
-                        Creative Tim is a startup that 
-                        creates design tools that make the 
-                        web development process faster and easier. 
-                    </p> 
-                    <p>
-                        We love the web and care deeply for 
-                        how users interact with a digital product. 
-                        We power businesses and individuals to 
-                        create better looking web projects 
-                        around the world. 
+                            ● Created to track abuses on the rights of the press.<br>
+                            ● Aims to ensure that journalists whose rights have been abused will get a prompt response, once our team has
+                            been notified.<br>
+                            ● Ensures to have a catalogue of submitted evidence for litigating cases of attacks.
                     </p>
                 </div>
-
                 <div class="col-md-4">
+                    <h5>Development Team</h5>
+                    <p>
+                            ● Anna Agboola<br>
+                            ● Faruk Nasir
+                    </p> 
+                </div>
+
+                {{-- <div class="col-md-4">
                     <h5>Social Feed</h5>
                     <div class="social-feed">
                         <div class="feed-line">
@@ -43,9 +44,9 @@
                             </p>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
-                <div class="col-md-4">
+                {{-- <div class="col-md-4">
                     <h5>Instagram Feed</h5>
                     <div class="gallery-feed">
                         <img src="{{ asset('img/faces/card-profile6-square.jpg') }}" class="img img-raised rounded" alt="">
@@ -58,7 +59,7 @@
                         <img src="{{ asset('img/faces/card-profile5-square.jpg') }}" class="img img-raised rounded" alt="">
                         <img src="{{ asset('img/faces/card-profile2-square.jpg') }}" class="img img-raised rounded" alt="">
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
 
@@ -67,8 +68,13 @@
 
         <ul class="float-left">
             <li>
+                <a href="{{ route('reports', ['flag' => true]) }}">
+                    Reports
+                </a>
+            </li>
+            <li>
                 <a href="{{ route('stories') }}">
-                    Blog
+                    Stories
                 </a>
             </li>
             <li>

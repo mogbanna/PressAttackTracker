@@ -33,7 +33,7 @@
                     <td>
                         <b>Location: </b>
                     </td>
-                    <td>{{ $report->location }}</td>
+                    <td>{{ App\State::select('name')->where('id', $report->state_id)->first()->name }}</td>
                 </tr>
                 <tr>
                     <td>

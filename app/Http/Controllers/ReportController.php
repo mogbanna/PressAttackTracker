@@ -62,13 +62,13 @@ class ReportController extends Controller
         $report->user_id = Auth::user()->id;
         $report->title = $request->input('title');
         $report->description = $request->input('description');
-        $report->location = $request->input('location');
+        $report->state_id = $request->input('state_id');
         $report->victim = $request->input('victim');
         $report->affiliation = $request->input('affiliation');
         $report->assailant = $request->input('assailant');
         $report->status_id = 4;
         $report->date = $request->input('date');
-
+        
 
         //Note: $success is not actually being used from this logic. 
         //Logic just used to save the report. BUT developer can use $success 
@@ -165,7 +165,7 @@ class ReportController extends Controller
         $report->report_type_id = $request->input('report_type_id');
         $report->title = $request->input('title');
         $report->description = $request->input('description');
-        $report->location = $request->input('location');
+        $report->state_id = $request->input('state_id');
         $report->victim = $request->input('victim');
         $report->affiliation = $request->input('affiliation');
         $report->assailant = $request->input('assailant');

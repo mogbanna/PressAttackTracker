@@ -24,6 +24,10 @@
     {{-- Leaflet CSS --}}
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
 
+    {{-- Map Plugin --}}
+    <link href="{{ asset('/css/mapsvg.css') }}" rel="stylesheet">
+
+
     <!-- Styles -->
     {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
   <!-- Material Kit CSS -->
@@ -113,9 +117,9 @@
     <!-- Library for adding dinamically elements -->
     <script src="{{ asset('js/plugins/arrive.min.js') }}"></script>
     <!-- Chartist JS -->
-    <script src="{{ asset('js/plugins/chartist.min.js') }}"></script>
+    <script src="{{ asset('/js/plugins/chartist.min.js') }}"></script>
     <!--  Notifications Plugin    -->
-    <script src="{{ asset('js/plugins/bootstrap-notify.js') }}"></script>
+    <script src="{{ asset('/js/plugins/bootstrap-notify.js') }}"></script>
      <!-- CKEditor Classic -->
     <script src="https://cdn.ckeditor.com/ckeditor5/11.1.1/classic/ckeditor.js"></script>
 
@@ -123,6 +127,9 @@
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{{ asset('js/material-dashboard.min.js?v=2.1.0') }}" type="text/javascript"></script>
 
+    {{-- Map plugin --}}
+    <script type="text/javascript" src="{{asset('/js/plugins/jquery.mousewheel.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/plugins/mapsvg.min.js') }}"></script>
 
     
     @yield('scripts')

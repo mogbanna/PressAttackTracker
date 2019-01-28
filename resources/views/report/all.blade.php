@@ -20,22 +20,22 @@
                             color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
                         -->
             <li class="nav-item">
-              <a class="nav-link active show" href="#dashboard-1" role="tab" data-toggle="tab" aria-selected="true">
+              <a class="nav-link active show" href="#map-view" role="tab" data-toggle="tab" aria-selected="true">
                 <i class="material-icons">map</i> Map View
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#schedule-1" role="tab" data-toggle="tab" aria-selected="false">
+              <a class="nav-link" href="#table-view" role="tab" data-toggle="tab" aria-selected="false">
                 <i class="material-icons">schedule</i> Table View
               </a>
             </li>
           </ul>
           <div class="tab-content">
-            <div style="border: 1px solid;" class="tab-pane active show" id="dashboard-1">
+            <div class="tab-pane active show" id="map-view">
                 <div id="reportsMap" style="width: 100%; height: 600px;"></div>
             </div>
 {{-- being datatables tab --}}
-            <div class="tab-pane" id="schedule-1">
+            <div class="tab-pane" id="table-view">
                 <div class="toolbar">
                     <!-- Here you can write extra buttons/actions for the toolbar -->
                   </div>
@@ -178,18 +178,106 @@
     </div>
   </div>
 
+  
+
   @endsection
 
   @section('scripts')
   <script>
       $(document).ready(function() {
-        nonBelievers.reportMap(
-          "reportsMap", 
-          9.060892, 
-          7.4637899, 
-          15, 
-          "PTCIJ Main Office"
+        let map = nonBelievers.reportMap(
+          "reportsMap"
         );
+
+       //let reports = JSON.stringify()
+
+        // L.marker([7.9876, 7.3456]).addTo(map)
+        //     .bindPopup(desc)
+        //     .openPopup();
+
+
+        let reports = @php echo App\Report::with(['state', 'reportType'])->get() @endphp;
+
+        
+//         var icon = L.icon({
+//           iconUrl: '{{ asset('img/map-markers/denial_of_access_marker.png') }}',
+//           shadowUrl: '{{ asset('img/map-markers/marker_shadow.png') }}',
+
+//           iconSize:     [40, 85], // size of the icon
+//           shadowSize:   [75, 64], // size of the shadow
+//           iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+//           shadowAnchor: [4, 62],  // the same for the shadow
+//           popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+// });
+
+        var physical = L.layerGroup(), 
+            arrest = L.layerGroup(), 
+            border = L.layerGroup(), 
+            seizure = L.layerGroup(), 
+            damage = L.layerGroup(), 
+            access = L.layerGroup(), 
+            threat = L.layerGroup(), 
+            harrassment = L.layerGroup();
+
+        for(var i = 0; i < reports.length; i++){
+          var state = reports[i].state;
+          var title = reports[i].title;
+          var type = reports[i].report_type.name;
+
+          var marker = L.marker([state.latitude, state.longitude], {title: title});
+          marker.bindPopup(title);
+
+          switch(type) {
+                case "Physical Attack":
+                //change icon
+                  marker.addTo(physical);
+                  break;
+                case "Arrest":
+                  marker.addTo(arrest);
+                  break;
+                case "Border Stop":
+                  marker.addTo(border);
+                  break;
+                case "Equiptment Search Or Seizure":
+                  marker.addTo(seizure);
+                  break;
+                case "Equiptment Or Property Damage":
+                  marker.addTo(damage);
+                  break;
+                case "Denial Of Access":
+                  marker.addTo(access);
+                  break;
+                case "Threat":
+                  marker.addTo(threat);
+                  break;
+                case "Harrassment":
+                  marker.addTo(harrassment);
+                  break;
+              }
+            }
+
+            physical.addTo(map);
+            arrest.addTo(map);
+            border.addTo(map); 
+            seizure.addTo(map); 
+            damage.addTo(map);
+            access.addTo(map); 
+            threat.addTo(map); 
+            harrassment.addTo(map);
+
+              var type_group = {
+                "Physical Attack": physical,
+                "Arrest": arrest,
+                "Border Stop": border,
+                "Equiptment Search Or Seizure": seizure,
+                "Equipement Or Property Damage": damage,
+                "Denial Of Access": access,
+                "Threat": threat,
+                "Harrassment": harrassment
+              };
+
+
+              L.control.layers(null, type_group).addTo(map);
         
         $('#datatables').DataTable({
             "pagingType": "full_numbers",

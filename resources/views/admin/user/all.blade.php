@@ -124,11 +124,11 @@
                                             <i class="material-icons">edit</i>
                                         </a>
                                         @endcan
-                                        @can('delete', $user)
+                                        {{-- @can('delete', $user)
                                         <a href="" class="btn btn-link btn-danger btn-just-icon remove">
                                             <i class="material-icons">close</i>
                                         </a>
-                                        @endcan
+                                        @endcan --}}
                                         </td>
                                     </tr>
                                     @endfor

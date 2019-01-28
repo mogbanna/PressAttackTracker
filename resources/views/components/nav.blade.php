@@ -18,6 +18,22 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons">description</i>
+                        Reports
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="{{ route('reports', ['flag' => true]) }}">Browse Reports</a>
+                        <a class="dropdown-item" href="{{ route('addReportForm') }}">Submit Report</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('stories') }}" class="nav-link">
+                        <i class="material-icons">insert_comment</i>
+                        Stories
+                    </a>
+                </li>
                 <li class="nav-item">
                 <a href="{{ route('about') }}" class="nav-link">
                         <i class="material-icons">live_help</i>
@@ -26,7 +42,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('contact') }}" class="nav-link">
-                        <i class="material-icons">contact_mail</i>
+                        <i class="material-icons">record_voice_over</i>
                         Contact Us
                     </a>
                 </li>
@@ -49,6 +65,7 @@
                 @else
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <i class="material-icons">face</i>
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 

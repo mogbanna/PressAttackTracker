@@ -1,9 +1,9 @@
 <div class="row">
     <div class="col-lg-4 col-md-6 col-sm-6">
         <div class="card card-stats">
-            <div class="card-header card-header-warning card-header-icon">
+            <div class="card-header card-header-info card-header-icon">
                 <div class="card-icon">
-                    <i class="material-icons">event_note</i>
+                    <i class="material-icons">insert_comment</i>
                 </div>
                 <p class="card-category">R. Contents</p>
                 <h3 class="card-title">{{ $report->stories()->count() }}</h3>
@@ -11,7 +11,7 @@
             <div class="card-footer">
                 <div class="stats">
                     <i class="material-icons">create</i>
-                    Stories written related to report
+                    Stories related to report
                 </div>
             </div>
         </div>
@@ -35,7 +35,7 @@
     </div>
     <div class="col-lg-4 col-md-6 col-sm-6">
         <div class="card card-stats">
-            <div class="card-header card-header-success card-header-icon">
+            <div class="card-header card-header-warning card-header-icon">
                 <div class="card-icon">
                     <i class="material-icons">folder_special</i>
                 </div>
@@ -45,7 +45,7 @@
             <div class="card-footer">
                 <div class="stats">
                     <i class="material-icons">date_range</i> 
-                    files uploaded related to report
+                    Files uploaded related to report
                 </div>
             </div>
         </div>

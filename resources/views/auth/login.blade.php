@@ -18,7 +18,7 @@
 
               <div class="card-header card-header-primary text-center">
                 <h4 class="card-title">{{ __('Login') }}</h4>
-                <div class="social-line">
+               {{--  <div class="social-line">
                   <a href="#pablo" class="btn btn-just-icon btn-link">
                     <i class="fa fa-facebook-square"></i>
                   </a>
@@ -27,10 +27,10 @@
                   </a>
                   <a href="#pablo" class="btn btn-just-icon btn-link">
                     <i class="fa fa-google-plus"></i>
-                  </a>
-                </div>
+                  </a> 
+                </div>--}}
               </div>
-              <p class="description text-center">Or Be Classical</p>
+              {{-- <p class="description text-center">Or Be Classical</p> --}}
                 <div class="card-body">
                     <div class="input-group">
                         <div class="input-group-prepend">

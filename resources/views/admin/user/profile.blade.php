@@ -10,7 +10,7 @@
 
         <!-- -->
         <div class="card">
-            <div class="card-header card-header-icon card-header-success">
+            <div class="card-header card-header-icon card-header-rose">
                 <div class="card-icon">
                 <i class="material-icons">perm_identity</i>
                 </div>
@@ -43,7 +43,7 @@
 
 
         <div class="card">
-            <div class="card-header card-header-icon card-header-info">
+            <div class="card-header card-header-icon card-header-rose">
                 <div class="card-icon">
                 <i class="material-icons">perm_identity</i>
                 </div>

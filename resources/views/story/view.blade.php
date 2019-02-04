@@ -47,7 +47,7 @@
             <h2 class="title text-center">Other Stories</h2>
             <br>
             <div class="row">
-              @component('components.story.stories')
+              @component('components.story.stories', ['story' => $story])
                   
               @endcomponent
             </div>

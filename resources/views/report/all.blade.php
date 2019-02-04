@@ -9,7 +9,7 @@
   {{-- <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('{{ asset('img/bg10.jpg') }}');">
   </div> --}}
   <div class="main main-raised" style="min-height: 100vh">
-    <div class="container">
+    {{-- <div class="container"> --}}
         <div class="section">
         </div> 
       <div class="section">
@@ -21,12 +21,12 @@
                         -->
             <li class="nav-item">
               <a class="nav-link active show" href="#map-view" role="tab" data-toggle="tab" aria-selected="true">
-                <i class="material-icons">map</i> Map View
+                <i class="material-icons">place</i> Map View
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#table-view" role="tab" data-toggle="tab" aria-selected="false">
-                <i class="material-icons">schedule</i> Table View
+                <i class="material-icons">grid_on</i> Table View
               </a>
             </li>
           </ul>
@@ -39,6 +39,7 @@
                 <div class="toolbar">
                     <!-- Here you can write extra buttons/actions for the toolbar -->
                   </div>
+              <div class="container">
                 <div class="material-datatables">
                   <div id="datatables_wrapper" class="dataTables_wrapper dt-bootstrap4">
                     <div class="row">
@@ -161,7 +162,7 @@
                   </div>
                   <!--  end card  -->
                 </div>
-              
+              </div>
 {{-- end datatables tab --}}
             </div>
           </div>
@@ -173,7 +174,7 @@
 {{-- End Section --}}
       </div>
     </div>
-    </div>
+    {{-- </div> --}}
     </div>
     </div>
   </div>
@@ -222,10 +223,11 @@
         for(var i = 0; i < reports.length; i++){
           var state = reports[i].state;
           var title = reports[i].title;
+          var id = reports[i].id;
           var type = reports[i].report_type.name;
 
           var marker = L.marker([state.latitude, state.longitude], {title: title});
-          marker.bindPopup(title);
+          marker.bindPopup("<b>" + title + "</b><br>" + state.name + "<br>" + type );
 
           switch(type) {
                 case "Physical Attack":

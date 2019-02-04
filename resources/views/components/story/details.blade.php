@@ -1,7 +1,7 @@
 <div class="row">
         <div class="col">
             <div class="card">
-            <div class="card-header">
+            <div class="card-header text-center">
                 <h4 class="card-title">Story Details</h4>
                 <p class="category">
                    Created: {{ $story->created_at->format('d/m/Y') }}

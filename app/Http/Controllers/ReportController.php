@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Report;
+use App\Story;
+use App\Evidence;
+
 use Illuminate\Http\Request;
 use App\Http\Requests\Report\NewRequest;
 use App\Http\Requests\Report\UpdateRequest;
@@ -215,6 +218,26 @@ class ReportController extends Controller
      */
     public function destroy($id) {
         $report = Report::findOrFail($id);
+
+        $relatedStories = Story::find($id);
+        $evidence = Evidence::find($id);
+    
+
+
+        if(!is_null($relatedStories)){
+            if($relatedStories->delete()){
+                $deleteStory = true;
+            }else{
+                $deleteStory = false;
+            }
+        }
+        if(!is_null($evidence)){
+            if($evidence->delete()){
+                $deleteEvidence = true;
+            }else{
+                $deleteEvidence = false;
+            }
+        }
         
         if($report->delete()) {
             $success = 1;

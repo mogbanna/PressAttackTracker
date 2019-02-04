@@ -24,10 +24,10 @@
       </div>
     @endif
     <div class="card">
-      <div class="card-header card-header-primary card-header-icon">
+      <div class="card-header card-header-info card-header-icon">
         <div class="card-icon">
           <i class="material-icons">
-            assignment
+            insert_comment
           </i>
         </div>
         <h4 class="card-title">

@@ -1,5 +1,5 @@
 @php
-    $evidences = App\Evidence::orderBy('created_at', 'desc')->get();
+    $evidences = App\Evidence::where('report_id', $report->id)->orderBy('created_at', 'desc')->get();
 @endphp
 <div class="content">
     <table class="table table-striped">
@@ -22,11 +22,11 @@
                 <td>{{ $evidence->created_at }}</td>
                 <td>
                     <a href="{{ asset('storage/'.$evidence->url) }}" download>
-                        <i class="fa fa-download"></i>
+                        <i class="fa fa-download text-warning"></i>
                     </a>
                     @can('delete', $evidence)
                     <a href="{{ route('adminDeleteEvidence', ['id'=>$evidence->id]) }}" >
-                        <i class="fa fa-times"></i>
+                        <i class="fa fa-times text-warning"></i>
                     </a>
                     @endcan
                 </td>

@@ -1,5 +1,5 @@
 @php
-    $evidences = App\Evidence::select()->where('report_id', $report->id)->orderBy('created_at', 'desc')->get();
+    $evidences = App\Evidence::where('report_id', $report->id)->orderBy('created_at', 'desc')->get();
 @endphp
 
 

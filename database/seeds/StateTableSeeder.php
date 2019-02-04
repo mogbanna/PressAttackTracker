@@ -46,6 +46,13 @@ class StateTableSeeder extends Seeder
          $state->longitude = '10.19001339';
          $state->latitude = '11.68040977';
          $state->save();
+
+         //Bayelsa information
+         $state = new State();
+         $state->name = 'Bayelsa';
+         $state->longitude = '5.8987';
+         $state->latitude = '4.8678';
+         $state->save();
  
          //Benue information
          $state = new State();

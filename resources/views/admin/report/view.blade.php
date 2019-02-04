@@ -25,10 +25,10 @@
     <div class="row">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header card-header-success card-header-icon">
+                <div class="card-header card-header-primary card-header-icon">
                     <div class="card-icon">
                         <i class="material-icons">
-                            assignment
+                            description
                         </i>
                     </div>
                     <h4 class="card-title">
@@ -40,12 +40,12 @@
                     <div class="toolbar">
                         @can('update', $report)
                         <a href="{{ route('admin/report/edit', ['id'=>$report->id]) }}" 
-                            class="btn btn-info btn-sm">
+                            class="btn btn-primary btn-sm">
                             <i class="material-icons">edit</i>
                             Edit
                         </a>
                         <a href="{{ route('addEvidence', ['report' => $report->id]) }}" 
-                            class="btn btn-info btn-sm">
+                            class="btn btn-warning btn-sm">
                             <i class="material-icons">create</i>
                             Upload Evidence
                         </a>

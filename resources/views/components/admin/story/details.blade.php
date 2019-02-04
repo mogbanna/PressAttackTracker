@@ -6,7 +6,7 @@
             </i>
         </div>
         <h4 class="card-title">
-            story Details
+            Story Details
         </h4>
     </div>
     <div class="card-body">

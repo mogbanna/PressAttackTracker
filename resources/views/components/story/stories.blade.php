@@ -1,5 +1,5 @@
 @php
-    $relatedStories = App\Story::inRandomOrder()->where('status_id', '3')->offset(0)->limit(3)->get();
+    $relatedStories = App\Story::inRandomOrder()->whereNotIn('id', [$story->id])->where('status_id', '3')->offset(0)->limit(3)->get();
 @endphp
 
 @for ($i = 0; $i < count($relatedStories); $i++)

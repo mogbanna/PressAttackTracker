@@ -18,7 +18,7 @@ $userStories = App\Story::where('user_id', $user->id)->get();
                 <div class="card-header card-header-primary card-header-icon">
                     <div class="card-icon">
                     <i class="material-icons">
-                        assignment
+                        description
                     </i>
                     </div>
                     <h4 class="card-title">
@@ -41,7 +41,7 @@ $userStories = App\Story::where('user_id', $user->id)->get();
                 <div class="card-header card-header-info card-header-icon">
                     <div class="card-icon">
                     <i class="material-icons">
-                        assignment
+                        insert_comment
                     </i>
                     </div>
                     <h4 class="card-title">

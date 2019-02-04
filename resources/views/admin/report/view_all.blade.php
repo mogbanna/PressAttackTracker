@@ -27,7 +27,7 @@
       <div class="card-header card-header-primary card-header-icon">
         <div class="card-icon">
           <i class="material-icons">
-            assignment
+            description
           </i>
         </div>
         <h4 class="card-title">

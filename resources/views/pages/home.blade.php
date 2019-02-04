@@ -96,7 +96,7 @@
 {{-- BLOG POSTS ETC... --}}
 <div class="main main-raised">
   <div class="container">
-      <div class="row">
+      {{-- <div class="row">
           <div class="card bg-danger">
               <div class="card-body">
               <h2 class="card-title text-center">
@@ -138,7 +138,7 @@
                   </div>
               </div>
           </div>
-        </div>
+        </div> --}}
     <div class="section text-center">
       <div class="container">
         <div class="section">
@@ -148,16 +148,10 @@
             <div class="col-md-12">
 
               @php
-                  $stories = App\Story::inRandomOrder()->get();
+                  $featured = App\Story::orderBy('views', 'desc')->first();
+
+                  $stories = App\Story::inRandomOrder()->limit(3)->get();
                   
-                  $mostViews = 0;
-                  for($i = 0; $i < count($stories); $i++){
-                    
-                    if($mostViews < $stories[$i]->views){
-                      $mostViews = $stories[$i]->views;
-                      $featured = $stories[$i];
-                    }
-                  }
 
               @endphp
 
@@ -195,9 +189,9 @@
         </div>
           <div class="section section-gray px-5">
             <h3 class="title text-center">Read The Latest Stories</h3>
-            <div class="row">
+            <div class="row justify-content-center">
 
-              @for ($i = 0; $i < 3; $i++)
+              @for ($i = 0; $i < count($stories); $i++)
                   
               
               @php
@@ -219,7 +213,6 @@
                     <div class="colored-shadow" style="background-image: url( {{ asset('/img/examples/color3.jpg') }} ); opacity: 1;"></div>
                   </div>
                   <div class="card-body">
-                    <h6 class="card-category text-info">Enterprise</h6>
                     <h4 class="card-title">
                       <a href="{{ route('story',['id' => $story->id]) }}">
                         {{ $story->title }}

@@ -8,7 +8,7 @@
 <div class="contactus-1 section-image" style="background-image: url('{{ asset('img/examples/city.jpg') }}')">
     <div class="container">
         <div class="row mt-5">
-            <div class="col-md-4 justify-content-center">
+            {{-- <div class="col-md-4 justify-content-center">
                 <h2 class="title">Submit Report</h2>
                 <h5 class="description">Give some userful advise for the reporters to read :) </h5>
                 <div class="info info-horizontal">
@@ -35,8 +35,8 @@
                         </p>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-8 ml-auto">
+            </div> --}}
+            <div class="col-lg-12 my-auto">
                 <div class="card card-contact">
                 <form id="contact-form" action="{{ route('addReport') }} "method="POST" novalidate="novalidate">
                     @csrf
@@ -57,6 +57,7 @@
                                 <div class="col-md-6">
                                     <label class="label-floating">Select Report Type</label>
                                         <select name="report_type_id" class="form-control selectpicker" data-style="" id="report-type">
+                                                <option value="">- Please select the type of attack -</option>
                                             @php
                                                 $reportTypes = App\ReportType::all();
                                             @endphp
@@ -104,9 +105,9 @@
                                 <input type="email" name="affiliation" class="form-control">
                                 <span class="material-input"></span>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 justify-content-center">
                                         <select name="state_id" class="form-control selectpicker" data-style="" id="state">
-                                            <option value="" disabled>- Please select the state -</option>
+                                            <option value="">- Please select the state -</option>
                                             @php
                                                 $states = App\State::all();
                                             @endphp

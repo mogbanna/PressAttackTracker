@@ -87,21 +87,17 @@
                         </label>
                       </td>
                       <td>{{ $report->date }}</td>
-                      <td class="text-right">
-                        @can('update', $report)
-                        <a href="{{ route('updateReportForm', ['id'=>$report->id]) }}" class="btn btn-link btn-info btn-just-icon like">
-                          <i class="material-icons">edit</i>
-                        </a>
-                        @endcan
-                        <a href="{{ route('showReport', ['id'=>$report->id]) }}" class="btn btn-link btn-warning btn-just-icon edit">
-                          <i class="material-icons">dvr</i>
-                        </a>
-                        @can('delete', $report)
-                        <a href="{{ route('deleteReport', ['id'=>$report->id]) }}" class="btn btn-link btn-danger btn-just-icon remove">
-                          <i class="material-icons">close</i>
-                        </a>
-                        @endcan
-                      </td>
+                        <td class="text-right">
+                          @can('update', $report)
+                          <a href="{{ route('admin/report/edit', ['id'=>$report->id]) }}" class="btn btn-link btn-info btn-just-icon like">
+                            <i class="material-icons">edit</i>
+                          </a>
+                          @endcan
+                          <a href="{{ route('showReport', ['id'=>$report->id]) }}" class="btn btn-link btn-warning btn-just-icon edit">
+                            <i class="material-icons">dvr</i>
+                          </a>
+                          
+                        </td>
                     </tr>
                   @endfor
                 </tbody>

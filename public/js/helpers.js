@@ -39,8 +39,6 @@ nonBelievers = {
 
               var m = Object.entries(months).sort();
               
-              console.log(months);
-
               var displayMonth = [];
 
               var max = 0;

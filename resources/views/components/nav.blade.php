@@ -37,13 +37,13 @@
                 <li class="nav-item">
                 <a href="{{ route('about') }}" class="nav-link">
                         <i class="material-icons">live_help</i>
-                        About Us
+                        About
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('contact') }}" class="nav-link">
+                    <a href="https://isupportfreepress.pressattack.ng/" class="nav-link" target="_blank">
                         <i class="material-icons">record_voice_over</i>
-                        Contact Us
+                        #iSupportFreePress
                     </a>
                 </li>
                 <!-- Authentication Links -->

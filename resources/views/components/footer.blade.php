@@ -12,10 +12,10 @@
                     </p>
                 </div>
                 <div class="col-md-4">
-                    <h5>Development Team</h5>
+                    <h5>I Support Free Press!</h5>
                     <p>
-                            ● Anna Agboola<br>
-                            ● Faruk Nasir
+                            ● Click below to learn more about this Campaign.<br>
+                           <a href="https://isupportfreepress.pressattack.ng/"> #iSupportFreePress </a>
                     </p> 
                 </div>
 

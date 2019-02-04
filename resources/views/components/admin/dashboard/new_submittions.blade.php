@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-lg-6">
         <div class="card text-center">
-            <div class="card-header card-header-icon card-header-rose">
+            <div class="card-header card-header-icon card-header-primary">
                 <div class="card-text">
                     <h3 class="card-title"><b>{{ $report }}</b></h3>
                 </div>

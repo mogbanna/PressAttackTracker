@@ -1,7 +1,7 @@
 @if(Auth::user()->hasRole('administrator'))
 <div class="row">
   <div class="card">
-    <div class="card-header card-header-icon card-header-rose">
+    <div class="card-header card-header-icon card-header-success">
       <div class="card-icon">
         <i class="material-icons">timeline</i>
       </div>
@@ -18,7 +18,7 @@
 
 <div class="row">
   <div class="card">
-    <div class="card-header card-header-icon card-header-info">
+    <div class="card-header card-header-icon card-header-success">
       <div class="card-icon">
         <i class="material-icons">insert_chart</i>
       </div>

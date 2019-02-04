@@ -9,6 +9,11 @@
 @endphp
 
 <div class="row">
+        <div class="col">
+            <div id="changeMe"></div>
+        </div>
+    </div>
+<div class="row">
         <div class="col-md-12">
           <div class="card ">
             <div class="card-header card-header-success card-header-icon">
@@ -17,7 +22,7 @@
               </div>
               <h4 class="card-title">Submitted Reports by State</h4>
             </div>
-            <div class="card-body ">
+            <div class="card-body">
               <div class="row">
                  <div class="col-md-6">
                     <table id="statesTable" class="display" style="width:100%">
@@ -48,7 +53,7 @@
                                             }
 
                                         @endphp
-                        
+                                    
                                         <tr>
                                             <td>{{ $state->name }}</td>
                                             <td>{{ $count }}</td>
@@ -66,6 +71,7 @@
                                 </tr>
                             </tfoot>
                         </table>
+                        <br>
                     </div>
                     <div class="col-md-6 ml-auto mr-auto">
                     <div id="mapsvg"></div>
@@ -135,34 +141,42 @@ $(document).ready(function() {
 
 } );
 
+let reports = @php echo App\Report::with(['state', 'reportType'])->get() @endphp;
 
-let svgM = $('#mapsvg').mapSvg({source: '{{ asset('/img/svg-map/nigeria.svg') }}',
+marks = [];
+
+for(var i = 0; i < reports.length; i++){
+          var state = reports[i].state;
+          var title = reports[i].title;
+          var id = reports[i].id;
+          var type = reports[i].report_type.name;
+
+          var m = {
+              geoCoords: [state.latitude, state.longitude]
+          };
+
+          marks.push(m);
+
+        }
+let svgM = $('#mapsvg').mapSvg(
+                {
+                    source: '{{ asset('/img/svg-map/nigeria.svg') }}',
                     responsive: true,
-                    loadingText: "Map is loading...",
+                    preloaderText: "Map is loading...",
                     colors: {
                         background: transparent,
                         base: '#5ab15e',
                         hover: '#ffffff',
                         stroke: '#000000'
                     },
+                    markers: marks,
                     tooltips: {
-                        mode:"title"
+                        mode: "title"
                     },
-                    guage: {
-                        on: true,
-                        labels: {
-                            low: 'low',
-                            high: 'high'
-                        },
-                        colors: {
-                            low: '#550000',
-                            high: '#ee0000'
-                        }
-                    }
-                  
+                        
+                            
 
 });
-
 
     </script>
 @endsection

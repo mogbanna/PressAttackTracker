@@ -75,7 +75,7 @@ class ReportPolicy
     public function delete(User $user, Report $report)
     {
         return $user->id == $report->user_id || 
-            $user->hasRole($this->roles[1]);
+            $user->hasRole('administrator');
     }
 
     /**

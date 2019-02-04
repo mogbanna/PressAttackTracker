@@ -6,7 +6,7 @@
       Tip 2: you can also add an image using data-image tag
   -->
     <div class="logo mx-3">
-      <a href="{{ route('dashboard') }}" class="simple-text logo-normal">
+      <a href="{{ route('home') }}" class="simple-text logo-normal">
         Press Attack Tracker
       </a> 
     </div>
@@ -59,7 +59,7 @@
         </li>
         <li class="nav-item ">
           <a class="nav-link" data-toggle="collapse" href="#report-dropdown">
-            <i class="material-icons">image</i>
+            <i class="material-icons">description</i>
             <p> Reports
               <b class="caret"></b>
             </p>
@@ -89,7 +89,7 @@
         </li>
         <li class="nav-item ">
           <a class="nav-link" data-toggle="collapse" href="#post-dropdown">
-            <i class="material-icons">image</i>
+            <i class="material-icons">insert_comment</i>
             <p> Stories
               <b class="caret"></b>
             </p>
@@ -108,7 +108,7 @@
         @if (Auth::user()->hasRole('administrator'))
         <li class="nav-item ">
           <a class="nav-link" data-toggle="collapse" href="#formsExamples">
-            <i class="material-icons">content_paste</i>
+            <i class="material-icons">settings</i>
             <p> 
               Config
               <b class="caret"></b>

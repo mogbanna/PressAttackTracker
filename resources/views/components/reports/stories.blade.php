@@ -20,7 +20,7 @@ $stories = App\Story::select()->where([
 <div class="col-lg-3 col-sm-4">
   <div class="card card-blog">
     <div class="card-header card-header-image">
-      <a href="{{ route('story', [$story->id]) }}">
+      <a href="{{ route('story', ['id' => $story->id]) }}">
           <img class="card-img-top" 
           src="{{ asset('storage/'.$story->thumbnail) }}" alt="card image cap">
       </a>
@@ -28,7 +28,7 @@ $stories = App\Story::select()->where([
     </div>
     <div class="card-body">
       <h4 class="card-title">
-        <a href="{{ route('story', [$story->id]) }}">{{ $story->title }}</a>
+        <a href="{{ route('story', ['id' => $story->id]) }}">{{ $story->title }}</a>
       </h4>
       <p class="card-description">
         {!! $description !!}

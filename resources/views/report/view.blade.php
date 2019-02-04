@@ -28,17 +28,17 @@
                   <ul class="nav nav-tabs" data-tabs="tabs">
                     <li class="nav-item">
                       <a class="nav-link active show" href="#report" data-toggle="tab">
-                        <i class="material-icons">face</i> Report
+                        <i class="material-icons">description</i> Report
                       </a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="#evidence" data-toggle="tab">
-                        <i class="material-icons">chat</i> Evidence
+                        <i class="material-icons">folder_special</i> Evidence
                       <div class="ripple-container"></div></a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="#stories" data-toggle="tab">
-                        <i class="material-icons">build</i> Related Stories
+                        <i class="material-icons">insert_comment</i> Related Stories
                       <div class="ripple-container"></div></a>
                     </li>
                   </ul>

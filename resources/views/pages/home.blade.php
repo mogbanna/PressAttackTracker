@@ -175,9 +175,11 @@
 
                   <p class="card-description">
                       {!! $description !!}
+                  
                   <a href="{{ route('story',['id' => $featured->id]) }}" class="btn btn-info btn-round btn-sm">
                     <i class="material-icons">subject</i> Read Report Story
                   </a>
+                </p>
                 </div>
               </div>
               @endif

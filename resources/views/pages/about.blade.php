@@ -12,7 +12,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-8 ml-auto mr-auto text-center">
-        <h1 class="title">What We Do</h1>
+        <h1 class="title">About PAT</h1>
         <h4>Take A Look Behind The Scenes</h4>
       </div>
     </div>
@@ -45,14 +45,17 @@
         <div class="col-md-8 ml-auto mr-auto text-center">
           <h2 class="title">How it works:</h2>
           <h5 class="description">
-            This is the paragraph where you 
-            can write more details about your 
-            product. Keep you user engaged by 
-            providing meaningful information.
+              Press Attack Nigeria as the name implies, is a platform to track and report attacks on the press. 
+              The platform will provide a map of threats and attack on the press thus providing data for periodic 
+              review and also serve as advocacy tool for Press Freedom in the wider Nigerian society.
+              <br>
+              <br>
+              The tracker is the innovative outcome of Premium Times Centre for Investigative Journalism with the 
+              support of Free Press Unlimited.
           </h5>
         </div>
       </div>
-      <div class="row">
+      {{-- <div class="row">
         <div class="col-md-4">
           <div class="info info-horizontal">
             <div class="icon icon-rose">
@@ -105,37 +108,21 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> --}}
     </div>
     <div class="about-office">
       <div class="row text-center">
         <div class="col-md-8 ml-auto mr-auto">
           <h2 class="title">How Can I Use The Tracker?</h2>
           <h4 class="description">
-            Here are some pictures from our 
-            office. You can see the place 
-            looks like a palace and is fully 
-            equiped with everything you need 
-            to get the job done.
+            This tutorial will walk you thorugh how to submit a report on PAT.
           </h4>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-4">
-          <img class="img-raised rounded img-fluid m-2" alt="Raised Image" src="{{ asset('img/examples/office2.jpg') }}">
-        </div>
-        <div class="col-md-4">
-          <img class="img-raised rounded img-fluid m-2" alt="Raised Image" src="{{ asset('img/examples/office4.jpg') }}">
-        </div>
-        <div class="col-md-4">
-          <img class="img-raised rounded img-fluid m-2" alt="Raised Image" src="{{ asset('img/examples/office3.jpg') }}">
-        </div>
-        <div class="col-md-6">
-          <img class="img-raised rounded img-fluid m-2" alt="Raised Image" src="{{ asset('img/examples/office5.jpg') }}">
-        </div>
-        <div class="col-md-6">
-          <img class="img-raised rounded img-fluid m-2" alt="Raised Image" src="{{ asset('img/examples/office1.jpg') }}">
-        </div>
+      <div class="row ">
+          <div class="col-md-8 ml-auto mr-auto">
+              <iframe width="100%" height="400" src="https://www.youtube-nocookie.com/embed/iSgUMPHQEWw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
       </div>
     </div>
     <hr>

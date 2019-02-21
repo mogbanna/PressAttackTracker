@@ -8,11 +8,11 @@
 @section('content')
   {{-- <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('{{ asset('img/bg10.jpg') }}');">
   </div> --}}
-  <div class="main main-raised" style="min-height: 100vh">
+  <div class="main" style="min-height: 100vh">
     {{-- <div class="container"> --}}
         <div class="section">
+          <h2 class="title text-center">Tracked Reports</h2>
         </div> 
-      <div class="section">
        <div class="row justify-content-center">
         <div class="col-md-12">
           <ul class="nav nav-pills nav-pills-icons justify-content-center mb-4" role="tablist">
@@ -36,6 +36,7 @@
             </div>
 {{-- being datatables tab --}}
             <div class="tab-pane" id="table-view">
+              <div class="section">
                 <div class="toolbar">
                     <!-- Here you can write extra buttons/actions for the toolbar -->
                   </div>
@@ -166,10 +167,10 @@
 {{-- end datatables tab --}}
             </div>
           </div>
+          </div>
         </div>
       </div>
 {{-- End Nav-Tabs --}}
-        </div>
        
 {{-- End Section --}}
       </div>
@@ -227,7 +228,7 @@
           var type = reports[i].report_type.name;
 
           var marker = L.marker([state.latitude, state.longitude], {title: title});
-          marker.bindPopup("<b>" + title + "</b><br>" + state.name + "<br>" + type );
+          marker.bindPopup("<b>" + title + "</b><br>Type: " + type + "<br> <a href='/report/view/" + id + "'> Read More.. </a>" );
 
           switch(type) {
                 case "Physical Attack":

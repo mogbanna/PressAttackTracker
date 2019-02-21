@@ -32,6 +32,7 @@ $stories = App\Story::select()->where([
       </h4>
       <p class="card-description">
         {!! $description !!}
+        <br>
         <a class="text-info" href="{{ route('story', ['id' => $story->id]) }}"> <b>Read More </b></a>
       </p>
     </div>

@@ -26,6 +26,7 @@
         </h4>
         <p class="card-description">
             {!! $description !!}
+            <br>
             <a class="text-info" href="{{ route('story', [$relatedStory->id]) }}"> Read More </a>
         </p>
         </div>

@@ -102,7 +102,7 @@
         <div class="copyright float-right">
             Copyright © 
             <script>document.write(new Date().getFullYear())</script>
-            Anna and Faruk
+            A&F
         </div>
     </div>
 </footer>

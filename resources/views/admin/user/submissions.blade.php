@@ -29,7 +29,7 @@ $userStories = App\Story::where('user_id', $user->id)->get();
                 @if ($userReports->isEmpty())
                     <h4 class="text-center">You have not submit any reports yet.</h4>
                 @else
-                    @component('components.user.reports', ['reports' => $userReports])
+                    @component('components.admin.user.reports', ['reports' => $userReports])
     
                     @endcomponent
                 @endif
@@ -52,7 +52,7 @@ $userStories = App\Story::where('user_id', $user->id)->get();
                 @if ($userStories->isEmpty())
                     <h4 class="text-center">You have not submit any reports yet.</h4>
                 @else
-                    @component('components.user.stories', ['stories' => $userStories])
+                    @component('components.admin.user.stories', ['stories' => $userStories])
     
                     @endcomponent
                 @endif

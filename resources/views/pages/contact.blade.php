@@ -14,12 +14,12 @@
   <div class="main main-raised">
     <div class="contact-content">
       <div class="container">
-        <h2 class="title">Send us a message</h2>
+        <h2 class="title">Send us a message!</h2>
         <div class="row">
           <div class="col-md-6">
             <p class="description">
               You can contact us with 
-              anything related to our Products. 
+              anything related to PAT. 
               We&apos;ll get in touch with you 
               as soon as possible.
               <br>
@@ -84,7 +84,7 @@
           </div>
           <div class="col-md-4 ml-auto">
             <div class="info info-horizontal">
-              <div class="icon icon-primary">
+              {{-- <div class="icon icon-primary">
                 <i class="material-icons">pin_drop</i>
               </div>
               <div class="description">
@@ -96,22 +96,21 @@
                   <br> 7652 Bucharest,
                   <br> Romania
                 </p>
-              </div>
-            </div>
+              </div>--}}
+            </div> 
             <div class="info info-horizontal">
               <div class="icon icon-primary">
                 <i class="material-icons">phone</i>
               </div>
               <div class="description">
                 <h4 class="info-title">Give us a ring</h4>
-                <p> Michael Jordan
-                  <br> +40 762 321 762
-                  <br> Mon - Fri, 8:00-22:00
+                <p> PTCIJ
+                  <br> +234.810.419.8112
                 </p>
               </div>
             </div>
-            <div class="info info-horizontal">
-              <div class="icon icon-primary">
+           <div class="info info-horizontal"> 
+               {{-- <div class="icon icon-primary">
                 <i class="material-icons">business_center</i>
               </div>
               <div class="description">
@@ -121,7 +120,7 @@
                   <br> IBAN &#xB7; EN8732ENGB2300099123
                   <br> Bank &#xB7; Great Britain Bank
                 </p>
-              </div>
+              </div> --}}
             </div>
           </div>
         </div>

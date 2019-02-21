@@ -244,7 +244,7 @@ nonBelievers = {
             var unverifiedType = [];
 
             for (var j = 0; j < types.length; j++) {
-              var label = types[j].name.substring(0, 4);
+              var label = types[j].name.substring(0, 35);
              typesLabel.push(label);
               verifiedCount = 0;
               unverifiedCount = 0;
@@ -275,7 +275,8 @@ nonBelievers = {
               var optionsMultipleBarsChart = {
                 seriesBarDistance: 10,
                 axisX: {
-                  showGrid: true
+                  showGrid: true,
+                  offset: 80
                 },
                 axisY: {
                   onlyInteger: true

@@ -28,6 +28,10 @@
     </div>
     <div class="card-body my-2 ">
         <div id="multipleBarsChart" class="ct-chart"></div>
+        <ul class="list-inline">
+          <li class="list-inline-item"><span class="badge badge-info"> </span> Verified</li>
+          <li class="list-inline-item"><span class="badge badge-danger"> </span> Unverified</li>
+        </ul>
   </div>
 </div>
 </div>
